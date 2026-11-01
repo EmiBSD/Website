@@ -71,7 +71,11 @@ written, and nothing of it from OpenBSD: upstream LLVM at a pinned release, one 
 the C and the backend of rustc; and rust-lang/rust at a pinned stable tag, built against that
 LLVM, so that `aarch64-emibsd-emibsd`, the project's own target, gets its standard library from a
 stable release's source without nightly. Built once, released as artifacts the other
-repositories consume.
+repositories consume: the first, on 2026-10-31, are LLVM 23.1.4 (clang, lld and the binutils,
+with compiler-rt, libunwind, libc++abi and libc++ for the target) and Rust 1.99.1 (rustc,
+cargo, clippy, rustfmt and `rust-src`, with `std` for `aarch64-emibsd-emibsd` and `core` and
+`alloc` for the kernel's bare-metal target), one tarball per host with its SHA-256; a consumer
+fetches by tag and checks the sum, never "latest".
 
 ### OS, the assembly
 
