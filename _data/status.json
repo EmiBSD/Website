@@ -1,7 +1,7 @@
 {
-  "commit": "ae84127f",
+  "commit": "83131948",
   "date": "2026-10-31",
-  "at": "N5.5b0, the mount's typed slot",
+  "at": "N5.5b1 in progress; Rust 1.99.1, DevTools' toolchains installed by pin",
   "crates": [
     {"name": "kernel", "files": 133, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
     {"name": "abi", "files": 4, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 170 of the 331 system-call entries handled natively"},

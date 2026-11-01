@@ -1,4 +1,5 @@
 [
+  {"date": "2026-10-31T23:31:51-03:00", "repo": "Kernel", "title": "The kernel moves to Rust 1.99.1 and installs DevTools' first toolchains by pin; a kernel built with them boots, and the switch follows the hello smoke", "url": "https://github.com/EmiBSD/Kernel/commit/a47f7e30"},
   {"date": "2026-10-31T23:00:41-03:00", "repo": "DevTools", "title": "First releases: LLVM 23.1.4 and Rust 1.99.1 for aarch64-emibsd-emibsd8.0, imported from the forks and built with the EmiBSD target series; the kernel and the userland fetch them by tag", "url": "https://github.com/EmiBSD/DevTools/releases"},
   {"date": "2026-10-31T16:29:19-03:00", "repo": "Kernel", "title": "N5.5b0 done: the UFS mount is a counted handle in the mount's typed slot, no raw word cast back", "url": "https://github.com/EmiBSD/Kernel/commit/ae84127f"},
   {"date": "2026-10-31T08:44:01-03:00", "repo": "Kernel", "title": "N5.5a done: the UFS layer, lookup and the vnode operations included, is the kernel's", "url": "https://github.com/EmiBSD/Kernel/commit/7a063ff3"},
