@@ -35,7 +35,7 @@ the latest five, `/news/` all of them, both through `_includes/news-list.html`, 
   and an optional `description` in its front matter; `/news/feed.xml` carries the posts only.
 - `title` and `url`, when there is no post: the line itself and where it links (a milestone's
   tag in Kernel, its closing commit in LandingZone).
-- `repo`: `LandingZone` or `Kernel`, shown before the line: a LandingZone milestone or
+- `repo`: `LandingZone`, `Kernel`, `DevTools` or `OS`, shown before the line: a LandingZone milestone or
   sub-milestone (M16a), or a Kernel slice (`N5.0 done: ...`, linking to its merge commit).
 
 Kernel's slices are written here, one line each when it merges; Kernel's milestones are not:
