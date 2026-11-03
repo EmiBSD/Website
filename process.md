@@ -21,7 +21,7 @@ The repositories live in the [EmiBSD organisation]({{ site.repo_org }}) on GitHu
 | [LandingZone]({{ site.repo_lz }}) | the faithful port of the OpenBSD kernel, one C file to one Rust file |
 | [Kernel]({{ site.repo }}) | the redesign of that port into four crates, subsystem by subsystem |
 | [Userland]({{ site.repo_userland }}) | the base system above the kernel: every program, library and configuration file placed by what it does, not by where history left it |
-| [DevTools]({{ site.repo_devtools }}) | the toolchains, imported and built once from the forks alone: upstream LLVM for the C and as rustc's backend, and a pinned stable Rust with its `std` for `aarch64-emibsd-emibsd`, the project's own target |
+| [DevTools]({{ site.repo_devtools }}) | the toolchains, imported and built once from the forks alone: upstream LLVM for the C and as rustc's backend, and a pinned stable Rust with its `std` for `aarch64-emibsd-emibsd` and `x86_64-emibsd-emibsd`, the project's own targets, for arm64 and amd64 |
 | [OS]({{ site.repo_os }}) | the assembly and the releases: a manifest pins one commit of each of the three, the recipes build where they build, assemble the sets and media, boot them and tag `YEAR.MONTH`; nothing released yet |
 | [Governance]({{ site.repo_governance }}) | what binds the rest: the invariants every repository obeys, the process, the architecture of the repositories, the roadmap across them, the decision log and the policies |
 
@@ -69,13 +69,16 @@ built unmodified from the pinned source.
 [DevTools]({{ site.repo_devtools }}) holds what compiles the rest, all of it imported, nothing
 written, and nothing of it from OpenBSD: upstream LLVM at a pinned release, one compiler for
 the C and the backend of rustc; and rust-lang/rust at a pinned stable tag, built against that
-LLVM, so that `aarch64-emibsd-emibsd`, the project's own target, gets its standard library from a
-stable release's source without nightly. Built once, released as artifacts the other
-repositories consume: the first, on 2026-10-31, are LLVM 23.1.4 (clang, lld and the binutils,
-with compiler-rt, libunwind, libc++abi and libc++ for the target) and Rust 1.99.1 (rustc,
-cargo, clippy, rustfmt and `rust-src`, with `std` for `aarch64-emibsd-emibsd` and `core` and
-`alloc` for the kernel's bare-metal target), one tarball per host with its SHA-256; a consumer
-fetches by tag and checks the sum, never "latest".
+LLVM, so that `aarch64-emibsd-emibsd` and `x86_64-emibsd-emibsd`, the project's own targets,
+get their standard library from a stable release's source without nightly. Built once,
+released as artifacts the other repositories consume: LLVM 23.1.4 (clang, lld and the
+binutils, with compiler-rt, libunwind, libc++abi and libc++ for each target) and Rust 1.99.1
+(rustc, cargo, clippy, rustfmt and `rust-src`, with `std` for the system's target and `core`
+and `alloc` for the kernel's, `aarch64-emibsd-none-softfloat` or
+`x86_64-emibsd-none-softfloat`). First released on 2026-10-31 for arm64, made again on
+2026-11-02 for arm64 and amd64: one tarball per host and architecture with its SHA-256; a
+consumer fetches by tag and checks the sum, never "latest". arm64 stays first: the kernel
+builds and boots there, and amd64 waits for its own milestone, N10.
 
 ### OS, the assembly
 
