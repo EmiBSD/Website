@@ -43,7 +43,7 @@ Until then, the issue tracker is the place for questions too.
 
 | Target | Today |
 |---|---|
-| x86-64 (amd64) | runs in QEMU only; frozen until milestone N10, while arm64 goes first |
+| x86-64 (amd64) | runs in QEMU only; LandingZone builds and boots it at every commit; in Kernel it is frozen until milestone N10, while arm64 goes first |
 | Raspberry Pi 5 (arm64) | not supported yet; the arm64 kernel runs on QEMU's `virt` machine |
 
 Neither target has booted EmiBSD on real hardware. Reports of what OpenBSD itself does on these

@@ -33,7 +33,8 @@ the sources the repositories pin; nothing of EmiBSD's is committed to them.
 [LandingZone]({{ site.repo_lz }}) (formerly EmiBSD.LZ) ports the OpenBSD kernel to Rust one C file at a time. Each Rust
 file names the C file it came from and keeps its structure, so a reader can hold the two side by
 side. Its job is fidelity: it boots OpenBSD's userland, and its own milestones (M0 onwards)
-track which parts of the C are ported.
+track which parts of the C are ported. It builds and boots on both architectures, amd64 and
+arm64, with DevTools' toolchains since 2026-11-02, one pair per architecture.
 
 ### Kernel, the redesign
 
@@ -77,8 +78,9 @@ binutils, with compiler-rt, libunwind, libc++abi and libc++ for each target) and
 and `alloc` for the kernel's, `aarch64-emibsd-none-softfloat` or
 `x86_64-emibsd-none-softfloat`). First released on 2026-10-31 for arm64, made again on
 2026-11-02 for arm64 and amd64: one tarball per host and architecture with its SHA-256; a
-consumer fetches by tag and checks the sum, never "latest". arm64 stays first: the kernel
-builds and boots there, and amd64 waits for its own milestone, N10.
+consumer fetches by tag and checks the sum, never "latest". LandingZone builds and boots both
+architectures with them; in Kernel arm64 stays first, and amd64 waits for its own milestone,
+N10.
 
 ### OS, the assembly
 
