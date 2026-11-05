@@ -67,7 +67,8 @@ OpenBSD project. It is an independent experiment built on OpenBSD's source code.
 
 - OpenBSD's C source, at a pinned -current snapshot, is the specification. When the Rust
   behaves differently from OpenBSD, the Rust is wrong.
-- The userland is OpenBSD's own, compiled from its source without changes.
+- The userland is OpenBSD's own, compiled from its source and changed only by patches, each
+  with its reason.
 - The system reports itself to userland as `EmiBSD 8.0`.
 - Files derived from OpenBSD keep their original BSD, ISC and other licence notices; new code
   is ISC.

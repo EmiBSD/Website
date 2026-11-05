@@ -58,12 +58,18 @@ A security fix is never skipped silently.
 
 ### Userland, the base system
 
-[Userland]({{ site.repo_userland }}) is where the system above the kernel takes shape. Its one
-decision so far is order: OpenBSD's tree grew by accretion (`bin`, `sbin`, `usr.bin`, `usr.sbin`,
+[Userland]({{ site.repo_userland }}) is where the system above the kernel takes shape. Its first
+decision is order: OpenBSD's tree grew by accretion (`bin`, `sbin`, `usr.bin`, `usr.sbin`,
 `libexec`, programs side by side with no grouping); Userland's tree places every one of them by
-what it does, with a catalogue that maps each OpenBSD program to exactly one place. Its shape is
-settled; its content is at the start. Until it boots, the system runs OpenBSD's own userland,
-built unmodified from the pinned source.
+what it does, with a catalogue that maps each OpenBSD program to exactly one place. Each entry
+is one of three classes: **inherited**, OpenBSD's base system at the pin LandingZone shares,
+byte for byte and changed only by patches, each with its reason; **imported**, a third-party
+project at its own pin; or **written**, a program written from scratch in Rust with no
+`unsafe`, which replaces an inherited one when it is ready. Today every entry is inherited:
+the whole base system, 37 libraries and every program, builds for EmiBSD with OpenBSD's own
+make, from a clean tree in a few minutes, into the install sets (base, comp, game, man), and
+a ramdisk of it boots on the Kernel. Where the inherited C tests for `__OpenBSD__`, the build
+makes it `__EmiBSD__`.
 
 ### DevTools, the toolchains
 
