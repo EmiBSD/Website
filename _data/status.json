@@ -1,7 +1,7 @@
 {
   "commit": "2cee26b1",
   "date": "2026-11-05",
-  "at": "N5.6 done: ext2fs is the kernel's, with 0 `unsafe`, and the LandingZone tree's ext2fs is deleted; N5.7 (msdosfs) in progress, in three parts: the on-disk format and the FAT engine (done); the denode cache, directories and vnode operations (done), both unwired; next the mount and the switch",
+  "at": "N5.6 done: ext2fs is the kernel's, with 0 `unsafe`, and the LandingZone tree's ext2fs is deleted; N5.7 (msdosfs) in progress, in three parts: the on-disk format and the FAT engine (done); the denode cache, directories and vnode operations (done), both unwired; the mount and the switch, which delete the LandingZone tree's msdosfs, written and reviewed (approved), fixes under way before the merge",
   "crates": [
     {"name": "kernel", "files": 179, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
     {"name": "abi", "files": 4, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 170 of the 331 system-call entries handled natively"},
@@ -34,7 +34,7 @@
       {"slice": "N5.5a", "what": "`ufs`, the layer the UFS family shares (16 files), in three parts: the inode, its mount, the inode hash and bmap (done); quotas, dirhash and the inode's life cycle (done); the credentials' sweep (done); lookup and the vnode operations (done)", "state": "done"},
       {"slice": "N5.5b", "what": "`ffs` and `mfs` (15 files): the mount's typed slot and the counted UFS mount (done); the super-block, the cylinder groups and the allocators (done); mount and the vnode operations, the switch (done); mfs (done)", "state": "done"},
       {"slice": "N5.6", "what": "`ext2fs` (15 files), in three parts: the on-disk format, the super block and the allocators (done); directories, file I/O and the vnode tables (done); the mount and the switch (done)", "state": "done"},
-      {"slice": "N5.7", "what": "`msdosfs` (13 files, 56 `unsafe`), in three parts: the on-disk format, the mount structure, the denode and the FAT engine (done); the denode cache, directories and vnode operations (done); the mount and the switch", "state": "in progress"},
+      {"slice": "N5.7", "what": "`msdosfs` (13 files, 56 `unsafe`), in three parts: the on-disk format, the mount structure, the denode and the FAT engine (done); the denode cache, directories and vnode operations (done); the mount and the switch (reviewed, merge next)", "state": "in progress"},
       {"slice": "N5.8", "what": "`isofs`: cd9660 and udf (18 files)"},
       {"slice": "N5.9", "what": "`tmpfs` and `fuse` (18 files)"},
       {"slice": "N5.10", "what": "Close: `just check`, `just ci`, `just ci-full` and the comparison with a real OpenBSD green; the tag `n5-vfs`"}
