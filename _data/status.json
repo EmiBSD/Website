@@ -1,9 +1,9 @@
 {
-  "commit": "ddd802be",
+  "commit": "111b5dd7",
   "date": "2026-11-05",
-  "at": "N5.5 done: ffs and mfs are the kernel's; next N5.6 (ext2fs)",
+  "at": "N5.6c1 done: ext2fs's on-disk format and allocators in the kernel, unwired; next N5.6c2",
   "crates": [
-    {"name": "kernel", "files": 149, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
+    {"name": "kernel", "files": 161, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
     {"name": "abi", "files": 4, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 170 of the 331 system-call entries handled natively"},
     {"name": "hal", "files": 148, "unsafe": 193, "note": "the only crate allowed `unsafe`, each site with a written proof"},
     {"name": "bsd", "label": "the LandingZone tree", "files": 1021, "unsafe": 9096, "note": "shrinks as subsystems move out; deleted at N9"}
@@ -33,7 +33,7 @@
       {"slice": "N5.4", "what": "The VFS system calls (`vfs_syscalls`): 65 more entries handled natively", "state": "done"},
       {"slice": "N5.5a", "what": "`ufs`, the layer the UFS family shares (16 files), in three parts: the inode, its mount, the inode hash and bmap (done); quotas, dirhash and the inode's life cycle (done); the credentials' sweep (done); lookup and the vnode operations (done)", "state": "done"},
       {"slice": "N5.5b", "what": "`ffs` and `mfs` (15 files): the mount's typed slot and the counted UFS mount (done); the super-block, the cylinder groups and the allocators (done); mount and the vnode operations, the switch (done); mfs (done)", "state": "done"},
-      {"slice": "N5.6", "what": "`ext2fs` (16 files)"},
+      {"slice": "N5.6", "what": "`ext2fs` (15 files), in three parts: the on-disk format, the super block and the allocators (done); directories, file I/O and the vnode tables; the mount and the switch", "state": "in progress"},
       {"slice": "N5.7", "what": "`msdosfs` (13 files)"},
       {"slice": "N5.8", "what": "`isofs`: cd9660 and udf (18 files)"},
       {"slice": "N5.9", "what": "`tmpfs` and `fuse` (18 files)"},
