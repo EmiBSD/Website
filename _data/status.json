@@ -3,7 +3,7 @@
   "date": "2026-11-05",
   "at": "N5.6 done: ext2fs is the kernel's, with 0 `unsafe`, and the LandingZone tree's ext2fs is deleted; N5.7 (msdosfs) in progress, in three parts: the on-disk format and the FAT engine (done); the denode cache, directories and vnode operations (done), both unwired; next the mount and the switch",
   "crates": [
-    {"name": "kernel", "files": 166, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
+    {"name": "kernel", "files": 179, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
     {"name": "abi", "files": 4, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 170 of the 331 system-call entries handled natively"},
     {"name": "hal", "files": 148, "unsafe": 194, "note": "the only crate allowed `unsafe`, each site with a written proof"},
     {"name": "bsd", "label": "the LandingZone tree", "files": 998, "unsafe": 9035, "note": "shrinks as subsystems move out; deleted at N9"}
