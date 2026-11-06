@@ -1,11 +1,11 @@
 {
-  "commit": "51acd8f5",
+  "commit": "ea2995e5",
   "date": "2026-11-06",
-  "at": "N5.8 done: cd9660 and udf are the kernel's, with 0 `unsafe`, and the LandingZone tree's isofs is deleted; tmpfs and fuse are next",
+  "at": "N5.9 under way: the kernel copies through a safe window of a file object, and tmpfs's core is the kernel's, still unwired; its vnode operations and the switch are next, then fuse",
   "crates": [
-    {"name": "kernel", "files": 203, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
+    {"name": "kernel", "files": 209, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
     {"name": "abi", "files": 4, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 170 of the 331 system-call entries handled natively"},
-    {"name": "hal", "files": 148, "unsafe": 194, "note": "the only crate allowed `unsafe`, each site with a written proof"},
+    {"name": "hal", "files": 148, "unsafe": 199, "note": "the only crate allowed `unsafe`, each site with a written proof"},
     {"name": "bsd", "label": "the LandingZone tree", "files": 966, "unsafe": 8897, "note": "shrinks as subsystems move out; deleted at N9"}
   ],
   "milestones": [
@@ -36,7 +36,7 @@
       {"slice": "N5.6", "what": "`ext2fs` (15 files), in three parts: the on-disk format, the super block and the allocators (done); directories, file I/O and the vnode tables (done); the mount and the switch (done)", "state": "done"},
       {"slice": "N5.7", "what": "`msdosfs` (13 files, 56 `unsafe`), in three parts: the on-disk format, the mount structure, the denode and the FAT engine (done); the denode cache, directories and vnode operations (done); the mount and the switch (done)", "state": "done"},
       {"slice": "N5.8", "what": "`isofs`: cd9660 and udf (18 files, 82 `unsafe`), in four parts: cd9660's on-disc format, node, hash and lookup (done); cd9660's mount, vnode operations and the switch (done); udf's descriptors and structures (done); udf's mount and the switch (done)", "state": "done"},
-      {"slice": "N5.9", "what": "`tmpfs` and `fuse` (18 files)"},
+      {"slice": "N5.9", "what": "`tmpfs` and `fuse` (18 files, 65 `unsafe`), in four parts: the object window and tmpfs's core (done); tmpfs's vnode operations and the switch; fuse's wire header, request buffer and device; fuse's vnode operations, mount and the switch", "state": "in progress"},
       {"slice": "N5.10", "what": "Close: `just check`, `just ci`, `just ci-full` and the comparison with a real OpenBSD green; the tag `n5-vfs`"}
     ]
   }
