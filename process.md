@@ -22,7 +22,7 @@ The repositories live in the [EmiBSD organisation]({{ site.repo_org }}) on GitHu
 | [Kernel]({{ site.repo }}) | the redesign of that port into four crates, subsystem by subsystem |
 | [Userland]({{ site.repo_userland }}) | the base system above the kernel: every program, library and configuration file placed by what it does, not by where history left it |
 | [DevTools]({{ site.repo_devtools }}) | the toolchains, imported and built once from the forks alone: upstream LLVM for the C and as rustc's backend, and a pinned stable Rust with its `std` for `aarch64-emibsd-emibsd` and `x86_64-emibsd-emibsd`, the project's own targets, for arm64 and amd64 |
-| [OS]({{ site.repo_os }}) | the assembly and the releases: a manifest pins one commit of each of the three, the recipes build where they build, assemble the sets and media, boot them and tag `YEAR.MONTH`; nothing released yet |
+| [OS]({{ site.repo_os }}) | the assembly and the releases: a manifest pins each of the three, the recipes take Kernel's and Userland's releases by tag and sum, make the install ISO and USB image, install them in QEMU and will tag `YEAR.MONTH`; nothing released yet |
 | [Governance]({{ site.repo_governance }}) | what binds the rest: the invariants every repository obeys, the process, the architecture of the repositories, the roadmap across them, the decision log and the policies |
 
 The forks beside them (`OpenBSD-src`, `rust`, `llvm-project`, `cargo`) are read-only mirrors of
@@ -90,11 +90,14 @@ N10.
 
 ### OS, the assembly
 
-[OS]({{ site.repo_os }}) builds nothing of its own. Its manifest pins one commit of Kernel,
-Userland and DevTools and records the OpenBSD pin Kernel and Userland share; its recipes fetch them, delegate
-each build to its repository, assemble the install sets and the media, boot them in QEMU,
-compare the installed system with a real OpenBSD and tag the release as `YEAR.MONTH`. Nothing
-has been released; the first milestone is the pinned Kernel booting from a clean clone.
+[OS]({{ site.repo_os }}) builds nothing of its own: Kernel makes the kernel, Userland the base
+system, and OS puts them together. Its manifest pins Kernel, Userland and DevTools and records
+the OpenBSD pin Kernel and Userland share. Its recipes take Kernel's kernels and Userland's sets
+and installer ramdisk from their GitHub releases, by tag and sum, and make the install media:
+an ISO for VMs and a USB stick image laid out as OpenBSD's, both carrying the sets, so nothing
+is downloaded during the install. Since 2026-11-06 each one installs EmiBSD in QEMU and the
+installed disk boots to `login:`, and two builds give the same images. Still to come: comparing
+the installed system with a real OpenBSD, and the first release, tagged `YEAR.MONTH`.
 
 ### Provenance
 
