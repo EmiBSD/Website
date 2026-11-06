@@ -99,6 +99,7 @@ $=VM -device virtio-scsi-device \
 | Question | Answer |
 |---|---|
 | `(I)nstall, (U)pgrade, (A)utoinstall or (S)hell?` | `i` |
+| `Password for root account?` and its `(again)` | a password of yours: it cannot be empty |
 | `Which disk is the root disk?` | `sd0` |
 | `Location of sets?` | `cd0` |
 | `Set name(s)?` | `done` |
