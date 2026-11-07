@@ -1,7 +1,7 @@
 {
-  "commit": "283bed41",
+  "commit": "05e04140",
   "date": "2026-11-07",
-  "at": "N5 close under way: every system-call argument is read with the width and sign OpenBSD's C gives it (the SCARG families, 420 casts typed); the ABI is linked into the kernel image (decision 47)",
+  "at": "N5 close under way: the parallel smokes' two intermittent failures traced to macOS (its code-signing check racing a binary rewritten under it) and fixed in the tooling; every system-call argument read with the width and sign OpenBSD's C gives it; the ABI linked into the kernel image (decision 47)",
   "crates": [
     {"name": "kernel", "files": 224, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
     {"name": "abi", "files": 3, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 170 of the 331 system-call entries handled natively"},
