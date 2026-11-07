@@ -1,12 +1,12 @@
 {
-  "commit": "eaade76b",
+  "commit": "d2107de6",
   "date": "2026-11-07",
-  "at": "N5 met (tag n5-vfs); N6, the network stack, under way: its plan of 13 slices approved on 2026-11-07",
+  "at": "N6.0 done: the net lock and safe memory reclamation (SMR) are hal's, with pools that take their own pages, in-place header views and an owned list; N6.1, the mbuf, next",
   "crates": [
     {"name": "kernel", "files": 224, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
     {"name": "abi", "files": 3, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 170 of the 331 system-call entries handled natively"},
-    {"name": "hal", "files": 143, "unsafe": 196, "note": "the only crate allowed `unsafe`, each site with a written proof"},
-    {"name": "bsd", "label": "the LandingZone tree", "files": 946, "unsafe": 8832, "note": "shrinks as subsystems move out; deleted at N9"}
+    {"name": "hal", "files": 143, "unsafe": 205, "note": "the only crate allowed `unsafe`, each site with a written proof"},
+    {"name": "bsd", "label": "the LandingZone tree", "files": 946, "unsafe": 8825, "note": "shrinks as subsystems move out; deleted at N9"}
   ],
   "milestones": [
     {"name": "N0", "title": "Bootstrap", "scope": "lineage records, tooling, the `unsafe` budget, the baseline", "date": "2026-10-09T04:31:58-03:00", "url": "https://github.com/EmiBSD/Kernel/releases/tag/n0-bootstrap"},
@@ -26,7 +26,7 @@
   "next": {
     "name": "N6",
     "slices": [
-      {"slice": "N6.0", "what": "Preconditions in `hal`: the net lock (shared and exclusive, with witnesses), SMR for lock-free reads, pools with their own page allocator, typed in-place header views, a list with an O(1) tail; the network benchmarks"},
+      {"slice": "N6.0", "what": "Preconditions in `hal`: the net lock (shared and exclusive, with witnesses), SMR for lock-free reads, pools with their own page allocator, typed in-place header views, a list with an O(1) tail; the network benchmarks", "state": "done"},
       {"slice": "N6.1", "what": "The mbuf, the packet buffer under everything (`uipc_mbuf`, `uipc_mbuf2`, `sys/mbuf.rs`)"},
       {"slice": "N6.2", "what": "Sockets and domains: the socket layer, local (AF_UNIX) sockets, descriptor passing; the 20 socket system calls handled natively"},
       {"slice": "N6.3a", "what": "The interface core: `ifnet`, the interface queues, `netisr`, link-level addresses and media"},
