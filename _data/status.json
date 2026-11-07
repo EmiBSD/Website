@@ -1,10 +1,10 @@
 {
-  "commit": "3cba3fb3",
-  "date": "2026-11-06",
-  "at": "N5 close under way: the ABI is linked into the kernel image (decision 47), abi_openbsd.ko is gone and the kernel is one file, as OpenBSD's; N5.9 done (tmpfs and fuse are the kernel's)",
+  "commit": "283bed41",
+  "date": "2026-11-07",
+  "at": "N5 close under way: every system-call argument is read with the width and sign OpenBSD's C gives it (the SCARG families, 420 casts typed); the ABI is linked into the kernel image (decision 47)",
   "crates": [
     {"name": "kernel", "files": 224, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
-    {"name": "abi", "files": 2, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 170 of the 331 system-call entries handled natively"},
+    {"name": "abi", "files": 3, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 170 of the 331 system-call entries handled natively"},
     {"name": "hal", "files": 143, "unsafe": 196, "note": "the only crate allowed `unsafe`, each site with a written proof"},
     {"name": "bsd", "label": "the LandingZone tree", "files": 946, "unsafe": 8832, "note": "shrinks as subsystems move out; deleted at N9"}
   ],
