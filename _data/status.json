@@ -1,11 +1,11 @@
 {
-  "commit": "de6586ee",
+  "commit": "3cba3fb3",
   "date": "2026-11-06",
-  "at": "N5.9 done: tmpfs and fuse are the kernel's, with 0 `unsafe`, and the LandingZone tree's tmpfs, miscfs and fusebuf header are deleted; the N5 close is next",
+  "at": "N5 close under way: the ABI is linked into the kernel image (decision 47), abi_openbsd.ko is gone and the kernel is one file, as OpenBSD's; N5.9 done (tmpfs and fuse are the kernel's)",
   "crates": [
     {"name": "kernel", "files": 224, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
-    {"name": "abi", "files": 4, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 170 of the 331 system-call entries handled natively"},
-    {"name": "hal", "files": 148, "unsafe": 199, "note": "the only crate allowed `unsafe`, each site with a written proof"},
+    {"name": "abi", "files": 2, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 170 of the 331 system-call entries handled natively"},
+    {"name": "hal", "files": 143, "unsafe": 196, "note": "the only crate allowed `unsafe`, each site with a written proof"},
     {"name": "bsd", "label": "the LandingZone tree", "files": 946, "unsafe": 8832, "note": "shrinks as subsystems move out; deleted at N9"}
   ],
   "milestones": [
