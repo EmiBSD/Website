@@ -38,18 +38,19 @@ Each line is checked by a scripted QEMU boot, the smoke tests, at every mileston
 | {{ m.name }} {{ m.title }} | {{ m.scope }} | {% if m.date %}<span class="state state-done">done</span> {{ m.date | slice: 0, 10 }}{% elsif m.state %}<span class="state state-wip">{{ m.state }}</span>{% else %}<span class="state state-todo">pending</span>{% endif %} |
 {%- endfor %}
 
-## {{ s.next.name }}, the last milestone closed
+## {{ s.next.name }}, the milestone in progress
 
-N5 moved the VFS and the file systems out of the LandingZone tree into `kernel::fs`: the buffer
-cache, the vnode and mount layer, name lookup, the VFS system calls, then the file systems one
-by one. Two left its scope (the maintainer's decisions of 2026-10-28): nfs is written over
-sockets and mbufs, so it moves with the network stack at N6; ntfs is built on amd64 only, so it
-waits for N10. Both stay in the LandingZone tree meanwhile, adapted to the kernel's VFS traits.
-N5 closed on 2026-11-07, tagged [`n5-vfs`]({{ site.repo }}/releases/tag/n5-vfs); its results
-are in [its news entry]({{ '/news/2026/11/07/n5-met/' | relative_url }}).
+N6 moves the network stack out of the LandingZone tree into `kernel::net`: the packet buffer
+(the mbuf), sockets, interfaces, routing, IPv4, IPv6, TCP and UDP, then nfs over them (the
+maintainer's decision of 2026-10-28). Four surveys measured it on 2026-11-07: 125 files and
+1,933 `unsafe`. Four pieces go to N8 with pf and IPsec, where they belong (`ip_spd`,
+`ip_ipip`, and pf's queueing back ends `hfsc` and `fq_codel`); until N8, N6 reaches pf and
+IPsec through two bridges, and their fields in the packet and in the protocol control block are
+opaque words only those bridges read. The packet path, the sockets and TCP join the
+performance rule: every slice runs the network benchmarks before its commits.
 
-N6, the network stack, is next: its plan is being drawn up, and this table will show its
-slices once it is.
+The slices below are N6's plan of 2026-11-07, approved by the maintainer the same day. As in
+N4 and N5, a slice may be split or renumbered when it starts, and this table follows.
 
 | Slice | What moves | State |
 |---|---|---|
@@ -64,8 +65,9 @@ host, with 1,024 entries in the map, mprotect(2) takes 62 % less time, madvise(2
 minherit(2) 66 % and mlock(2) 36 %; the other operations measured did not change. The rest of
 N12 waits for its turn.
 
-N4, the milestone before, closed on 2026-10-24 in seventeen slices; its results, and what it
-cost in speed, are in [its news entry]({{ '/news/2026/10/24/n4-met/' | relative_url }}).
+N5, the milestone before, closed on 2026-11-07 in ten slices; its results, and what it cost in
+speed, are in [its news entry]({{ '/news/2026/11/07/n5-met/' | relative_url }}). N4's are in
+[its own]({{ '/news/2026/10/24/n4-met/' | relative_url }}).
 
 ## The crates today
 

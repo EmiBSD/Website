@@ -1,7 +1,7 @@
 {
   "commit": "eaade76b",
   "date": "2026-11-07",
-  "at": "N5 met (tag n5-vfs): the VFS and eight file systems now in the safe kernel crate; N6, the network stack, is next",
+  "at": "N5 met (tag n5-vfs); N6, the network stack, under way: its plan of 13 slices approved on 2026-11-07",
   "crates": [
     {"name": "kernel", "files": 224, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
     {"name": "abi", "files": 3, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 170 of the 331 system-call entries handled natively"},
@@ -15,7 +15,7 @@
     {"name": "N3", "title": "Memory", "scope": "uvm into `kernel::vm`, the pmaps into `hal`", "date": "2026-10-18T12:25:14-03:00", "url": "https://github.com/EmiBSD/Kernel/releases/tag/n3-memory"},
     {"name": "N4", "title": "Processes and scheduling", "scope": "timeouts, processes, descriptors, kqueue, the scheduler, signals, tty, clocks, sysctl", "date": "2026-10-24T02:00:37-03:00", "url": "https://github.com/EmiBSD/Kernel/releases/tag/n4-processes", "post": "n4-met"},
     {"name": "N5", "title": "VFS and file systems", "scope": "the buffer cache, the VFS layer, ufs and ffs, ext2fs, msdosfs, cd9660 and udf, tmpfs, fuse", "date": "2026-11-07T14:34:28-03:00", "url": "https://github.com/EmiBSD/Kernel/releases/tag/n5-vfs", "post": "n5-met"},
-    {"name": "N6", "title": "Network stack", "scope": "interfaces, routing, IPv4, IPv6, sockets, then nfs over them", "state": "next"},
+    {"name": "N6", "title": "Network stack", "scope": "interfaces, routing, IPv4, IPv6, sockets, then nfs over them", "state": "in progress"},
     {"name": "N7", "title": "Devices", "scope": "the driver model, then every bus and driver"},
     {"name": "N8", "title": "Security subsystems", "scope": "pf, IPsec, WireGuard, pledge, unveil, exec, the crypto framework"},
     {"name": "N9", "title": "Close", "scope": "the last of the LandingZone tree deleted, on arm64"},
@@ -24,20 +24,21 @@
     {"name": "N12", "title": "Performance", "scope": "the slowdowns left open after N3, on both architectures", "state": "started early"}
   ],
   "next": {
-    "name": "N5",
+    "name": "N6",
     "slices": [
-      {"slice": "N5.0", "what": "The five bridges N4 left open (`Uptime`, `SysInfo`, `VmProc`, `PipeGlue`, `PipeFiles`) become the kernel's own code", "state": "done"},
-      {"slice": "N5.1", "what": "The buffer cache and a typed `Buf`: `vfs_bio`, `vfs_biomem`, `kern_bufq`, `kern_physio`", "state": "done"},
-      {"slice": "N5.2", "what": "The vnode, the mount and the VFS core (`vfs_subr`, `vfs_sync`, `vfs_init`, `vfs_vops`, `vfs_default`, `spec_vnops`, deadfs); the vnode and mount operations as the Rust traits `Vnops` and `Vfs`", "state": "done"},
-      {"slice": "N5.3", "what": "Names, files and record locks: `vfs_lookup`, `vfs_cache`, `vfs_getcwd`, `vfs_vnops`, `vfs_lockf`", "state": "done"},
-      {"slice": "N5.4", "what": "The VFS system calls (`vfs_syscalls`): 65 more entries handled natively", "state": "done"},
-      {"slice": "N5.5a", "what": "`ufs`, the layer the UFS family shares (16 files), in three parts: the inode, its mount, the inode hash and bmap (done); quotas, dirhash and the inode's life cycle (done); the credentials' sweep (done); lookup and the vnode operations (done)", "state": "done"},
-      {"slice": "N5.5b", "what": "`ffs` and `mfs` (15 files): the mount's typed slot and the counted UFS mount (done); the super-block, the cylinder groups and the allocators (done); mount and the vnode operations, the switch (done); mfs (done)", "state": "done"},
-      {"slice": "N5.6", "what": "`ext2fs` (15 files), in three parts: the on-disk format, the super block and the allocators (done); directories, file I/O and the vnode tables (done); the mount and the switch (done)", "state": "done"},
-      {"slice": "N5.7", "what": "`msdosfs` (13 files, 56 `unsafe`), in three parts: the on-disk format, the mount structure, the denode and the FAT engine (done); the denode cache, directories and vnode operations (done); the mount and the switch (done)", "state": "done"},
-      {"slice": "N5.8", "what": "`isofs`: cd9660 and udf (18 files, 82 `unsafe`), in four parts: cd9660's on-disc format, node, hash and lookup (done); cd9660's mount, vnode operations and the switch (done); udf's descriptors and structures (done); udf's mount and the switch (done)", "state": "done"},
-      {"slice": "N5.9", "what": "`tmpfs` and `fuse` (18 files, 65 `unsafe`), in four parts: the object window and tmpfs's core (done); tmpfs's vnode operations and the switch (done); fuse's wire header, request buffer and device (done); fuse's vnode operations, mount and the switch (done)", "state": "done"},
-      {"slice": "N5.10", "what": "Close: `just check`, `just ci`, `just ci-full` and the comparison with a real OpenBSD green; the tag `n5-vfs`", "state": "done"}
+      {"slice": "N6.0", "what": "Preconditions in `hal`: the net lock (shared and exclusive, with witnesses), SMR for lock-free reads, pools with their own page allocator, typed in-place header views, a list with an O(1) tail; the network benchmarks"},
+      {"slice": "N6.1", "what": "The mbuf, the packet buffer under everything (`uipc_mbuf`, `uipc_mbuf2`, `sys/mbuf.rs`)"},
+      {"slice": "N6.2", "what": "Sockets and domains: the socket layer, local (AF_UNIX) sockets, descriptor passing; the 20 socket system calls handled natively"},
+      {"slice": "N6.3a", "what": "The interface core: `ifnet`, the interface queues, `netisr`, link-level addresses and media"},
+      {"slice": "N6.3b", "what": "Routing: the routing table, ART, the routing socket"},
+      {"slice": "N6.3c", "what": "Link layers and bpf: Ethernet, loopback, the packet filter devices"},
+      {"slice": "N6.4", "what": "IPv4, ARP and the protocol control block shared by both families"},
+      {"slice": "N6.5", "what": "IPv6 and neighbour discovery"},
+      {"slice": "N6.6a", "what": "TCP"},
+      {"slice": "N6.6b", "what": "UDP, raw sockets and divert"},
+      {"slice": "N6.7a", "what": "The nfs client and its RPC"},
+      {"slice": "N6.7b", "what": "The nfs server, the export list and a typed radix tree; nfssvc(2) handled natively"},
+      {"slice": "N6.8", "what": "Close: `just check`, `just ci`, `just ci-full`, the comparison with a real OpenBSD (one new network scenario) green; the tag `n6-network`"}
     ]
   }
 }
