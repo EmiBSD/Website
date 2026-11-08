@@ -22,7 +22,7 @@ The repositories live in the [EmiBSD organisation]({{ site.repo_org }}) on GitHu
 | [Kernel]({{ site.repo }}) | the redesign of that port into four crates, subsystem by subsystem |
 | [Userland]({{ site.repo_userland }}) | the base system above the kernel: every program, library and configuration file placed by what it does, not by where history left it |
 | [DevTools]({{ site.repo_devtools }}) | the toolchains, imported and built once from the forks alone: upstream LLVM for the C and as rustc's backend, and a pinned stable Rust with its `std` for `aarch64-emibsd-emibsd` and `x86_64-emibsd-emibsd`, the project's own targets, for arm64 and amd64 |
-| [OS]({{ site.repo_os }}) | the assembly and the releases: a manifest pins each of the three, the recipes take Kernel's and Userland's releases by tag and sum, make the install ISO and USB image, install them in QEMU and tag `YEAR.MONTH`; the first release, `2026.11`, is a pre-release |
+| [OS]({{ site.repo_os }}) | the assembly and the releases: a manifest pins each of the three, the recipes take Kernel's and Userland's releases by tag and sum, make the install ISO and USB image, install them in QEMU and tag `YEAR.MONTH`; the releases so far, `2026.11` and `2026.11.1`, are pre-releases |
 | [Governance]({{ site.repo_governance }}) | what binds the rest: the invariants every repository obeys, the process, the architecture of the repositories, the roadmap across them, the decision log and the policies |
 
 The forks beside them (`OpenBSD-src`, `rust`, `llvm-project`, `cargo`) are read-only mirrors of
@@ -97,8 +97,9 @@ and installer ramdisk from their GitHub releases, by tag and sum, and make the i
 an ISO for VMs and a USB stick image laid out as OpenBSD's, both carrying the sets, so nothing
 is downloaded during the install. Since 2026-11-06 each one installs EmiBSD in QEMU and the
 installed disk boots to `login:`, and two builds give the same images. The first release,
-[`2026.11`]({{ site.repo_os }}/releases/tag/2026.11), is a pre-release with both media for
-arm64; still to come is comparing the installed system with a real OpenBSD.
+[`2026.11`]({{ site.repo_os }}/releases/tag/2026.11), came on 2026-11-06 and the second,
+[`2026.11.1`]({{ site.repo_os }}/releases/tag/2026.11.1), on 2026-11-07, both pre-releases with
+both media for arm64; still to come is comparing the installed system with a real OpenBSD.
 
 ### Provenance
 
