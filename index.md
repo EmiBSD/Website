@@ -58,16 +58,24 @@ QEMU (below).
 ## Try it in QEMU
 
 Tested on macOS on Apple Silicon (`brew install qemu`). Each
-[OS release]({{ site.repo_os }}/releases) carries `emibsd-<version>-arm64-install.iso` and its
-`SHA256`.
+[OS release]({{ site.repo_os }}/releases) carries `emibsd-<version>-arm64-install.iso`, its
+`SHA256` and, from `2026.11.2` on, their signature `SHA256.sig`.
 
 **1. Download and check the ISO.** `V` is the release's tag, as the releases page lists it:
 
 ```sh
-V=2026.11.1
+V=2026.11.2
 U=https://github.com/EmiBSD/OS/releases/download/$V
 curl -fLO $U/emibsd-$V-arm64-install.iso -fLO $U/SHA256 &&
   shasum -a 256 --ignore-missing -c SHA256
+```
+
+With signify (`brew install signify-osx`), check the signature with EmiBSD's key
+`emibsd-80-base.pub`:
+
+```sh
+curl -fLO $U/SHA256.sig -fLO https://raw.githubusercontent.com/EmiBSD/OS/main/keys/emibsd-80-base.pub &&
+  signify -C -p emibsd-80-base.pub -x SHA256.sig emibsd-$V-arm64-install.iso
 ```
 
 **2. Prepare a disk and the firmware:**
@@ -103,9 +111,9 @@ $=VM -device virtio-scsi-device \
 | `Which disk is the root disk?` | `sd0` |
 | `Location of sets?` | `cd0` |
 | `Set name(s)?` | `done` |
-| `Continue without verification?` | `yes` |
 | `Exit to (S)hell, (H)alt or (R)eboot?` | `h` |
 
+The installer checks the sets against the medium's signature (`Signature Verified`).
 When it says `The operating system has halted.`, leave QEMU with `Ctrl-A X`.
 
 **5. Boot the installed system:** run `$=VM` alone, without the ISO, and log in as `root` with
