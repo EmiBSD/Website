@@ -64,7 +64,7 @@ Tested on macOS on Apple Silicon (`brew install qemu`). Each
 **1. Download and check the ISO.** `V` is the release's tag, as the releases page lists it:
 
 ```sh
-V=2026.11.3
+V=2026.11.4
 U=https://github.com/EmiBSD/OS/releases/download/$V
 curl -fLO $U/emibsd-$V-arm64-install.iso -fLO $U/SHA256 &&
   shasum -a 256 --ignore-missing -c SHA256
