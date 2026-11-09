@@ -22,7 +22,7 @@ The repositories live in the [EmiBSD organisation]({{ site.repo_org }}) on GitHu
 | [Kernel]({{ site.repo }}) | the redesign of that port into four crates, subsystem by subsystem |
 | [Userland]({{ site.repo_userland }}) | the base system above the kernel: every program, library and configuration file placed by what it does, not by where history left it |
 | [DevTools]({{ site.repo_devtools }}) | the toolchains, imported and built once from the forks alone: upstream LLVM for the C and as rustc's backend, and a pinned stable Rust with its `std` for `aarch64-emibsd-emibsd` and `x86_64-emibsd-emibsd`, the project's own targets, for arm64 and amd64 |
-| [OS]({{ site.repo_os }}) | the assembly and the releases: a manifest pins each of the three, the recipes take Kernel's and Userland's releases by tag and sum, make the install ISO and USB image, install them in QEMU and tag `YEAR.MONTH`; the releases so far, `2026.11` to `2026.11.2`, are pre-releases, signed from `2026.11.2` on |
+| [OS]({{ site.repo_os }}) | the assembly and the releases: a manifest pins each of the three, the recipes take Kernel's and Userland's releases by tag and sum, make the install ISO and USB image, install them in QEMU and tag `YEAR.MONTH`; the releases so far, `2026.11` to `2026.11.3`, are pre-releases, signed from `2026.11.2` on |
 | [Governance]({{ site.repo_governance }}) | what binds the rest: the invariants every repository obeys, the process, the architecture of the repositories, the roadmap across them, the decision log and the policies |
 
 The forks beside them (`OpenBSD-src`, `rust`, `llvm-project`, `cargo`) are read-only mirrors of
@@ -99,10 +99,13 @@ is downloaded during the install. Since 2026-11-06 each one installs EmiBSD in Q
 installed disk boots to `login:`, and two builds give the same images. The first release,
 [`2026.11`]({{ site.repo_os }}/releases/tag/2026.11), came on 2026-11-06, then
 [`2026.11.1`]({{ site.repo_os }}/releases/tag/2026.11.1) and
-[`2026.11.2`]({{ site.repo_os }}/releases/tag/2026.11.2) on 2026-11-07, all pre-releases with both
+[`2026.11.2`]({{ site.repo_os }}/releases/tag/2026.11.2) on 2026-11-07, and
+[`2026.11.3`]({{ site.repo_os }}/releases/tag/2026.11.3) on 2026-11-08, all pre-releases with both
 media for arm64. From `2026.11.2` on the media are signed with EmiBSD's own signify key: the
 installer verifies the sets against the medium's `SHA256.sig`, and the release's tree is also on
-the mirror, `https://cdn.emibsd.org/pub/EmiBSD/`, where network installs and sysupgrade will look.
+the mirror, `https://cdn.emibsd.org/pub/EmiBSD/`, where network installs and sysupgrade will look;
+its directories list their files like a web server's, and each release keeps its own copy under
+`releases/`.
 Still to come is comparing the installed system with a real OpenBSD.
 
 ### Provenance
