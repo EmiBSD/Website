@@ -1,7 +1,7 @@
 {
   "commit": "04692dd6",
   "date": "2026-11-12",
-  "at": "N6.4 under way: N6.4a (the IPv4 addresses, IGMP and the output path) in progress, the netinet header images, the IPv4 checksums and leaves and the output half already the kernel's on its branch; the LandingZone sync to 937d22ef recorded (no commit left to triage)",
+  "at": "N6.4 under way: N6.4a written and in review on its branch (the netinet header images, the IPv4 leaves, the interface addresses, multicast records and IGMP, and the IPv4 output path; netinet 496 -> 416 unsafe there, kernel 0); N6.4b, ARP, next",
   "crates": [
     {"name": "kernel", "files": 251, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
     {"name": "abi", "files": 3, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 189 of the 331 system-call entries handled natively"},
