@@ -84,7 +84,12 @@ binutils, with compiler-rt, libunwind, libc++abi and libc++ for each target) and
 and `alloc` for the kernel's, `aarch64-emibsd-none-softfloat` or
 `x86_64-emibsd-none-softfloat`). First released on 2026-10-31 for arm64, made again on
 2026-11-02 for arm64 and amd64: one tarball per host and architecture with its SHA-256; a
-consumer fetches by tag and checks the sum, never "latest". LandingZone builds and boots both
+consumer fetches by tag and checks the sum, never "latest". Since 2026-11-11 a release also
+carries the native toolchain, the same LLVM and Rust built to run on EmiBSD itself, which
+Userland puts in its `comp` set: on arm64 its cc, c++, ar, rustc, cargo, clippy, rustfmt and
+rustdoc build and run their programs under the EmiBSD kernel in QEMU; the amd64 one is built
+and waits for the kernel's amd64 boot. The current releases are `llvm-23.1.4+emibsd.6` and
+`rust-1.99.1+emibsd.5` (2026-11-12). LandingZone builds and boots both
 architectures with them; in Kernel arm64 stays first, and amd64 waits for its own milestone,
 N10.
 
