@@ -1,12 +1,12 @@
 {
-  "commit": "b99aedaf",
-  "date": "2026-11-08",
-  "at": "N6.2 done: the mbuf, the socket layer, local (AF_UNIX) sockets and 19 socket system calls are the kernel's (189 of 331 calls native); N6.3a, the interface core, under way",
+  "commit": "b4f60146",
+  "date": "2026-11-12",
+  "at": "N6.3a done: the interface core, its ioctls and media are the kernel's; the kernel, userland and comp set are built with EmiBSD's own Rust and LLVM (DevTools); N6.3b, routing, under way",
   "crates": [
-    {"name": "kernel", "files": 237, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
+    {"name": "kernel", "files": 242, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
     {"name": "abi", "files": 3, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 189 of the 331 system-call entries handled natively"},
-    {"name": "hal", "files": 150, "unsafe": 215, "note": "the only crate allowed `unsafe`, each site with a written proof"},
-    {"name": "bsd", "label": "the LandingZone tree", "files": 940, "unsafe": 8663, "note": "shrinks as subsystems move out; deleted at N9"}
+    {"name": "hal", "files": 152, "unsafe": 216, "note": "the only crate allowed `unsafe`, each site with a written proof"},
+    {"name": "bsd", "label": "the LandingZone tree", "files": 939, "unsafe": 8416, "note": "shrinks as subsystems move out; deleted at N9"}
   ],
   "milestones": [
     {"name": "N0", "title": "Bootstrap", "scope": "lineage records, tooling, the `unsafe` budget, the baseline", "date": "2026-10-09T04:31:58-03:00", "url": "https://github.com/EmiBSD/Kernel/releases/tag/n0-bootstrap"},
@@ -29,8 +29,8 @@
       {"slice": "N6.0", "what": "Preconditions in `hal`: the net lock (shared and exclusive, with witnesses), SMR for lock-free reads, pools with their own page allocator, typed in-place header views, a list with an O(1) tail; the network benchmarks", "state": "done"},
       {"slice": "N6.1", "what": "The mbuf, the packet buffer under everything (`uipc_mbuf`, `uipc_mbuf2`, `sys/mbuf.rs`)", "state": "done"},
       {"slice": "N6.2", "what": "Sockets and domains: the socket layer, local (AF_UNIX) sockets, descriptor passing; the socket system calls handled natively", "state": "done"},
-      {"slice": "N6.3a", "what": "The interface core: `ifnet`, the interface queues, `netisr`, link-level addresses and media", "state": "in progress"},
-      {"slice": "N6.3b", "what": "Routing: the routing table, ART, the routing socket"},
+      {"slice": "N6.3a", "what": "The interface core: `ifnet`, the interface queues, `netisr`, link-level addresses and media", "state": "done"},
+      {"slice": "N6.3b", "what": "Routing: the routing table, ART, the routing socket", "state": "in progress"},
       {"slice": "N6.3c", "what": "Link layers and bpf: Ethernet, loopback, the packet filter devices"},
       {"slice": "N6.4", "what": "IPv4, ARP and the protocol control block shared by both families"},
       {"slice": "N6.5", "what": "IPv6 and neighbour discovery"},
