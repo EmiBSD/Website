@@ -1,11 +1,11 @@
 {
-  "commit": "b4f60146",
+  "commit": "b2177858",
   "date": "2026-11-12",
-  "at": "N6.3a done: the interface core, its ioctls and media are the kernel's; the kernel, userland and comp set are built with EmiBSD's own Rust and LLVM (DevTools); N6.3b, routing, under way",
+  "at": "N6.3b1 done: the routing table (ART), its routes and their timers are the kernel's; N6.3b2, the routing socket and the switch, next",
   "crates": [
-    {"name": "kernel", "files": 242, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
+    {"name": "kernel", "files": 245, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
     {"name": "abi", "files": 3, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 189 of the 331 system-call entries handled natively"},
-    {"name": "hal", "files": 152, "unsafe": 216, "note": "the only crate allowed `unsafe`, each site with a written proof"},
+    {"name": "hal", "files": 153, "unsafe": 221, "note": "the only crate allowed `unsafe`, each site with a written proof"},
     {"name": "bsd", "label": "the LandingZone tree", "files": 939, "unsafe": 8416, "note": "shrinks as subsystems move out; deleted at N9"}
   ],
   "milestones": [
