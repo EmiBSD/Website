@@ -1,7 +1,7 @@
 {
-  "commit": "3e08e583",
+  "commit": "04692dd6",
   "date": "2026-11-12",
-  "at": "N6.3c done: the link layers (Ethernet, loopback) and bpf(4) are the kernel's, the Link bridge gone; N6.4, IPv4, next",
+  "at": "N6.4 under way: N6.4a (the IPv4 addresses, IGMP and the output path) in progress, the netinet header images, the IPv4 checksums and leaves and the output half already the kernel's on its branch; the LandingZone sync to 937d22ef recorded (no commit left to triage)",
   "crates": [
     {"name": "kernel", "files": 251, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
     {"name": "abi", "files": 3, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 189 of the 331 system-call entries handled natively"},
@@ -32,7 +32,10 @@
       {"slice": "N6.3a", "what": "The interface core: `ifnet`, the interface queues, `netisr`, link-level addresses and media", "state": "done"},
       {"slice": "N6.3b", "what": "Routing: the routing table, ART, the routing socket", "state": "done"},
       {"slice": "N6.3c", "what": "Link layers and bpf: Ethernet, loopback, the packet filter devices", "state": "done"},
-      {"slice": "N6.4", "what": "IPv4, ARP and the protocol control block shared by both families"},
+      {"slice": "N6.4a", "what": "IPv4 addresses and multicast records, IGMP, the IPv4 output path, the netinet header images and the IPv4 leaves (checksums, ids, ECN)", "state": "in progress"},
+      {"slice": "N6.4b", "what": "ARP, with the route's link-layer slot typed"},
+      {"slice": "N6.4c1", "what": "The protocol control block shared by IPv4 and IPv6, and the IP socket options"},
+      {"slice": "N6.4c2", "what": "The IPv4 input path, fragment reassembly, ICMP and the protocol table"},
       {"slice": "N6.5", "what": "IPv6 and neighbour discovery"},
       {"slice": "N6.6a", "what": "TCP"},
       {"slice": "N6.6b", "what": "UDP, raw sockets and divert"},
