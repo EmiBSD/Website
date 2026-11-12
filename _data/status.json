@@ -1,12 +1,12 @@
 {
-  "commit": "b2177858",
+  "commit": "9d9363fd",
   "date": "2026-11-12",
-  "at": "N6.3b1 done: the routing table (ART), its routes and their timers are the kernel's; N6.3b2, the routing socket and the switch, next",
+  "at": "N6.3b done: routing (the ART, the tables, the routes and the routing socket) is the kernel's and bsd routes through it; N6.3c, link layers and bpf, next",
   "crates": [
-    {"name": "kernel", "files": 245, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
+    {"name": "kernel", "files": 247, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
     {"name": "abi", "files": 3, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 189 of the 331 system-call entries handled natively"},
     {"name": "hal", "files": 153, "unsafe": 221, "note": "the only crate allowed `unsafe`, each site with a written proof"},
-    {"name": "bsd", "label": "the LandingZone tree", "files": 939, "unsafe": 8416, "note": "shrinks as subsystems move out; deleted at N9"}
+    {"name": "bsd", "label": "the LandingZone tree", "files": 939, "unsafe": 8013, "note": "shrinks as subsystems move out; deleted at N9"}
   ],
   "milestones": [
     {"name": "N0", "title": "Bootstrap", "scope": "lineage records, tooling, the `unsafe` budget, the baseline", "date": "2026-10-09T04:31:58-03:00", "url": "https://github.com/EmiBSD/Kernel/releases/tag/n0-bootstrap"},
@@ -30,7 +30,7 @@
       {"slice": "N6.1", "what": "The mbuf, the packet buffer under everything (`uipc_mbuf`, `uipc_mbuf2`, `sys/mbuf.rs`)", "state": "done"},
       {"slice": "N6.2", "what": "Sockets and domains: the socket layer, local (AF_UNIX) sockets, descriptor passing; the socket system calls handled natively", "state": "done"},
       {"slice": "N6.3a", "what": "The interface core: `ifnet`, the interface queues, `netisr`, link-level addresses and media", "state": "done"},
-      {"slice": "N6.3b", "what": "Routing: the routing table, ART, the routing socket", "state": "in progress"},
+      {"slice": "N6.3b", "what": "Routing: the routing table, ART, the routing socket", "state": "done"},
       {"slice": "N6.3c", "what": "Link layers and bpf: Ethernet, loopback, the packet filter devices"},
       {"slice": "N6.4", "what": "IPv4, ARP and the protocol control block shared by both families"},
       {"slice": "N6.5", "what": "IPv6 and neighbour discovery"},
