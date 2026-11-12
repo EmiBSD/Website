@@ -1,12 +1,12 @@
 {
-  "commit": "41831529",
+  "commit": "3e08e583",
   "date": "2026-11-12",
-  "at": "N6.3c1 done: bpf(4) and its filter machine are the kernel's, the drivers' tap word typed; N6.3c2, Ethernet and loopback, next",
+  "at": "N6.3c done: the link layers (Ethernet, loopback) and bpf(4) are the kernel's, the Link bridge gone; N6.4, IPv4, next",
   "crates": [
-    {"name": "kernel", "files": 249, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
+    {"name": "kernel", "files": 251, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
     {"name": "abi", "files": 3, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 189 of the 331 system-call entries handled natively"},
-    {"name": "hal", "files": 156, "unsafe": 223, "note": "the only crate allowed `unsafe`, each site with a written proof"},
-    {"name": "bsd", "label": "the LandingZone tree", "files": 937, "unsafe": 7967, "note": "shrinks as subsystems move out; deleted at N9"}
+    {"name": "hal", "files": 162, "unsafe": 223, "note": "the only crate allowed `unsafe`, each site with a written proof"},
+    {"name": "bsd", "label": "the LandingZone tree", "files": 937, "unsafe": 7928, "note": "shrinks as subsystems move out; deleted at N9"}
   ],
   "milestones": [
     {"name": "N0", "title": "Bootstrap", "scope": "lineage records, tooling, the `unsafe` budget, the baseline", "date": "2026-10-09T04:31:58-03:00", "url": "https://github.com/EmiBSD/Kernel/releases/tag/n0-bootstrap"},
@@ -31,7 +31,7 @@
       {"slice": "N6.2", "what": "Sockets and domains: the socket layer, local (AF_UNIX) sockets, descriptor passing; the socket system calls handled natively", "state": "done"},
       {"slice": "N6.3a", "what": "The interface core: `ifnet`, the interface queues, `netisr`, link-level addresses and media", "state": "done"},
       {"slice": "N6.3b", "what": "Routing: the routing table, ART, the routing socket", "state": "done"},
-      {"slice": "N6.3c", "what": "Link layers and bpf: Ethernet, loopback, the packet filter devices", "state": "in progress"},
+      {"slice": "N6.3c", "what": "Link layers and bpf: Ethernet, loopback, the packet filter devices", "state": "done"},
       {"slice": "N6.4", "what": "IPv4, ARP and the protocol control block shared by both families"},
       {"slice": "N6.5", "what": "IPv6 and neighbour discovery"},
       {"slice": "N6.6a", "what": "TCP"},
