@@ -1,7 +1,7 @@
 {
   "commit": "806cfcfe",
   "date": "2026-11-13",
-  "at": "N6.4 done and closed: IPv4 is the kernel's (addresses, IGMP, ARP, the protocol control block, output and input, fragment reassembly, ICMP), measured against its start (the output path 36 % faster, the input path 44 %) and linted; N6.5, IPv6 and neighbour discovery, next",
+  "at": "N6.4 done and closed: IPv4 is the kernel's; N6.5, IPv6 and neighbour discovery, under way in four slices: N6.5a, the IPv6 addresses, MLD and source selection, first",
   "crates": [
     {"name": "kernel", "files": 272, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
     {"name": "abi", "files": 3, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 189 of the 331 system-call entries handled natively"},
@@ -36,7 +36,10 @@
       {"slice": "N6.4b", "what": "ARP, with the route's link-layer slot typed", "state": "done"},
       {"slice": "N6.4c1", "what": "The protocol control block shared by IPv4 and IPv6, and the IP socket options", "state": "done"},
       {"slice": "N6.4c2", "what": "The IPv4 input path, fragment reassembly, ICMP and the protocol table", "state": "done"},
-      {"slice": "N6.5", "what": "IPv6 and neighbour discovery"},
+      {"slice": "N6.5a", "what": "IPv6 addresses and multicast records, MLD, source address selection, the IPv6 header images and leaves", "state": "in progress"},
+      {"slice": "N6.5b", "what": "Neighbour discovery (ND, duplicate address detection, the router cache)"},
+      {"slice": "N6.5c", "what": "The IPv6 output path and its socket options"},
+      {"slice": "N6.5d", "what": "The IPv6 input path, forwarding, fragment reassembly, ICMPv6, the extension headers and the protocol table"},
       {"slice": "N6.6a", "what": "TCP"},
       {"slice": "N6.6b", "what": "UDP, raw sockets and divert"},
       {"slice": "N6.7a", "what": "The nfs client and its RPC"},
