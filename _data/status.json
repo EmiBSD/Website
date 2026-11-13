@@ -1,7 +1,7 @@
 {
-  "commit": "eabdd22c",
+  "commit": "806cfcfe",
   "date": "2026-11-13",
-  "at": "N6.4's four slices done: IPv4 (addresses, IGMP, output and input, fragment reassembly, ICMP, ARP, the protocol control block, the socket options and the protocol table) is the kernel's; N6.4's close (the benchmarks of its four slices, the full tests and clippy) next, then N6.5, IPv6",
+  "at": "N6.4 done and closed: IPv4 is the kernel's (addresses, IGMP, ARP, the protocol control block, output and input, fragment reassembly, ICMP), measured against its start (the output path 36 % faster, the input path 44 %) and linted; N6.5, IPv6 and neighbour discovery, next",
   "crates": [
     {"name": "kernel", "files": 272, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
     {"name": "abi", "files": 3, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 189 of the 331 system-call entries handled natively"},
