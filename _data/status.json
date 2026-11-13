@@ -1,12 +1,12 @@
 {
-  "commit": "2baa2aff",
+  "commit": "46fa0bfa",
   "date": "2026-11-12",
-  "at": "N6.4 under way: N6.4a and N6.4b done (IPv4 addresses, IGMP, the output path and ARP are the kernel's); N6.4c1, the protocol control block, in progress",
+  "at": "N6.4 under way: N6.4a, N6.4b and N6.4c1 done (IPv4 addresses, IGMP, the output path, ARP, the protocol control block and the IP socket options are the kernel's); N6.4c2, the IPv4 input path and ICMP, next",
   "crates": [
-    {"name": "kernel", "files": 265, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
+    {"name": "kernel", "files": 268, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
     {"name": "abi", "files": 3, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 189 of the 331 system-call entries handled natively"},
     {"name": "hal", "files": 167, "unsafe": 225, "note": "the only crate allowed `unsafe`, each site with a written proof"},
-    {"name": "bsd", "label": "the LandingZone tree", "files": 930, "unsafe": 7821, "note": "shrinks as subsystems move out; deleted at N9"}
+    {"name": "bsd", "label": "the LandingZone tree", "files": 930, "unsafe": 7770, "note": "shrinks as subsystems move out; deleted at N9"}
   ],
   "milestones": [
     {"name": "N0", "title": "Bootstrap", "scope": "lineage records, tooling, the `unsafe` budget, the baseline", "date": "2026-10-09T04:31:58-03:00", "url": "https://github.com/EmiBSD/Kernel/releases/tag/n0-bootstrap"},
@@ -34,8 +34,8 @@
       {"slice": "N6.3c", "what": "Link layers and bpf: Ethernet, loopback, the packet filter devices", "state": "done"},
       {"slice": "N6.4a", "what": "IPv4 addresses and multicast records, IGMP, the IPv4 output path, the netinet header images and the IPv4 leaves (checksums, ids, ECN)", "state": "done"},
       {"slice": "N6.4b", "what": "ARP, with the route's link-layer slot typed", "state": "done"},
-      {"slice": "N6.4c1", "what": "The protocol control block shared by IPv4 and IPv6, and the IP socket options", "state": "in progress"},
-      {"slice": "N6.4c2", "what": "The IPv4 input path, fragment reassembly, ICMP and the protocol table"},
+      {"slice": "N6.4c1", "what": "The protocol control block shared by IPv4 and IPv6, and the IP socket options", "state": "done"},
+      {"slice": "N6.4c2", "what": "The IPv4 input path, fragment reassembly, ICMP and the protocol table", "state": "in progress"},
       {"slice": "N6.5", "what": "IPv6 and neighbour discovery"},
       {"slice": "N6.6a", "what": "TCP"},
       {"slice": "N6.6b", "what": "UDP, raw sockets and divert"},
