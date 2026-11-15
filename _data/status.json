@@ -1,7 +1,7 @@
 {
-  "commit": "8c2bc190",
+  "commit": "0dfe3ace",
   "date": "2026-11-15",
-  "at": "N6.5's four slices done: IPv6 is the kernel's (addresses, MLD, source selection, neighbour discovery, the output and input paths, forwarding, reassembly, ICMPv6, the protocol table); N6.5's close (the benchmarks of its four slices, the full tests and clippy) next, then N6.6, TCP",
+  "at": "N6.5 done and closed: IPv6 is the kernel's (addresses, MLD, source selection, neighbour discovery, the output and input paths, forwarding, reassembly, ICMPv6, the protocol table), measured against its start (IPv6 delivery 54 % faster, reassembly 47 %) and tested; N6.6, TCP, next",
   "crates": [
     {"name": "kernel", "files": 292, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
     {"name": "abi", "files": 3, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 189 of the 331 system-call entries handled natively"},
