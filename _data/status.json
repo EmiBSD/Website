@@ -1,7 +1,7 @@
 {
-  "commit": "5dccbf88",
+  "commit": "b441d75c",
   "date": "2026-11-15",
-  "at": "N6.5 done and closed: IPv6 is the kernel's (addresses, MLD, source selection, neighbour discovery, the output and input paths, forwarding, reassembly, ICMPv6, the protocol table), measured against its start (IPv6 delivery 54 % faster, reassembly 47 %) and tested; N6.5e under way in three parts: the net lock's cells in `hal` (5e0, in review), counted interface addresses (5e1), counted multicast records (5e2); N6.6, TCP, next",
+  "at": "N6.5 done and closed: IPv6 is the kernel's (addresses, MLD, source selection, neighbour discovery, the output and input paths, forwarding, reassembly, ICMPv6, the protocol table), measured against its start (IPv6 delivery 54 % faster, reassembly 47 %) and tested; N6.5e under way in three parts: the net lock's cells in `hal` (5e0, done), counted interface addresses (5e1, under way), counted multicast records (5e2); N6.6, TCP, next",
   "crates": [
     {"name": "kernel", "files": 292, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
     {"name": "abi", "files": 3, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 189 of the 331 system-call entries handled natively"},
@@ -40,8 +40,8 @@
       {"slice": "N6.5b", "what": "Neighbour discovery (ND, duplicate address detection, the router cache)", "state": "done"},
       {"slice": "N6.5c", "what": "The IPv6 output path and its socket options", "state": "done"},
       {"slice": "N6.5d", "what": "The IPv6 input path, forwarding, fragment reassembly, ICMPv6, the extension headers and the protocol table", "state": "done"},
-      {"slice": "N6.5e0", "what": "Cells the net lock guards in `hal`, opened by shared and exclusive witnesses, so a list under the net lock can lend its records safely", "state": "in progress"},
-      {"slice": "N6.5e1", "what": "Counted interface addresses, IPv4 and IPv6: freed when the last holder lets go, as in OpenBSD, instead of recycled for ever"},
+      {"slice": "N6.5e0", "what": "Cells the net lock guards in `hal`, opened by shared and exclusive witnesses, so a list under the net lock can lend its records safely", "state": "done"},
+      {"slice": "N6.5e1", "what": "Counted interface addresses, IPv4 and IPv6: freed when the last holder lets go, as in OpenBSD, instead of recycled for ever", "state": "in progress"},
       {"slice": "N6.5e2", "what": "Counted multicast records, IPv4 and IPv6"},
       {"slice": "N6.6a", "what": "TCP"},
       {"slice": "N6.6b", "what": "UDP, raw sockets and divert"},

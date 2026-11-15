@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-11-15T19:00:00-03:00",
+    "repo": "Kernel",
+    "title": "N6.5e0 done: hal's net lock now guards cells a list can lend safely, through shared and exclusive witnesses; two reviews found and closed a hole where a proof of the lock could outlive another process's read hold, now every proof keeps its hold; no new unsafe (hal 225), 5475 host tests green",
+    "url": "https://github.com/EmiBSD/Kernel/commit/b441d75c"
+  },
+  {
     "date": "2026-11-15T15:00:00-03:00",
     "repo": "Kernel",
     "title": "N6.5e planned and started: the interface-address and multicast records become counted handles, freed when the last holder lets go, in three parts (5e0 hal's net-lock cells, 5e1 addresses, 5e2 multicast); 5e0 written with no new unsafe and in review",
