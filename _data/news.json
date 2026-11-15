@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-11-15T20:45:00-03:00",
+    "repo": "Kernel",
+    "title": "N6.5e1 done: IPv4 and IPv6 interface addresses are counted handles, freed when the last holder lets go as in OpenBSD; the review caught pf reading a netmask cut short where OpenBSD reads it whole, fixed with a test; bsd's unsafe 7433 -> 7420, 5484 host tests green; N6.5e2 (multicast) under way",
+    "url": "https://github.com/EmiBSD/Kernel/commit/796e3135"
+  },
+  {
     "date": "2026-11-15T19:00:00-03:00",
     "repo": "Kernel",
     "title": "N6.5e0 done: hal's net lock now guards cells a list can lend safely, through shared and exclusive witnesses; two reviews found and closed a hole where a proof of the lock could outlive another process's read hold, now every proof keeps its hold; no new unsafe (hal 225), 5475 host tests green",
