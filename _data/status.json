@@ -1,12 +1,12 @@
 {
-  "commit": "5f31fa25",
+  "commit": "03e26e6b",
   "date": "2026-11-15",
-  "at": "N6.5, IPv6 and neighbour discovery, under way in four slices: N6.5a and N6.5b done (the IPv6 addresses, MLD, source selection, neighbour discovery and duplicate address detection are the kernel's); N6.5c, the IPv6 output path, next",
+  "at": "N6.5, IPv6 and neighbour discovery, under way in four slices: N6.5a, N6.5b and N6.5c done (the IPv6 addresses, MLD, source selection, neighbour discovery and the output path with its socket options are the kernel's); N6.5d, the IPv6 input path, reassembly and ICMPv6, next",
   "crates": [
-    {"name": "kernel", "files": 284, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
+    {"name": "kernel", "files": 286, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
     {"name": "abi", "files": 3, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 189 of the 331 system-call entries handled natively"},
     {"name": "hal", "files": 174, "unsafe": 225, "note": "the only crate allowed `unsafe`, each site with a written proof"},
-    {"name": "bsd", "label": "the LandingZone tree", "files": 924, "unsafe": 7592, "note": "shrinks as subsystems move out; deleted at N9"}
+    {"name": "bsd", "label": "the LandingZone tree", "files": 924, "unsafe": 7505, "note": "shrinks as subsystems move out; deleted at N9"}
   ],
   "milestones": [
     {"name": "N0", "title": "Bootstrap", "scope": "lineage records, tooling, the `unsafe` budget, the baseline", "date": "2026-10-09T04:31:58-03:00", "url": "https://github.com/EmiBSD/Kernel/releases/tag/n0-bootstrap"},
@@ -38,8 +38,8 @@
       {"slice": "N6.4c2", "what": "The IPv4 input path, fragment reassembly, ICMP and the protocol table", "state": "done"},
       {"slice": "N6.5a", "what": "IPv6 addresses and multicast records, MLD, source address selection, the IPv6 header images and leaves", "state": "done"},
       {"slice": "N6.5b", "what": "Neighbour discovery (ND, duplicate address detection, the router cache)", "state": "done"},
-      {"slice": "N6.5c", "what": "The IPv6 output path and its socket options", "state": "in progress"},
-      {"slice": "N6.5d", "what": "The IPv6 input path, forwarding, fragment reassembly, ICMPv6, the extension headers and the protocol table"},
+      {"slice": "N6.5c", "what": "The IPv6 output path and its socket options", "state": "done"},
+      {"slice": "N6.5d", "what": "The IPv6 input path, forwarding, fragment reassembly, ICMPv6, the extension headers and the protocol table", "state": "in progress"},
       {"slice": "N6.6a", "what": "TCP"},
       {"slice": "N6.6b", "what": "UDP, raw sockets and divert"},
       {"slice": "N6.7a", "what": "The nfs client and its RPC"},
