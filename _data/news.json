@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-11-15T15:00:00-03:00",
+    "repo": "Kernel",
+    "title": "N6.5e planned and started: the interface-address and multicast records become counted handles, freed when the last holder lets go, in three parts (5e0 hal's net-lock cells, 5e1 addresses, 5e2 multicast); 5e0 written with no new unsafe and in review",
+    "url": "https://github.com/EmiBSD/Kernel/commit/5dccbf88"
+  },
+  {
     "date": "2026-11-15T11:32:01-03:00",
     "repo": "Kernel",
     "title": "After the N6.5 close: the last caller of bsd's if_output_mq moved, so it goes (bsd 7435 -> 7433 unsafe); clippy keeps the C's field names of seven structs; the IPv6 test fixtures reset their state; N6's record sizes listed for N12. Next: N6.5e, counted handles for the interface addresses",
