@@ -1,7 +1,7 @@
 {
   "commit": "19dab2b7",
   "date": "2026-11-15",
-  "at": "N6.5 done and closed: IPv6 is the kernel's (addresses, MLD, source selection, neighbour discovery, the output and input paths, forwarding, reassembly, ICMPv6, the protocol table), measured against its start (IPv6 delivery 54 % faster, reassembly 47 %) and tested; N6.5e done in three parts: the net lock's cells in `hal`, counted interface addresses and counted multicast records, freed when the last holder lets go as in OpenBSD; N6.6a, TCP, under way",
+  "at": "N6.5 done and closed: IPv6 is the kernel's (addresses, MLD, source selection, neighbour discovery, the output and input paths, forwarding, reassembly, ICMPv6, the protocol table), measured against its start (IPv6 delivery 54 % faster, reassembly 47 %) and tested; N6.5e done in three parts: the net lock's cells in `hal`, counted interface addresses and counted multicast records, freed when the last holder lets go as in OpenBSD; N6.6a, TCP, under way in six parts (6a0..6a5), built beside the old one and switched on last",
   "crates": [
     {"name": "kernel", "files": 292, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
     {"name": "abi", "files": 3, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 189 of the 331 system-call entries handled natively"},
@@ -43,7 +43,12 @@
       {"slice": "N6.5e0", "what": "Cells the net lock guards in `hal`, opened by shared and exclusive witnesses, so a list under the net lock can lend its records safely", "state": "done"},
       {"slice": "N6.5e1", "what": "Counted interface addresses, IPv4 and IPv6: freed when the last holder lets go, as in OpenBSD, instead of recycled for ever", "state": "done"},
       {"slice": "N6.5e2", "what": "Counted multicast records, IPv4 and IPv6", "state": "done"},
-      {"slice": "N6.6a", "what": "TCP", "state": "in progress"},
+      {"slice": "N6.6a0", "what": "TCP's preconditions: `hal` pieces (pool hard limit, arc4random_buf), the socket lock's shape, the pcb's typed slots, pf and IPsec legs", "state": "in progress"},
+      {"slice": "N6.6a1", "what": "TCP without a control block: the state machine, sequence arithmetic, statistics per CPU, LRO and TSO"},
+      {"slice": "N6.6a2", "what": "TCP's types, the control block's life, SACK and reassembly, the SYN cache"},
+      {"slice": "N6.6a3", "what": "TCP output and its five timers"},
+      {"slice": "N6.6a4", "what": "TCP input and the SYN cache's accept path"},
+      {"slice": "N6.6a5", "what": "TCP's socket requests, options and sysctls; the switch to the kernel's TCP"},
       {"slice": "N6.6b", "what": "UDP, raw sockets and divert"},
       {"slice": "N6.7a", "what": "The nfs client and its RPC"},
       {"slice": "N6.7b", "what": "The nfs server, the export list and a typed radix tree; nfssvc(2) handled natively"},

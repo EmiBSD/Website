@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-11-15T23:00:00-03:00",
+    "repo": "Kernel",
+    "title": "N6.6a (TCP) planned: about 14,700 lines and 109 unsafe move in six serial parts, the kernel's TCP built beside the old one and switched on last, then checked once in QEMU and against real OpenBSD with a new TCP scenario; 6a0, the preconditions, under way",
+    "url": "https://github.com/EmiBSD/Kernel"
+  },
+  {
     "date": "2026-11-15T22:30:00-03:00",
     "repo": "Kernel",
     "title": "N6.5e done: multicast group records are counted too, so a group left for good is freed as in OpenBSD instead of kept linked for ever (records 112 -> 80 bytes); with 5e0 and 5e1, every interface and multicast address now lives exactly as long as its holders; no new unsafe, 5490 host tests green; N6.6a, TCP, starts with its survey",
