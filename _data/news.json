@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-11-16T02:50:00-03:00",
+    "repo": "Kernel",
+    "title": "N6.6a0 done: TCP's groundwork is in: the socket lock every kernel TCP socket will take, two hal cells for mbuf chains (+2 unsafe, each with its proof), TCP's ABI structures checked byte for byte against the C headers, and the pf and IPsec entry points TCP needs; also: the kernel now builds with DevTools' new Rust, whose native tools were checked on a BTI processor; 5538 host tests green",
+    "url": "https://github.com/EmiBSD/Kernel"
+  },
+  {
     "date": "2026-11-15T23:00:00-03:00",
     "repo": "Kernel",
     "title": "N6.6a (TCP) planned: about 14,700 lines and 109 unsafe move in six serial parts, the kernel's TCP built beside the old one and switched on last, then checked once in QEMU and against real OpenBSD with a new TCP scenario; 6a0, the preconditions, under way",
