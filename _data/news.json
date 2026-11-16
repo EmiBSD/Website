@@ -1,4 +1,10 @@
 [
+ {
+  "date": "2026-11-16T08:05:00-03:00",
+  "repo": "Kernel",
+  "title": "N6.6a2 done: TCP's control block, its timers' entry, reassembly, SACK and the first half of the SYN cache are the kernel's, built beside the old TCP until the switch at 6a5; TCP MD5 signatures checked against an independent MD5, and the per-connection pcb trimmed back to 568 bytes by sharing one cell for IPv4 and IPv6 multicast options, as OpenBSD's union does; no unsafe added, 5580 host tests green; 6a3 under way",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
   {
     "date": "2026-11-16T06:00:00-03:00",
     "repo": "Kernel",
