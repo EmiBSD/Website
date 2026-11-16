@@ -1,4 +1,10 @@
 [
+  {
+    "date": "2026-11-15T22:30:00-03:00",
+    "repo": "Kernel",
+    "title": "N6.5e done: multicast group records are counted too, so a group left for good is freed as in OpenBSD instead of kept linked for ever (records 112 -> 80 bytes); with 5e0 and 5e1, every interface and multicast address now lives exactly as long as its holders; no new unsafe, 5490 host tests green; N6.6a, TCP, starts with its survey",
+    "url": "https://github.com/EmiBSD/Kernel/commit/19dab2b7"
+  },
   {"date": "2026-11-15T22:00:39-03:00", "repo": "OS", "title": "Code names: a new EmiBSD every six months, following OpenBSD, each named after a region of Chile from north to south; the first cycle, on OpenBSD 8.0, from 2026.11 to 2026.11.4 so far, is Arica", "url": "https://github.com/EmiBSD/OS/blob/main/docs/RELEASE.md#code-names"},
   {
     "date": "2026-11-15T20:45:00-03:00",
