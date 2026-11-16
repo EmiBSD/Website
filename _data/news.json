@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-11-16T06:00:00-03:00",
+    "repo": "Kernel",
+    "title": "N6.6a1 done: TCP's state machine, sequence arithmetic, per-CPU statistics, soft LRO, software TSO and the Toeplitz hash are the kernel's; the review caught a crafted short TCP header that would have panicked LRO once an LRO driver lands, fixed to read the header as OpenBSD does; bsd's unsafe 7419 -> 7394, 5552 host tests green; 6a2 under way",
+    "url": "https://github.com/EmiBSD/Kernel"
+  },
+  {
     "date": "2026-11-16T02:50:00-03:00",
     "repo": "Kernel",
     "title": "N6.6a0 done: TCP's groundwork is in: the socket lock every kernel TCP socket will take, two hal cells for mbuf chains (+2 unsafe, each with its proof), TCP's ABI structures checked byte for byte against the C headers, and the pf and IPsec entry points TCP needs; also: the kernel now builds with DevTools' new Rust, whose native tools were checked on a BTI processor; 5538 host tests green",
