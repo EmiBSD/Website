@@ -1,9 +1,9 @@
 {
-  "commit": "fccf4669",
+  "commit": "af7231ad",
   "date": "2026-11-15",
   "at": "N6.5 done and closed: IPv6 is the kernel's (addresses, MLD, source selection, neighbour discovery, the output and input paths, forwarding, reassembly, ICMPv6, the protocol table), measured against its start (IPv6 delivery 54 % faster, reassembly 47 %) and tested; N6.5e done in three parts: the net lock's cells in `hal`, counted interface addresses and counted multicast records, freed when the last holder lets go as in OpenBSD; N6.6a, TCP, under way in six parts (6a0..6a5), built beside the old one and switched on last",
   "crates": [
-    {"name": "kernel", "files": 303, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
+    {"name": "kernel", "files": 306, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
     {"name": "abi", "files": 3, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 189 of the 331 system-call entries handled natively"},
     {"name": "hal", "files": 176, "unsafe": 227, "note": "the only crate allowed `unsafe`, each site with a written proof"},
     {"name": "bsd", "label": "the LandingZone tree", "files": 916, "unsafe": 7394, "note": "shrinks as subsystems move out; deleted at N9"}
@@ -46,8 +46,8 @@
       {"slice": "N6.6a0", "what": "TCP's preconditions: `hal` pieces (pool hard limit, arc4random_buf), the socket lock's shape, the pcb's typed slots, pf and IPsec legs", "state": "done"},
       {"slice": "N6.6a1", "what": "TCP without a control block: the state machine, sequence arithmetic, statistics per CPU, LRO and TSO", "state": "done"},
       {"slice": "N6.6a2", "what": "TCP's types, the control block's life, SACK and reassembly, the SYN cache", "state": "done"},
-      {"slice": "N6.6a3", "what": "TCP output and its five timers", "state": "in progress"},
-      {"slice": "N6.6a4", "what": "TCP input and the SYN cache's accept path"},
+      {"slice": "N6.6a3", "what": "TCP output and its five timers", "state": "done"},
+      {"slice": "N6.6a4", "what": "TCP input and the SYN cache's accept path", "state": "in progress"},
       {"slice": "N6.6a5", "what": "TCP's socket requests, options and sysctls; the switch to the kernel's TCP"},
       {"slice": "N6.6b", "what": "UDP, raw sockets and divert"},
       {"slice": "N6.7a", "what": "The nfs client and its RPC"},
