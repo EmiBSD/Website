@@ -8,8 +8,8 @@ description: The EmiBSD pipeline - LandingZone as the 1:1 port, Kernel as the re
 
 <figure class="diagram">
   <picture>
-    <source srcset="{{ '/assets/img/pipeline-dark.svg' | relative_url }}" media="(prefers-color-scheme: dark)">
-    <img src="{{ '/assets/img/pipeline.svg' | relative_url }}" alt="OpenBSD's pinned C is ported file by file into LandingZone, which is synced commit by commit into Kernel. The same C feeds Userland, the base system, which takes its pin from LandingZone. DevTools, the toolchains that build all three, comes from LLVM's and Rust's own sources and feeds LandingZone, Kernel and Userland. Kernel, Userland and DevTools feed OS, the assembly and the release." width="910" height="584">
+    <source srcset="{{ '/assets/img/pipeline-dark.svg' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}" media="(prefers-color-scheme: dark)">
+    <img src="{{ '/assets/img/pipeline.svg' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}" alt="OpenBSD's pinned C is ported file by file into LandingZone, which is synced commit by commit into Kernel. The same C feeds Userland, the base system, which takes its pin from LandingZone. DevTools, the toolchains that build all three, comes from LLVM's and Rust's own sources and feeds LandingZone, Kernel and Userland. Kernel, Userland and DevTools feed OS, the assembly and the release." width="910" height="584">
   </picture>
   <figcaption>The specification, the port, the redesign; the base system and the toolchains beside them; the assembly at the end.</figcaption>
 </figure>
