@@ -14,7 +14,7 @@ flowchart TB
     lz -. "the pin" .-> ul
     dev -- "the toolchain" --> lz
     dev -- "the toolchain" --> k
-    dev -- "the toolchain" --> ul
+    dev -- "the toolchains, cross and native" --> ul
     k --> os
     ul --> os
-    dev -- "the comp set" --> os
+    dev -- "the toolchain" --> os
