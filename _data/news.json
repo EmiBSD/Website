@@ -1,5 +1,17 @@
 [
  {
+  "date": "2026-11-16T18:50:00-03:00",
+  "repo": "Kernel",
+  "title": "N6.6a4 done: TCP's input path, its option parsing and the SYN cache's accept path are the kernel's, still beside the old TCP until the switch at 6a5; two reviews: the first caught a handshake answered with a reset where OpenBSD completes it (a second listener bound mid-handshake), now completed as OpenBSD does, with the SYN's timestamp kept so fast-path prediction and PAWS work; signature checks compared in constant time; no unsafe added, 5665 host tests green",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
+  "date": "2026-11-16T18:45:00-03:00",
+  "repo": "Kernel",
+  "title": "First large sync with LandingZone's debt milestone TD0: 48 commits triaged, 43 recorded so far (the rest are __thrsleep and sysarch, next); its arm64 security fix taken as a boot-time check that no kernel mapping is executable from user mode; a boot fault on processors with SVE fixed (OpenBSD's own slip, handed to LandingZone, which adopted it); and the kernel now boots the real userland to a root shell under Apple's hypervisor in 7 seconds",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-16T10:50:00-03:00",
   "repo": "Kernel",
   "title": "N6.6a3 done: TCP's output path, its retransmit, persist, keep-alive and delayed-ACK timers, connection drop and ICMP handling (including path MTU discovery) are the kernel's, still beside the old TCP until the switch at 6a5; signed segments now tested byte for byte against an independent MD5, IPv6 segments too; a SACK-with-signature request answers EINVAL in every build, as OpenBSD's shipped kernel does; no unsafe added, 5623 host tests green; 6a4 under way",
