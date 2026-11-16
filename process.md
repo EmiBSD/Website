@@ -112,6 +112,9 @@ installer verifies the sets against the medium's `SHA256.sig`, and the release's
 the mirror, `https://cdn.emibsd.org/pub/EmiBSD/`, where network installs and sysupgrade will look;
 its directories list their files like a web server's, and each release keeps its own copy under
 `releases/`.
+A new EmiBSD comes every six months, following OpenBSD's releases, and each cycle carries a
+Chilean region's name, north to south: the first, on OpenBSD 8.0 and from `2026.11` on, is
+**Arica**; the next will be Tarapacá.
 Still to come is comparing the installed system with a real OpenBSD.
 
 ### Provenance

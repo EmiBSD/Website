@@ -58,7 +58,7 @@ QEMU (below).
 ## Try it in QEMU
 
 Tested on macOS on Apple Silicon (`brew install qemu`). Each
-[OS release]({{ site.repo_os }}/releases) carries `emibsd-<version>-arm64-install.iso`, its
+[OS release]({{ site.repo_os }}/releases) (the current cycle is **Arica**, on OpenBSD 8.0) carries `emibsd-<version>-arm64-install.iso`, its
 `SHA256` and, from `2026.11.2` on, their signature `SHA256.sig`.
 
 **1. Download and check the ISO.** `V` is the release's tag, as the releases page lists it:
