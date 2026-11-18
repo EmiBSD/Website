@@ -25,8 +25,9 @@ The repositories live in the [EmiBSD organisation]({{ site.repo_org }}) on GitHu
 | [OS]({{ site.repo_os }}) | the assembly and the releases: a manifest pins each of the three, the recipes take Kernel's and Userland's releases by tag and sum, make the install ISO and USB image, install them in QEMU and tag `YEAR.MONTH`; the releases so far, `2026.11` to `2026.11.4`, are pre-releases, signed from `2026.11.2` on |
 | [Governance]({{ site.repo_governance }}) | what binds the rest: the invariants every repository obeys, the process, the architecture of the repositories, the roadmap across them, the decision log and the policies |
 
-The forks beside them (`OpenBSD-src`, `rust`, `llvm-project`, `cargo`) are read-only mirrors of
-the sources the repositories pin; nothing of EmiBSD's is committed to them.
+The forks beside them carry the prefix `ext-`, for external (`ext-openbsd-src`, `ext-rust`,
+`ext-llvm-project`, `ext-cargo` and the others): read-only mirrors of the sources the
+repositories pin; nothing of EmiBSD's is committed to them.
 
 ### LandingZone, the port
 
