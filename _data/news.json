@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-23T15:10:00-03:00",
+  "repo": "Kernel",
+  "title": "TCP is now the kernel's: the switch (N6.6a5) put the safe TCP in OpenBSD's protocol table and deleted the old one, 83 fewer unsafe in the LandingZone tree (7394 -> 7311); reviewed against OpenBSD's code path by path, nothing blocking; at the review a cost OpenBSD does not pay (a counter on every read and write of a TCP socket) was removed instead of postponed; the boot, TCP and multiprocessor network smokes passed after the switch, the host tests are green after the review's fixes, and every smoke runs again at the N6 close; next is N6.6b, UDP, raw sockets and divert",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-23T12:40:00-03:00",
   "repo": "Kernel",
   "title": "__thrsleep and __thrwakeup, the calls OpenBSD's threads sleep and wake on, are in: LandingZone ported them and the kernel took them by sync as safe code (LandingZone's port had 5 unsafe, this one has none); reviewed against OpenBSD's code path by path, nothing blocking; 5679 host tests green; the smoke that exercises them runs at the N6 close; next is 6a5, the switch to the kernel's TCP",
