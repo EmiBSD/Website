@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-23T21:00:00-03:00",
+  "repo": "Kernel",
+  "title": "UDP is now the kernel's (N6.6b0): the safe UDP for IPv4 and IPv6 replaced the old one, with IPsec's UDP checks and wg(4)'s upcall as safe code (wg lost its unsafe there), 40 fewer unsafe in the LandingZone tree (7312 -> 7272); reviewed against OpenBSD's code, nothing blocking; the boot, nfs, wg and pfsync smokes passed after the switch and 5989 host tests are green; raw sockets and divert are switching next, and the nfs client and server are being built in parallel. Also: Kernel now pins LandingZone at e8249449, all 59 commits since the first pin triaged",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-23T17:25:00-03:00",
   "repo": "Kernel",
   "title": "sysarch(2) answers EINVAL as on OpenBSD instead of killing the caller: LandingZone ported it and the kernel took it by sync as safe code, its amd64 half kept for N10 (one inherited unsafe, counted); reviewed, nothing blocking; host tests green; every LandingZone commit after the pin is now triaged (59 of 59)",

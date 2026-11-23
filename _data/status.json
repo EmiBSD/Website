@@ -1,12 +1,12 @@
 {
-  "commit": "7a698928",
+  "commit": "6ac05c3c",
   "date": "2026-11-23",
-  "at": "N6.5 done and closed: IPv6 is the kernel's (addresses, MLD, source selection, neighbour discovery, the output and input paths, forwarding, reassembly, ICMPv6, the protocol table), measured against its start (IPv6 delivery 54 % faster, reassembly 47 %) and tested; N6.5e done in three parts: the net lock's cells in `hal`, counted interface addresses and counted multicast records, freed when the last holder lets go as in OpenBSD; N6.6a, TCP, under way in six parts (6a0..6a5), built beside the old one and switched on last: all six are done: since 6a5 the kernel's TCP is the one that runs, and the old one is deleted; UDP, raw sockets and divert (N6.6b) are next; `__thrsleep` and `__thrwakeup`, the thread sleep calls LandingZone ported, and `sysarch`, arrived by sync as safe kernel code: every LandingZone commit after the pin is now triaged",
+  "at": "N6.5 done and closed: IPv6 is the kernel's (addresses, MLD, source selection, neighbour discovery, the output and input paths, forwarding, reassembly, ICMPv6, the protocol table), measured against its start (IPv6 delivery 54 % faster, reassembly 47 %) and tested; N6.5e done in three parts: the net lock's cells in `hal`, counted interface addresses and counted multicast records, freed when the last holder lets go as in OpenBSD; N6.6a, TCP, under way in six parts (6a0..6a5), built beside the old one and switched on last: all six are done: since 6a5 the kernel's TCP is the one that runs, and the old one is deleted; N6.6b, UDP, raw sockets and divert, under way in two parts: UDP (6b0) is the kernel's, raw sockets and divert (6b1) are switching; the nfs client and server (N6.7a, N6.7b) are being built beside in parallel; `__thrsleep` and `__thrwakeup`, the thread sleep calls LandingZone ported, and `sysarch`, arrived by sync as safe kernel code: every LandingZone commit up to the new pin, e8249449, is triaged",
   "crates": [
-    {"name": "kernel", "files": 308, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
+    {"name": "kernel", "files": 311, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"},
     {"name": "abi", "files": 3, "unsafe": 0, "note": "`#![forbid(unsafe_code)]`; 189 of the 331 system-call entries handled natively"},
-    {"name": "hal", "files": 177, "unsafe": 227, "note": "the only crate allowed `unsafe`, each site with a written proof"},
-    {"name": "bsd", "label": "the LandingZone tree", "files": 910, "unsafe": 7312, "note": "shrinks as subsystems move out; deleted at N9"}
+    {"name": "hal", "files": 178, "unsafe": 227, "note": "the only crate allowed `unsafe`, each site with a written proof"},
+    {"name": "bsd", "label": "the LandingZone tree", "files": 906, "unsafe": 7272, "note": "shrinks as subsystems move out; deleted at N9"}
   ],
   "milestones": [
     {"name": "N0", "title": "Bootstrap", "scope": "lineage records, tooling, the `unsafe` budget, the baseline", "date": "2026-10-09T04:31:58-03:00", "url": "https://github.com/EmiBSD/Kernel/releases/tag/n0-bootstrap"},
