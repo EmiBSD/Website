@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-23T12:40:00-03:00",
+  "repo": "Kernel",
+  "title": "__thrsleep and __thrwakeup, the calls OpenBSD's threads sleep and wake on, are in: LandingZone ported them and the kernel took them by sync as safe code (LandingZone's port had 5 unsafe, this one has none); reviewed against OpenBSD's code path by path, nothing blocking; 5679 host tests green; the smoke that exercises them runs at the N6 close; next is 6a5, the switch to the kernel's TCP",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-16T18:50:00-03:00",
   "repo": "Kernel",
   "title": "N6.6a4 done: TCP's input path, its option parsing and the SYN cache's accept path are the kernel's, still beside the old TCP until the switch at 6a5; two reviews: the first caught a handshake answered with a reset where OpenBSD completes it (a second listener bound mid-handshake), now completed as OpenBSD does, with the SYN's timestamp kept so fast-path prediction and PAWS work; signature checks compared in constant time; no unsafe added, 5665 host tests green",
