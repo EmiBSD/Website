@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-24T01:35:00-03:00",
+  "repo": "Kernel",
+  "title": "Four more nfs parts and the radix tree are the kernel's: the nfs client's RPC engine (N6.7a1, tested against a real kernel socket on loopback), its node table, attribute cache and buffer queue (N6.7a2), the diskless boot (N6.7a4), and a radix tree that owns its nodes with the NFS export list (N6.7b0). The export check now copies the anonymous credential by value, closing a window where OpenBSD can read an export entry another thread frees; the radix tree repairs a state where OpenBSD's radix.c reads freed memory (no caller reaches it today). Every part reviewed against OpenBSD's code; 15 fewer unsafe in the LandingZone tree (7256 -> 7241); 6130 host tests green after a test-isolation fix; the client's file operations, pf and IPsec on the new tree and the nfs server are being written",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-23T22:10:00-03:00",
   "repo": "Kernel",
   "title": "N6.7a0 done: the nfs client's wire format, its XDR encoding and decoding, the RPC transaction ids and the nfs constants userland shares are the kernel's, as safe code, beside the old client until the switch; reviewed against OpenBSD's code, its fixes checked; 16 fewer unsafe in the LandingZone tree (7272 -> 7256) and 6017 host tests green; raw sockets and divert, the nfs RPC engine, the diskless boot and the typed radix tree for the nfs exports are being built in parallel",
