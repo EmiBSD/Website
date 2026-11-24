@@ -5,7 +5,7 @@
   "crates": [
     {
       "name": "kernel",
-      "files": 337,
+      "files": 341,
       "unsafe": 0,
       "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"
     },
