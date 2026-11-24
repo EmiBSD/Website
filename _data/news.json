@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-24T09:30:00-03:00",
+  "repo": "Kernel",
+  "title": "N6.7a done: the nfs client is the kernel's and the one that runs (N6.7a5): mounting, unmounting, statfs and the diskless root now go through safe kernel code, and the old client's 11 files are deleted from the LandingZone tree (56 fewer unsafe, 7216 -> 7160); the nfs smoke now also checks a symlink, a 256 KiB write, a rename, removing an open file and an NFSv2 mount, and a new comparison set against real OpenBSD runs at N6's close; the review asked to keep OpenBSD's order of the memory pools (vmstat -m) and to test mount(2)'s argument checks, both done; the nfs server (N6.7b) stays paused for now",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-24T08:40:00-03:00",
   "repo": "Kernel",
   "title": "N6.7a3 done: the nfs client's file operations are the kernel's (open, read, write, lookup, create, rename, readdir and the rest of nfs_vnops, with the read and write paths through the buffer cache), built beside the old client and switched on next in N6.7a5; the review found two real bugs and both are fixed: an NFSv3 write no longer leaves the client's copy of the file's time stale (every reopen threw away the cache), and a server that answers a transfer size of 0 can no longer crash the kernel, where OpenBSD's own code traps or reads past its buffer; 36 new tests, 5883 host tests green; N6.7a is 5 of 6",
