@@ -1,7 +1,7 @@
 {
   "commit": "ff3f2a75",
   "date": "2026-11-24",
-  "at": "N6.5 done and closed: IPv6 is the kernel's (addresses, MLD, source selection, neighbour discovery, the output and input paths, forwarding, reassembly, ICMPv6, the protocol table), measured against its start (IPv6 delivery 54 % faster, reassembly 47 %) and tested; N6.5e done in three parts: the net lock's cells in `hal`, counted interface addresses and counted multicast records, freed when the last holder lets go as in OpenBSD; N6.6a, TCP, under way in six parts (6a0..6a5), built beside the old one and switched on last: all six are done: since 6a5 the kernel's TCP is the one that runs, and the old one is deleted; N6.6b done: UDP (6b0), raw sockets and divert (6b1) are the kernel's; the nfs client and server (N6.7a, N6.7b) are being built beside in parallel: the client's wire format, RPC engine, node table, attribute cache and diskless boot are the kernel's (N6.7a0, a1, a2, a4), its file operations (N6.7a3) are being written; a radix tree that owns its nodes and the NFS export list are the kernel's (N6.7b0), pf and IPsec move onto that tree next (N6.7b1) and the server is being written (N6.7b2, b3); `__thrsleep` and `__thrwakeup`, the thread sleep calls LandingZone ported, and `sysarch`, arrived by sync as safe kernel code: every LandingZone commit up to the new pin, e8249449, is triaged",
+  "at": "N6.5 done and closed: IPv6 is the kernel's (addresses, MLD, source selection, neighbour discovery, the output and input paths, forwarding, reassembly, ICMPv6, the protocol table), measured against its start (IPv6 delivery 54 % faster, reassembly 47 %) and tested; N6.5e done in three parts: the net lock's cells in `hal`, counted interface addresses and counted multicast records, freed when the last holder lets go as in OpenBSD; N6.6a, TCP, under way in six parts (6a0..6a5), built beside the old one and switched on last: all six are done: since 6a5 the kernel's TCP is the one that runs, and the old one is deleted; N6.6b done: UDP (6b0), raw sockets and divert (6b1) are the kernel's; the nfs client and server (N6.7a, N6.7b) are being built beside in parallel: the client's wire format, RPC engine, node table, attribute cache and diskless boot are the kernel's (N6.7a0, a1, a2, a4), its file operations (N6.7a3) are being written, then the switch (N6.7a5); a radix tree that owns its nodes and the NFS export list are the kernel's (N6.7b0); pf and IPsec on that tree (N6.7b1) and the server (N6.7b2, b3) are paused, partly written, until the client is done; `__thrsleep` and `__thrwakeup`, the thread sleep calls LandingZone ported, and `sysarch`, arrived by sync as safe kernel code: every LandingZone commit up to the new pin, e8249449, is triaged",
   "crates": [
     {
       "name": "kernel",
@@ -231,17 +231,64 @@
         "state": "done"
       },
       {
-        "slice": "N6.6b",
-        "what": "UDP, raw sockets and divert",
+        "slice": "N6.6b0",
+        "what": "UDP for IPv4 and IPv6, with IPsec's UDP checks and wg(4)'s upcall; the switch to the kernel's UDP",
         "state": "done"
       },
       {
-        "slice": "N6.7a",
-        "what": "The nfs client and its RPC"
+        "slice": "N6.6b1",
+        "what": "Raw IP, raw IPv6 and divert(4); the switch, the old files deleted",
+        "state": "done"
       },
       {
-        "slice": "N6.7b",
-        "what": "The nfs server, the export list and a typed radix tree; nfssvc(2) handled natively"
+        "slice": "N6.7a0",
+        "what": "The nfs client's wire format: XDR encoding and decoding, the RPC transaction ids, the constants userland shares",
+        "state": "done"
+      },
+      {
+        "slice": "N6.7a1",
+        "what": "The nfs client's types and its RPC engine (send, receive, retransmission timer), tested against a real socket on loopback",
+        "state": "done"
+      },
+      {
+        "slice": "N6.7a2",
+        "what": "The nfs client's node table, attribute cache, kqueue support and the buffer cache's closed part",
+        "state": "done"
+      },
+      {
+        "slice": "N6.7a3",
+        "what": "The nfs client's file operations (nfs_vnops) and the read and write paths",
+        "state": "in progress"
+      },
+      {
+        "slice": "N6.7a4",
+        "what": "The nfs diskless boot (krpc, nfs_boot)",
+        "state": "done"
+      },
+      {
+        "slice": "N6.7a5",
+        "what": "The switch to the kernel's nfs client; the old client deleted"
+      },
+      {
+        "slice": "N6.7b0",
+        "what": "A radix tree that owns its nodes, and the NFS export list; exports switched to the kernel",
+        "state": "done"
+      },
+      {
+        "slice": "N6.7b1",
+        "what": "pf's tables and IPsec's policy lookup on the kernel's radix tree; the old tree deleted (paused)"
+      },
+      {
+        "slice": "N6.7b2",
+        "what": "The nfs server's core: its types, request cache, socket half and nfssvc's daemon loop (paused)"
+      },
+      {
+        "slice": "N6.7b3",
+        "what": "The nfs server's 26 procedures (paused)"
+      },
+      {
+        "slice": "N6.7b4",
+        "what": "The switch to the kernel's nfs server; nfssvc(2) handled natively"
       },
       {
         "slice": "N6.8",
