@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-24T15:30:00-03:00",
+  "repo": "Kernel",
+  "title": "N6.7b2 done: the nfs server's core is the kernel's, built beside the old one (switched on at N6.7b4): request parsing with every wire length checked before use, the duplicate request cache, the socket receive path and the nfsd loop; the review found no blocker and four fixes, among them a window at server restart where OpenBSD's own code can use freed memory, closed here; 19 of 19 mutations caught; pf's and IPsec's radix tree got 59 % faster (80 -> 33 ns per table lookup) and is under review with the server's procedures (N6.7b1, b3)",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-24T09:30:00-03:00",
   "repo": "Kernel",
   "title": "N6.7a done: the nfs client is the kernel's and the one that runs (N6.7a5): mounting, unmounting, statfs and the diskless root now go through safe kernel code, and the old client's 11 files are deleted from the LandingZone tree (56 fewer unsafe, 7216 -> 7160); the nfs smoke now also checks a symlink, a 256 KiB write, a rename, removing an open file and an NFSv2 mount, and a new comparison set against real OpenBSD runs at N6's close; the review asked to keep OpenBSD's order of the memory pools (vmstat -m) and to test mount(2)'s argument checks, both done; the nfs server (N6.7b) stays paused for now",

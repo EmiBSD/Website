@@ -1,5 +1,5 @@
 {
-  "commit": "8079badd",
+  "commit": "185bd4ad",
   "date": "2026-11-24",
   "at": "N6.5 done and closed: IPv6 is the kernel's (addresses, MLD, source selection, neighbour discovery, the output and input paths, forwarding, reassembly, ICMPv6, the protocol table), measured against its start (IPv6 delivery 54 % faster, reassembly 47 %) and tested; N6.5e done in three parts: the net lock's cells in `hal`, counted interface addresses and counted multicast records, freed when the last holder lets go as in OpenBSD; N6.6a, TCP, under way in six parts (6a0..6a5), built beside the old one and switched on last: all six are done: since 6a5 the kernel's TCP is the one that runs, and the old one is deleted; N6.6b done: UDP (6b0), raw sockets and divert (6b1) are the kernel's; N6.7a done: the nfs client is the kernel's (wire format, RPC engine, node table, attribute cache, diskless boot, file operations, mount; N6.7a0..a5) and the one that runs, the old client deleted; the nfs server and pf and IPsec on the kernel's radix tree (N6.7b1, b2) are being finished, the server's procedures (b3) next; a radix tree that owns its nodes and the NFS export list are the kernel's (N6.7b0); pf and IPsec on that tree (N6.7b1) and the server (N6.7b2, b3) are paused, partly written, until the client is done; `__thrsleep` and `__thrwakeup`, the thread sleep calls LandingZone ported, and `sysarch`, arrived by sync as safe kernel code: every LandingZone commit up to the new pin, e8249449, is triaged",
   "crates": [
@@ -283,7 +283,7 @@
       {
         "slice": "N6.7b2",
         "what": "The nfs server's core: its types, request cache, socket half and nfssvc's daemon loop",
-        "state": "in progress"
+        "state": "done"
       },
       {
         "slice": "N6.7b3",
