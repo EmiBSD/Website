@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-24T08:40:00-03:00",
+  "repo": "Kernel",
+  "title": "N6.7a3 done: the nfs client's file operations are the kernel's (open, read, write, lookup, create, rename, readdir and the rest of nfs_vnops, with the read and write paths through the buffer cache), built beside the old client and switched on next in N6.7a5; the review found two real bugs and both are fixed: an NFSv3 write no longer leaves the client's copy of the file's time stale (every reopen threw away the cache), and a server that answers a transfer size of 0 can no longer crash the kernel, where OpenBSD's own code traps or reads past its buffer; 36 new tests, 5883 host tests green; N6.7a is 5 of 6",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-24T05:40:00-03:00",
   "repo": "Kernel",
   "title": "N6.6b done: raw IP, raw IPv6 and divert(4) are now the kernel's (N6.6b1): the safe code is in OpenBSD's protocol tables and the old files are deleted, with ICMP's raw tail calling the kernel directly as OpenBSD does and kern.file locking each socket through the kernel's own pair; reviewed against OpenBSD's code, nothing blocking; 25 fewer unsafe in the LandingZone tree (7241 -> 7216, netinet6 down to 1); the boot, IPv6, ESP and divert smokes passed after the switch and 6150 host tests are green",
