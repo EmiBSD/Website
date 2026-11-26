@@ -47,9 +47,9 @@ SCSI and the disks, PCI, and then every family of drivers QEMU's arm64 machine c
 storage, network, display and input, USB, ACPI, audio, and the random device last. A survey
 measured it on 2026-11-26: about 418,000 lines in the LandingZone tree.
 
-The slices below are N7's plan of 2026-11-26. The first three ran in parallel and are merged;
-the second wave waits for two of the maintainer's decisions: the LandingZone sync whose drivers
-it would touch, and whether the drivers only amd64 configures move with N10. As in earlier
+The slices below are N7's plan of 2026-11-26. The first wave is merged; the second starts
+with interrupts (N7.2a). The maintainer decided (decision 51) that the LandingZone tree is not
+synced again during N7 and that the drivers only amd64 configures move with N10. As in earlier
 milestones, a slice may be split or renumbered when it starts, and this table follows.
 
 | Slice | What moves | State |
