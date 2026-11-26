@@ -292,7 +292,8 @@
       },
       {
         "slice": "N6.7b4",
-        "what": "The switch to the kernel's nfs server; nfssvc(2) handled natively"
+        "what": "The switch to the kernel's nfs server; nfssvc(2) handled natively",
+        "state": "in progress"
       },
       {
         "slice": "N6.8",
