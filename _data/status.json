@@ -1,11 +1,11 @@
 {
-  "commit": "030d96aa",
+  "commit": "ffc9caaa",
   "date": "2026-11-26",
-  "at": "N6, the network stack, is met (2026-11-26, tag n6-network); N7, devices, has started: its plan has 22 slices, and the first three (typed device registers and DMA memory in `hal`, the kernel's autoconf, the small device services) are written, reviewed and merged on main, their checks running before the push; the second wave waits for the maintainer's decisions on the LandingZone sync it collides with and on the scope of the drivers arm64 never configures",
+  "at": "N6, the network stack, is met (2026-11-26, tag n6-network); N7, devices, has started: its plan has 22 slices, and the first three (typed device registers and DMA memory in `hal`, the kernel's autoconf, the small device services: event counters, sensors, the watchdog, the clock helpers) are merged on main with every check green (6,254 host tests, the boot and device smokes); the second wave waits for the maintainer's decisions on the LandingZone sync it collides with and on the scope of the drivers arm64 never configures",
   "crates": [
     {
       "name": "kernel",
-      "files": 342,
+      "files": 350,
       "unsafe": 0,
       "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"
     },
@@ -17,15 +17,15 @@
     },
     {
       "name": "hal",
-      "files": 184,
-      "unsafe": 227,
+      "files": 187,
+      "unsafe": 232,
       "note": "the only crate allowed `unsafe`, each site with a written proof"
     },
     {
       "name": "bsd",
       "label": "the LandingZone tree",
-      "files": 874,
-      "unsafe": 7017,
+      "files": 870,
+      "unsafe": 6971,
       "note": "shrinks as subsystems move out; deleted at N9"
     }
   ],
@@ -121,17 +121,17 @@
       {
         "slice": "N7.0",
         "what": "Bus primitives in `hal`: typed device registers (`Mmio`) and owned DMA memory (`DmaBuf`) with their cache maintenance; device mappings only through the kernel map",
-        "state": "in progress"
+        "state": "done"
       },
       {
         "slice": "N7.1a",
         "what": "Autoconfiguration in the kernel: attach, detach, the unit tables, the deferred and mountroot queues; the driver model's two bridges",
-        "state": "in progress"
+        "state": "done"
       },
       {
         "slice": "N7.1b",
         "what": "The small device services: event counters, sensors, the watchdog, the clock helpers",
-        "state": "in progress"
+        "state": "done"
       },
       {
         "slice": "N7.1c",
