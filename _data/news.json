@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-26T18:55:00-03:00",
+  "repo": "Kernel",
+  "title": "The source tree has six directories, one purpose each: abi, kernel, hal and the leaf crates (lib) are the new kernel, boot holds the boot loaders, and bsd holds the whole LandingZone tree still being replaced, so deleting it at N9 is one directory; every count, test and smoke equal before and after the move",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-26T18:10:00-03:00",
   "repo": "Kernel",
   "title": "The device tree reader is the kernel's (N7.2b0): every read of the boot loader's tree is bounds-checked, the boot refuses a tree placed in usable memory, and boot(8)'s softraid key is copied and wiped before the tree is shared, where a review found the old order wrote behind a read-only view",
