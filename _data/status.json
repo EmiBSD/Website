@@ -1,7 +1,7 @@
 {
-  "commit": "f99a8926",
+  "commit": "a6359e19",
   "date": "2026-11-26",
-  "at": "N6, the network stack, is met (2026-11-26, tag n6-network); N7, devices, has started: its plan has 22 slices, and the first three (typed device registers and DMA memory in `hal`, the kernel's autoconf, the small device services: event counters, sensors, the watchdog, the clock helpers) are merged on main with every check green (6,254 host tests, the boot and device smokes); the code is now ordered by purpose: the hardware layer `hal` in sync, memory, data structures, cpu, virtual memory and device groups (only the last one is for drivers), and the kernel crate in proc, sched, sig, time, file, tty, base and dev, with a check that keeps drivers and `hal` apart; the system-call layer `abi` will call the kernel directly (decision 52: userland, then `abi`, then the kernel, then `hal`) and is being split by the same groups; userconf (N7.1c) is under way",
+  "at": "N6, the network stack, is met (2026-11-26, tag n6-network); N7, devices, is under way: the typed device registers and DMA memory, autoconfiguration, the small device services and the boot-time device editor (userconf) are the kernel's, and the disk layer is in review; the code is ordered by purpose, `hal` in sync, memory, data structures, cpu, virtual memory and device groups and the kernel crate in proc, sched, sig, time, file, tty, base and dev; the system-call layer `abi` now calls the kernel directly (decision 52: userland, then `abi`, then the kernel, then `hal`) and is split by the same groups; next, `abi` takes over OpenBSD's register convention so the hardware layer only carries the trap (decision 53)",
   "crates": [
     {
       "name": "kernel",
@@ -25,7 +25,7 @@
       "name": "bsd",
       "label": "the LandingZone tree",
       "files": 870,
-      "unsafe": 6971,
+      "unsafe": 6969,
       "note": "shrinks as subsystems move out; deleted at N9"
     }
   ],
@@ -136,12 +136,12 @@
       {
         "slice": "N7.1c",
         "what": "userconf, the boot-time device editor",
-        "state": "in progress"
+        "state": "done"
       },
       {
         "slice": "N7.1d",
         "what": "The disk: disklabels, the disk statistics, the disk map",
-        "state": "pending"
+        "state": "in progress"
       },
       {
         "slice": "N7.2a",

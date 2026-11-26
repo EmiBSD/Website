@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-26T13:50:00-03:00",
+  "repo": "Kernel",
+  "title": "The system-call layer calls the kernel directly: the table of function pointers that sat in the hardware layer is gone, abi is split by the kernel's groups and checked to call nothing but the kernel's one door; and boot -c's device editor (userconf) is the kernel's, its dialogue unchanged",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-26T10:50:00-03:00",
   "repo": "Kernel",
   "title": "The kernel's code is now ordered by purpose: the hardware layer's modules in six groups (locks, memory, data structures, the processor, virtual memory and devices, the only group drivers use), the safe kernel crate's in eight (processes, scheduler, signals, time, files, terminals, base services, devices), and a check that keeps drivers out of the hardware layer; a pure move, with the same unsafe count before and after; next, the system-call layer calls the kernel directly instead of through a table in the hardware layer",
