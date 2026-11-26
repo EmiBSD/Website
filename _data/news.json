@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-26T17:40:00-03:00",
+  "repo": "Kernel",
+  "title": "The leaf crates are grouped by purpose like the rest of the kernel: sysdefs, the kernel's domain model of OpenBSD's types and structures, by the kernel's own groups (proc, file, net, netinet, ...), libkern in strings, memory, hashes and random, libz in deflate, inflate and checksums; a check keeps their roots to groups only",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-26T15:30:00-03:00",
   "repo": "Kernel",
   "title": "OpenBSD's basic types, constants and the structures userland shares now live in one leaf crate, sysdefs, that every layer uses instead of each inventing its own; the kernel's library crates (libkern, libz, sysdefs) hold no unsafe, and measurements since N6 show no slowdown: reading files, pipes, boot and page faults equal, fork and exec faster",
