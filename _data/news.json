@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-26T18:10:00-03:00",
+  "repo": "Kernel",
+  "title": "The device tree reader is the kernel's (N7.2b0): every read of the boot loader's tree is bounds-checked, the boot refuses a tree placed in usable memory, and boot(8)'s softraid key is copied and wiped before the tree is shared, where a review found the old order wrote behind a read-only view",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-26T17:40:00-03:00",
   "repo": "Kernel",
   "title": "The leaf crates are grouped by purpose like the rest of the kernel: sysdefs, the kernel's domain model of OpenBSD's types and structures, by the kernel's own groups (proc, file, net, netinet, ...), libkern in strings, memory, hashes and random, libz in deflate, inflate and checksums; a check keeps their roots to groups only",

@@ -1,7 +1,7 @@
 {
-  "commit": "13ed84f2",
+  "commit": "5fb863fd",
   "date": "2026-11-26",
-  "at": "N6, the network stack, is met (2026-11-26, tag n6-network); N7, devices, is under way: the typed device registers and DMA memory, autoconfiguration, the small device services, the boot-time device editor and the disk layer (labels, disk statistics, the root device choice) are the kernel's; the code is ordered by purpose, `hal` in sync, memory, data structures, cpu, virtual memory and device groups and the kernel crate in proc, sched, sig, time, file, tty, base and dev; a system call now goes userland, then `abi`, then the kernel, then `hal`: `hal` only carries the trap and hands `abi` a safe view of the registers, `abi` owns OpenBSD's register convention with named registers, and calls the kernel directly (decisions 52 and 53); OpenBSD's basic types, constants and the structures userland shares live in one leaf crate, `sysdefs`, under every layer and grouped like the kernel (base, proc, sig, time, vm, file, fs, dev, net, netinet, netinet6), and the kernel's library crates hold no `unsafe` (decisions 54 and 55); next, interrupts, the device tree and the cpu (N7.2)",
+  "at": "N6, the network stack, is met (2026-11-26, tag n6-network); N7, devices, is under way: the typed device registers and DMA memory, autoconfiguration, the small device services, the boot-time device editor and the disk layer (labels, disk statistics, the root device choice) are the kernel's; the code is ordered by purpose, `hal` in sync, memory, data structures, cpu, virtual memory and device groups and the kernel crate in proc, sched, sig, time, file, tty, base and dev; a system call now goes userland, then `abi`, then the kernel, then `hal`: `hal` only carries the trap and hands `abi` a safe view of the registers, `abi` owns OpenBSD's register convention with named registers, and calls the kernel directly (decisions 52 and 53); OpenBSD's basic types, constants and the structures userland shares live in one leaf crate, `sysdefs`, under every layer and grouped like the kernel (base, proc, sig, time, vm, file, fs, dev, net, netinet, netinet6), and the kernel's library crates hold no `unsafe` (decisions 54 and 55); the device tree reader is the kernel's, and boot(8)'s softraid key is wiped before the tree is shared (N7.2b0); next, the interrupt core (N7.2a1)",
   "crates": [
     {
       "name": "kernel",
@@ -17,8 +17,8 @@
     },
     {
       "name": "hal",
-      "files": 126,
-      "unsafe": 233,
+      "files": 131,
+      "unsafe": 235,
       "note": "the only crate allowed `unsafe`, each site with a written proof"
     },
     {
@@ -31,7 +31,7 @@
       "name": "bsd",
       "label": "the LandingZone tree",
       "files": 838,
-      "unsafe": 6906,
+      "unsafe": 6891,
       "note": "shrinks as subsystems move out; deleted at N9"
     }
   ],
@@ -157,7 +157,7 @@
       {
         "slice": "N7.2b",
         "what": "The device-tree root, the generic timer, PSCI, EFI and the clock chip",
-        "state": "pending"
+        "state": "in progress"
       },
       {
         "slice": "N7.2c",
