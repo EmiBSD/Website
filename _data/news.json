@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-26T12:30:00-03:00",
+  "repo": "Kernel",
+  "title": "The kernel's code is now ordered by purpose: the hardware layer's modules in six groups (locks, memory, data structures, the processor, virtual memory and devices, the only group drivers use), the safe kernel crate's in eight (processes, scheduler, signals, time, files, terminals, base services, devices), and a check that keeps drivers out of the hardware layer; a pure move, with the same unsafe count before and after; next, the system-call layer calls the kernel directly instead of through a table in the hardware layer",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-26T09:45:00-03:00",
   "repo": "Kernel",
   "title": "N7, devices, starts: its first three slices are on main with every check green — typed device registers and DMA memory in the hardware layer, autoconfiguration in the safe kernel crate, and the small device services (event counters, sensors, the watchdog, the clock helpers); the LandingZone tree falls to 6,971 unsafe",

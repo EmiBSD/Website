@@ -1,7 +1,7 @@
 {
-  "commit": "ffc9caaa",
+  "commit": "f99a8926",
   "date": "2026-11-26",
-  "at": "N6, the network stack, is met (2026-11-26, tag n6-network); N7, devices, has started: its plan has 22 slices, and the first three (typed device registers and DMA memory in `hal`, the kernel's autoconf, the small device services: event counters, sensors, the watchdog, the clock helpers) are merged on main with every check green (6,254 host tests, the boot and device smokes); the second wave waits for the maintainer's decisions on the LandingZone sync it collides with and on the scope of the drivers arm64 never configures",
+  "at": "N6, the network stack, is met (2026-11-26, tag n6-network); N7, devices, has started: its plan has 22 slices, and the first three (typed device registers and DMA memory in `hal`, the kernel's autoconf, the small device services: event counters, sensors, the watchdog, the clock helpers) are merged on main with every check green (6,254 host tests, the boot and device smokes); the code is now ordered by purpose: the hardware layer `hal` in sync, memory, data structures, cpu, virtual memory and device groups (only the last one is for drivers), and the kernel crate in proc, sched, sig, time, file, tty, base and dev, with a check that keeps drivers and `hal` apart; the system-call layer `abi` will call the kernel directly (decision 52: userland, then `abi`, then the kernel, then `hal`) and is being split by the same groups; userconf (N7.1c) is under way",
   "crates": [
     {
       "name": "kernel",
@@ -136,7 +136,7 @@
       {
         "slice": "N7.1c",
         "what": "userconf, the boot-time device editor",
-        "state": "pending"
+        "state": "in progress"
       },
       {
         "slice": "N7.1d",
