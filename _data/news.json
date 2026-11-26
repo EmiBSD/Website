@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-25T23:45:00-03:00",
+  "repo": "Kernel",
+  "title": "N6.7 done: the nfs server is the kernel's (N6.7b4): nfssvc is now a native system call (190 of 331) and the old server's 11 files are deleted (57 fewer unsafe); pf's tables and IPsec's policies run on the kernel's own radix tree (N6.7b1), whose old copy is deleted too (86 fewer unsafe), at 34.5 ns per table lookup against the old tree's 24.4 after two rounds of layout work the user chose; along the way the review found that OpenBSD's pf reads its tables while other CPUs change them, uses an entry after it may be freed, and counts with plain increments from every CPU: the kernel now guards each table with a read-write lock, keeps it held while an entry is used, and counts atomically, at +6 % per lookup; the LandingZone tree is down to 7017 unsafe; next is N6's close",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-25T21:55:00-03:00",
   "repo": "Kernel",
   "title": "N6.7b3 done: the nfs server's procedures are the kernel's (read, write, lookup, create, rename, readdir and the rest), built beside the old server and switched on at N6.7b4; every wire length is checked before use and every permission check of OpenBSD kept in its order; the review found no code defect, and the tests now cover NFSv2, reads and writes across many network buffers, and unmount after each test so a leaked file would show; two OpenBSD bugs on the list: an exclusive create that never stores its verifier on 64-bit machines, and a read reply leaked on an error path; 5896 host tests green",

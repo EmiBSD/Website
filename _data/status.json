@@ -1,7 +1,7 @@
 {
-  "commit": "bb448844",
+  "commit": "4a62a17c",
   "date": "2026-11-24",
-  "at": "N6.5 done and closed: IPv6 is the kernel's (addresses, MLD, source selection, neighbour discovery, the output and input paths, forwarding, reassembly, ICMPv6, the protocol table), measured against its start (IPv6 delivery 54 % faster, reassembly 47 %) and tested; N6.5e done in three parts: the net lock's cells in `hal`, counted interface addresses and counted multicast records, freed when the last holder lets go as in OpenBSD; N6.6a, TCP, under way in six parts (6a0..6a5), built beside the old one and switched on last: all six are done: since 6a5 the kernel's TCP is the one that runs, and the old one is deleted; N6.6b done: UDP (6b0), raw sockets and divert (6b1) are the kernel's; N6.7a done: the nfs client is the kernel's (wire format, RPC engine, node table, attribute cache, diskless boot, file operations, mount; N6.7a0..a5) and the one that runs, the old client deleted; the nfs server and pf and IPsec on the kernel's radix tree (N6.7b1, b2) are being finished, the server's procedures (b3) next; a radix tree that owns its nodes and the NFS export list are the kernel's (N6.7b0); pf and IPsec on that tree (N6.7b1) and the server (N6.7b2, b3) are paused, partly written, until the client is done; `__thrsleep` and `__thrwakeup`, the thread sleep calls LandingZone ported, and `sysarch`, arrived by sync as safe kernel code: every LandingZone commit up to the new pin, e8249449, is triaged",
+  "at": "N6.5 done and closed: IPv6 is the kernel's (addresses, MLD, source selection, neighbour discovery, the output and input paths, forwarding, reassembly, ICMPv6, the protocol table), measured against its start (IPv6 delivery 54 % faster, reassembly 47 %) and tested; N6.5e done in three parts: the net lock's cells in `hal`, counted interface addresses and counted multicast records, freed when the last holder lets go as in OpenBSD; N6.6a, TCP, under way in six parts (6a0..6a5), built beside the old one and switched on last: all six are done: since 6a5 the kernel's TCP is the one that runs, and the old one is deleted; N6.6b done: UDP (6b0), raw sockets and divert (6b1) are the kernel's; N6.7a done: the nfs client is the kernel's (wire format, RPC engine, node table, attribute cache, diskless boot, file operations, mount; N6.7a0..a5) and the one that runs, the old client deleted; N6.7b done: pf's tables and IPsec's policies run on the kernel's radix tree (bsd's deleted), and the nfs server is the kernel's (nfssvc native, bsd's sys/nfs deleted); N6.8, the close, is next; a radix tree that owns its nodes and the NFS export list are the kernel's (N6.7b0); pf and IPsec on that tree (N6.7b1) and the server (N6.7b2, b3) are paused, partly written, until the client is done; `__thrsleep` and `__thrwakeup`, the thread sleep calls LandingZone ported, and `sysarch`, arrived by sync as safe kernel code: every LandingZone commit up to the new pin, e8249449, is triaged",
   "crates": [
     {
       "name": "kernel",
@@ -13,7 +13,7 @@
       "name": "abi",
       "files": 3,
       "unsafe": 0,
-      "note": "`#![forbid(unsafe_code)]`; 189 of the 331 system-call entries handled natively"
+      "note": "`#![forbid(unsafe_code)]`; 190 of the 331 system-call entries handled natively"
     },
     {
       "name": "hal",
@@ -24,8 +24,8 @@
     {
       "name": "bsd",
       "label": "the LandingZone tree",
-      "files": 885,
-      "unsafe": 7160,
+      "files": 874,
+      "unsafe": 7017,
       "note": "shrinks as subsystems move out; deleted at N9"
     }
   ],
@@ -278,7 +278,7 @@
       {
         "slice": "N6.7b1",
         "what": "pf's tables and IPsec's policy lookup on the kernel's radix tree; the old tree deleted",
-        "state": "in progress"
+        "state": "done"
       },
       {
         "slice": "N6.7b2",
@@ -293,11 +293,12 @@
       {
         "slice": "N6.7b4",
         "what": "The switch to the kernel's nfs server; nfssvc(2) handled natively",
-        "state": "in progress"
+        "state": "done"
       },
       {
         "slice": "N6.8",
-        "what": "Close: `just check`, `just ci`, `just ci-full`, the comparison with a real OpenBSD (one new network scenario) green; the tag `n6-network`"
+        "what": "Close: `just check`, `just ci`, `just ci-full`, the comparison with a real OpenBSD (one new network scenario) green; the tag `n6-network`",
+        "state": "in progress"
       }
     ]
   }
