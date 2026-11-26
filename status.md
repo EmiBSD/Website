@@ -40,17 +40,17 @@ Each line is checked by a scripted QEMU boot, the smoke tests, at every mileston
 
 ## {{ s.next.name }}, the milestone in progress
 
-N6 moves the network stack out of the LandingZone tree into `kernel::net`: the packet buffer
-(the mbuf), sockets, interfaces, routing, IPv4, IPv6, TCP and UDP, then nfs over them (the
-maintainer's decision of 2026-10-28). Four surveys measured it on 2026-11-07: 125 files and
-1,933 `unsafe`. Four pieces go to N8 with pf and IPsec, where they belong (`ip_spd`,
-`ip_ipip`, and pf's queueing back ends `hfsc` and `fq_codel`); until N8, N6 reaches pf and
-IPsec through two bridges, and their fields in the packet and in the protocol control block are
-opaque words only those bridges read. The packet path, the sockets and TCP join the
-performance rule: every slice runs the network benchmarks before its commits.
+N7 moves the devices out of the LandingZone tree into `kernel::dev`: first the driver model
+(typed device registers and DMA memory in `hal`, autoconfiguration, the small device services),
+then interrupts, the device-tree root and the cpu on arm64, virtio and its drivers, the console,
+SCSI and the disks, PCI, and then every family of drivers QEMU's arm64 machine configures:
+storage, network, display and input, USB, ACPI, audio, and the random device last. A survey
+measured it on 2026-11-26: about 418,000 lines in the LandingZone tree.
 
-The slices below are N6's plan of 2026-11-07, approved by the maintainer the same day. As in
-N4 and N5, a slice may be split or renumbered when it starts, and this table follows.
+The slices below are N7's plan of 2026-11-26. The first three ran in parallel and are merged;
+the second wave waits for two of the maintainer's decisions: the LandingZone sync whose drivers
+it would touch, and whether the drivers only amd64 configures move with N10. As in earlier
+milestones, a slice may be split or renumbered when it starts, and this table follows.
 
 | Slice | What moves | State |
 |---|---|---|
@@ -65,9 +65,9 @@ host, with 1,024 entries in the map, mprotect(2) takes 62 % less time, madvise(2
 minherit(2) 66 % and mlock(2) 36 %; the other operations measured did not change. The rest of
 N12 waits for its turn.
 
-N5, the milestone before, closed on 2026-11-07 in ten slices; its results, and what it cost in
-speed, are in [its news entry]({{ '/news/2026/11/07/n5-met/' | relative_url }}). N4's are in
-[its own]({{ '/news/2026/10/24/n4-met/' | relative_url }}).
+N6, the milestone before, closed on 2026-11-26; its results are in
+[its news entry]({{ '/news/2026/11/26/n6-met/' | relative_url }}). N5's are in
+[its own]({{ '/news/2026/11/07/n5-met/' | relative_url }}).
 
 ## The crates today
 

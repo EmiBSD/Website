@@ -1,7 +1,7 @@
 {
   "commit": "030d96aa",
   "date": "2026-11-26",
-  "at": "N6.5 done and closed: IPv6 is the kernel's (addresses, MLD, source selection, neighbour discovery, the output and input paths, forwarding, reassembly, ICMPv6, the protocol table), measured against its start (IPv6 delivery 54 % faster, reassembly 47 %) and tested; N6.5e done in three parts: the net lock's cells in `hal`, counted interface addresses and counted multicast records, freed when the last holder lets go as in OpenBSD; N6.6a, TCP, under way in six parts (6a0..6a5), built beside the old one and switched on last: all six are done: since 6a5 the kernel's TCP is the one that runs, and the old one is deleted; N6.6b done: UDP (6b0), raw sockets and divert (6b1) are the kernel's; N6.7a done: the nfs client is the kernel's (wire format, RPC engine, node table, attribute cache, diskless boot, file operations, mount; N6.7a0..a5) and the one that runs, the old client deleted; N6.7b done: pf's tables and IPsec's policies run on the kernel's radix tree (bsd's deleted), and the nfs server is the kernel's (nfssvc native, bsd's sys/nfs deleted); N6 is met (2026-11-26, tag n6-network): every close check green on main (`just check`, `just ci`, `just ci-full` with the installers, the comparison with a real OpenBSD: 153 of 156 steps equal, 3 expected, 0 unexpected, the nfs scenarios for the first time); nine benchmarks that rose more than 10 % were traced commit by commit: none comes from a change in the measured code (compiler layout, noise, or no rise at all), and the layout items go to N12; 45 adapter files of the network stack stay in the old tree until N9; N7, devices, is planned (22 slices) and its first three (the typed device registers and DMA memory in `hal`, autoconf, the small device services) are written and reviewed, merging next",
+  "at": "N6, the network stack, is met (2026-11-26, tag n6-network); N7, devices, has started: its plan has 22 slices, and the first three (typed device registers and DMA memory in `hal`, the kernel's autoconf, the small device services) are written, reviewed and merged on main, their checks running before the push; the second wave waits for the maintainer's decisions on the LandingZone sync it collides with and on the scope of the drivers arm64 never configures",
   "crates": [
     {
       "name": "kernel",
@@ -78,12 +78,15 @@
       "name": "N6",
       "title": "Network stack",
       "scope": "interfaces, routing, IPv4, IPv6, sockets, then nfs over them",
-      "state": "in progress"
+      "date": "2026-11-26T09:26:02-03:00",
+      "url": "https://github.com/EmiBSD/Kernel/releases/tag/n6-network",
+      "post": "n6-met"
     },
     {
       "name": "N7",
       "title": "Devices",
-      "scope": "the driver model, then every bus and driver"
+      "scope": "the driver model, then every bus and driver",
+      "state": "in progress"
     },
     {
       "name": "N8",
@@ -113,192 +116,127 @@
     }
   ],
   "next": {
-    "name": "N6",
+    "name": "N7",
     "slices": [
       {
-        "slice": "N6.0",
-        "what": "Preconditions in `hal`: the net lock (shared and exclusive, with witnesses), SMR for lock-free reads, pools with their own page allocator, typed in-place header views, a list with an O(1) tail; the network benchmarks",
-        "state": "done"
-      },
-      {
-        "slice": "N6.1",
-        "what": "The mbuf, the packet buffer under everything (`uipc_mbuf`, `uipc_mbuf2`, `sys/mbuf.rs`)",
-        "state": "done"
-      },
-      {
-        "slice": "N6.2",
-        "what": "Sockets and domains: the socket layer, local (AF_UNIX) sockets, descriptor passing; the socket system calls handled natively",
-        "state": "done"
-      },
-      {
-        "slice": "N6.3a",
-        "what": "The interface core: `ifnet`, the interface queues, `netisr`, link-level addresses and media",
-        "state": "done"
-      },
-      {
-        "slice": "N6.3b",
-        "what": "Routing: the routing table, ART, the routing socket",
-        "state": "done"
-      },
-      {
-        "slice": "N6.3c",
-        "what": "Link layers and bpf: Ethernet, loopback, the packet filter devices",
-        "state": "done"
-      },
-      {
-        "slice": "N6.4a",
-        "what": "IPv4 addresses and multicast records, IGMP, the IPv4 output path, the netinet header images and the IPv4 leaves (checksums, ids, ECN)",
-        "state": "done"
-      },
-      {
-        "slice": "N6.4b",
-        "what": "ARP, with the route's link-layer slot typed",
-        "state": "done"
-      },
-      {
-        "slice": "N6.4c1",
-        "what": "The protocol control block shared by IPv4 and IPv6, and the IP socket options",
-        "state": "done"
-      },
-      {
-        "slice": "N6.4c2",
-        "what": "The IPv4 input path, fragment reassembly, ICMP and the protocol table",
-        "state": "done"
-      },
-      {
-        "slice": "N6.5a",
-        "what": "IPv6 addresses and multicast records, MLD, source address selection, the IPv6 header images and leaves",
-        "state": "done"
-      },
-      {
-        "slice": "N6.5b",
-        "what": "Neighbour discovery (ND, duplicate address detection, the router cache)",
-        "state": "done"
-      },
-      {
-        "slice": "N6.5c",
-        "what": "The IPv6 output path and its socket options",
-        "state": "done"
-      },
-      {
-        "slice": "N6.5d",
-        "what": "The IPv6 input path, forwarding, fragment reassembly, ICMPv6, the extension headers and the protocol table",
-        "state": "done"
-      },
-      {
-        "slice": "N6.5e0",
-        "what": "Cells the net lock guards in `hal`, opened by shared and exclusive witnesses, so a list under the net lock can lend its records safely",
-        "state": "done"
-      },
-      {
-        "slice": "N6.5e1",
-        "what": "Counted interface addresses, IPv4 and IPv6: freed when the last holder lets go, as in OpenBSD, instead of recycled for ever",
-        "state": "done"
-      },
-      {
-        "slice": "N6.5e2",
-        "what": "Counted multicast records, IPv4 and IPv6",
-        "state": "done"
-      },
-      {
-        "slice": "N6.6a0",
-        "what": "TCP's preconditions: `hal` pieces (pool hard limit, arc4random_buf), the socket lock's shape, the pcb's typed slots, pf and IPsec legs",
-        "state": "done"
-      },
-      {
-        "slice": "N6.6a1",
-        "what": "TCP without a control block: the state machine, sequence arithmetic, statistics per CPU, LRO and TSO",
-        "state": "done"
-      },
-      {
-        "slice": "N6.6a2",
-        "what": "TCP's types, the control block's life, SACK and reassembly, the SYN cache",
-        "state": "done"
-      },
-      {
-        "slice": "N6.6a3",
-        "what": "TCP output and its five timers",
-        "state": "done"
-      },
-      {
-        "slice": "N6.6a4",
-        "what": "TCP input and the SYN cache's accept path",
-        "state": "done"
-      },
-      {
-        "slice": "N6.6a5",
-        "what": "TCP's socket requests, options and sysctls; the switch to the kernel's TCP",
-        "state": "done"
-      },
-      {
-        "slice": "N6.6b0",
-        "what": "UDP for IPv4 and IPv6, with IPsec's UDP checks and wg(4)'s upcall; the switch to the kernel's UDP",
-        "state": "done"
-      },
-      {
-        "slice": "N6.6b1",
-        "what": "Raw IP, raw IPv6 and divert(4); the switch, the old files deleted",
-        "state": "done"
-      },
-      {
-        "slice": "N6.7a0",
-        "what": "The nfs client's wire format: XDR encoding and decoding, the RPC transaction ids, the constants userland shares",
-        "state": "done"
-      },
-      {
-        "slice": "N6.7a1",
-        "what": "The nfs client's types and its RPC engine (send, receive, retransmission timer), tested against a real socket on loopback",
-        "state": "done"
-      },
-      {
-        "slice": "N6.7a2",
-        "what": "The nfs client's node table, attribute cache, kqueue support and the buffer cache's closed part",
-        "state": "done"
-      },
-      {
-        "slice": "N6.7a3",
-        "what": "The nfs client's file operations (nfs_vnops) and the read and write paths",
-        "state": "done"
-      },
-      {
-        "slice": "N6.7a4",
-        "what": "The nfs diskless boot (krpc, nfs_boot)",
-        "state": "done"
-      },
-      {
-        "slice": "N6.7a5",
-        "what": "The switch to the kernel's nfs client; the old client deleted",
-        "state": "done"
-      },
-      {
-        "slice": "N6.7b0",
-        "what": "A radix tree that owns its nodes, and the NFS export list; exports switched to the kernel",
-        "state": "done"
-      },
-      {
-        "slice": "N6.7b1",
-        "what": "pf's tables and IPsec's policy lookup on the kernel's radix tree; the old tree deleted",
-        "state": "done"
-      },
-      {
-        "slice": "N6.7b2",
-        "what": "The nfs server's core: its types, request cache, socket half and nfssvc's daemon loop",
-        "state": "done"
-      },
-      {
-        "slice": "N6.7b3",
-        "what": "The nfs server's 26 procedures",
-        "state": "done"
-      },
-      {
-        "slice": "N6.7b4",
-        "what": "The switch to the kernel's nfs server; nfssvc(2) handled natively",
-        "state": "done"
-      },
-      {
-        "slice": "N6.8",
-        "what": "Close: `just check`, `just ci`, `just ci-full`, the comparison with a real OpenBSD (one new network scenario) green; the tag `n6-network`",
+        "slice": "N7.0",
+        "what": "Bus primitives in `hal`: typed device registers (`Mmio`) and owned DMA memory (`DmaBuf`) with their cache maintenance; device mappings only through the kernel map",
         "state": "in progress"
+      },
+      {
+        "slice": "N7.1a",
+        "what": "Autoconfiguration in the kernel: attach, detach, the unit tables, the deferred and mountroot queues; the driver model's two bridges",
+        "state": "in progress"
+      },
+      {
+        "slice": "N7.1b",
+        "what": "The small device services: event counters, sensors, the watchdog, the clock helpers",
+        "state": "in progress"
+      },
+      {
+        "slice": "N7.1c",
+        "what": "userconf, the boot-time device editor",
+        "state": "pending"
+      },
+      {
+        "slice": "N7.1d",
+        "what": "The disk: disklabels, the disk statistics, the disk map",
+        "state": "pending"
+      },
+      {
+        "slice": "N7.2a",
+        "what": "Interrupts on arm64: the interrupt core and the two GIC drivers",
+        "state": "pending"
+      },
+      {
+        "slice": "N7.2b",
+        "what": "The device-tree root, the generic timer, PSCI, EFI and the clock chip",
+        "state": "pending"
+      },
+      {
+        "slice": "N7.2c",
+        "what": "The cpu driver: ID registers and starting the secondary CPUs",
+        "state": "pending"
+      },
+      {
+        "slice": "N7.3a",
+        "what": "virtio, the bus QEMU's devices sit on, with viornd and viomb",
+        "state": "pending"
+      },
+      {
+        "slice": "N7.3b",
+        "what": "vio(4), the virtio network driver",
+        "state": "pending"
+      },
+      {
+        "slice": "N7.3c",
+        "what": "The console and the device switch: pluart, viocon, cons",
+        "state": "pending"
+      },
+      {
+        "slice": "N7.4a",
+        "what": "The SCSI midlayer",
+        "state": "pending"
+      },
+      {
+        "slice": "N7.4b",
+        "what": "sd(4) and cd(4), the SCSI disk and CD drivers",
+        "state": "pending"
+      },
+      {
+        "slice": "N7.4c",
+        "what": "vioblk and vioscsi, the virtio disks",
+        "state": "pending"
+      },
+      {
+        "slice": "N7.5",
+        "what": "PCI: the bus core, the host bridge, PCI-PCI bridges, virtio over PCI",
+        "state": "pending"
+      },
+      {
+        "slice": "N7.6",
+        "what": "The driver model written down (`DRIVERS.md`) from virtio, and its checker",
+        "state": "pending"
+      },
+      {
+        "slice": "N7.7",
+        "what": "Storage drivers: nvme, ahci, mpi, sdmmc, rd, vnd, softraid (less its crypto, N8's)",
+        "state": "pending"
+      },
+      {
+        "slice": "N7.8",
+        "what": "Network drivers: mii, em, vmx, re",
+        "state": "pending"
+      },
+      {
+        "slice": "N7.9",
+        "what": "Display and input: wscons, rasops, the fonts, hid, the frame buffers",
+        "state": "pending"
+      },
+      {
+        "slice": "N7.10",
+        "what": "USB: the host controllers, the bus and its drivers",
+        "state": "pending"
+      },
+      {
+        "slice": "N7.11",
+        "what": "ACPI and the arm64 SMMU",
+        "state": "pending"
+      },
+      {
+        "slice": "N7.12",
+        "what": "The small buses and audio: audio, azalia, ipmi, GPIO, firmware loading",
+        "state": "pending"
+      },
+      {
+        "slice": "N7.13",
+        "what": "The random device, `dev/rnd`, last (a security-sensitive area)",
+        "state": "pending"
+      },
+      {
+        "slice": "N7.14",
+        "what": "Close: the legacy adapters deleted, `just ci`, `just ci-full`, the comparison with a real OpenBSD",
+        "state": "pending"
       }
     ]
   }

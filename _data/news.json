@@ -1,11 +1,5 @@
 [
  {
-  "date": "2026-11-26T08:30:00-03:00",
-  "repo": "Kernel",
-  "title": "N6, the network stack, is met and tagged n6-network: sockets, the interfaces, routing, bpf, IPv4, IPv6, TCP, UDP, raw sockets and divert, and the nfs client and server are the kernel's, with zero unsafe in the kernel crate; the nine benchmarks that rose more than 10 % were traced commit by commit and none comes from a change in the measured code (the compiler's layout goes to N12); next is N7, devices, whose first three slices are reviewed and merging",
-  "url": "https://github.com/EmiBSD/Kernel"
- },
- {
   "date": "2026-11-26T05:05:00-03:00",
   "repo": "Kernel",
   "title": "N6's close checks are green and on main: just check (6153 host tests), just ci and just ci-full with the installers pass, and the comparison with a real OpenBSD gives 153 of 156 steps equal, 3 expected and 0 unexpected, with the nfs scenarios run for the first time; the runs found and fixed three real bugs (re(4) programming its multicast filter before its Ethernet attach, a smoke racing the virtio GPU's refresh, and a network probe with no loopback address) and two test bugs (a benchmark calling ARP without the net lock, a test releasing a buffer into another test's cache); netstat(1) now runs in the smokes and pf's tables are tested; the boot banner prints the code name \"Arica\"; N6 is declared met once the user rules on nine benchmarks that rose more than 10 % and on the exit criterion's wording; meanwhile N7, devices, is planned in 22 slices and its first three are written and reviewed",
