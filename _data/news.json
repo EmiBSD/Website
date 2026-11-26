@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-26T20:22:00-03:00",
+  "repo": "Kernel",
+  "title": "The arm64 interrupt controller core is the kernel's (N7.2a1): the registry of controllers, the interrupt handles, the pre-registration of early devices and the MSI translation, with no unsafe; the legacy controllers plug in through one adapter until the GICs move next; boot, GICv3 and ACPI smokes green",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-26T20:08:00-03:00",
   "repo": "Kernel",
   "title": "The boot loaders' directory has no repeated names: sys/boot holds libsa, loader (boot(8), formerly boot/boot), efi and one directory per architecture with its efiboot files; every count, test and smoke equal before and after the move",
