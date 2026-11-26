@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-26T16:20:00-03:00",
+  "repo": "Kernel",
+  "title": "The disk layer is the kernel's (labels, disk statistics, diskmap and the choice of the root device), with each I/O finding its disk without a lock as in OpenBSD; and the hardware layer no longer interprets a system call: it hands the system-call layer a safe view of the trap's registers, and abi owns OpenBSD's arm64 convention with named registers; the LandingZone tree falls to 6,907 unsafe",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-26T13:50:00-03:00",
   "repo": "Kernel",
   "title": "The system-call layer calls the kernel directly: the table of function pointers that sat in the hardware layer is gone, abi is split by the kernel's groups and checked to call nothing but the kernel's one door; and boot -c's device editor (userconf) is the kernel's, its dialogue unchanged",

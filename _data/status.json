@@ -1,7 +1,7 @@
 {
-  "commit": "a6359e19",
+  "commit": "71bc4fdb",
   "date": "2026-11-26",
-  "at": "N6, the network stack, is met (2026-11-26, tag n6-network); N7, devices, is under way: the typed device registers and DMA memory, autoconfiguration, the small device services and the boot-time device editor (userconf) are the kernel's, and the disk layer is in review; the code is ordered by purpose, `hal` in sync, memory, data structures, cpu, virtual memory and device groups and the kernel crate in proc, sched, sig, time, file, tty, base and dev; the system-call layer `abi` now calls the kernel directly (decision 52: userland, then `abi`, then the kernel, then `hal`) and is split by the same groups; next, `abi` takes over OpenBSD's register convention so the hardware layer only carries the trap (decision 53)",
+  "at": "N6, the network stack, is met (2026-11-26, tag n6-network); N7, devices, is under way: the typed device registers and DMA memory, autoconfiguration, the small device services, the boot-time device editor and the disk layer (labels, disk statistics, the root device choice) are the kernel's; the code is ordered by purpose, `hal` in sync, memory, data structures, cpu, virtual memory and device groups and the kernel crate in proc, sched, sig, time, file, tty, base and dev; a system call now goes userland, then `abi`, then the kernel, then `hal`: `hal` only carries the trap and hands `abi` a safe view of the registers, `abi` owns OpenBSD's register convention with named registers, and calls the kernel directly (decisions 52 and 53); next, interrupts, the device tree and the cpu (N7.2)",
   "crates": [
     {
       "name": "kernel",
@@ -25,7 +25,7 @@
       "name": "bsd",
       "label": "the LandingZone tree",
       "files": 870,
-      "unsafe": 6969,
+      "unsafe": 6907,
       "note": "shrinks as subsystems move out; deleted at N9"
     }
   ],
@@ -141,7 +141,7 @@
       {
         "slice": "N7.1d",
         "what": "The disk: disklabels, the disk statistics, the disk map",
-        "state": "in progress"
+        "state": "done"
       },
       {
         "slice": "N7.2a",
