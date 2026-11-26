@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-26T05:05:00-03:00",
+  "repo": "Kernel",
+  "title": "N6's close checks are green and on main: just check (6153 host tests), just ci and just ci-full with the installers pass, and the comparison with a real OpenBSD gives 153 of 156 steps equal, 3 expected and 0 unexpected, with the nfs scenarios run for the first time; the runs found and fixed three real bugs (re(4) programming its multicast filter before its Ethernet attach, a smoke racing the virtio GPU's refresh, and a network probe with no loopback address) and two test bugs (a benchmark calling ARP without the net lock, a test releasing a buffer into another test's cache); netstat(1) now runs in the smokes and pf's tables are tested; the boot banner prints the code name \"Arica\"; N6 is declared met once the user rules on nine benchmarks that rose more than 10 % and on the exit criterion's wording; meanwhile N7, devices, is planned in 22 slices and its first three are written and reviewed",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-25T23:45:00-03:00",
   "repo": "Kernel",
   "title": "N6.7 done: the nfs server is the kernel's (N6.7b4): nfssvc is now a native system call (190 of 331) and the old server's 11 files are deleted (57 fewer unsafe); pf's tables and IPsec's policies run on the kernel's own radix tree (N6.7b1), whose old copy is deleted too (86 fewer unsafe), at 34.5 ns per table lookup against the old tree's 24.4 after two rounds of layout work the user chose; along the way the review found that OpenBSD's pf reads its tables while other CPUs change them, uses an entry after it may be freed, and counts with plain increments from every CPU: the kernel now guards each table with a read-write lock, keeps it held while an entry is used, and counts atomically, at +6 % per lookup; the LandingZone tree is down to 7017 unsafe; next is N6's close",
