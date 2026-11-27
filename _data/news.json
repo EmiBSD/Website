@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-27T10:15:00-03:00",
+  "repo": "Kernel",
+  "title": "entry's second step: the way back from the kernel to a program now goes down, the kernel's pending-work loop over one exit gate in `hal`, with no indirect call on a new thread's first return and a forked child's return value as a constant of `abi`; the whole arm64 smoke run and the comparison with OpenBSD on two CPU models green, `hal` 235 -> 236 `unsafe` (the one the plan names)",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-27T08:40:00-03:00",
   "repo": "Kernel",
   "title": "The work on `entry`, the one door from user programs into the kernel (decision 56), has started: before anything moves, the comparison with a real OpenBSD now checks the traps it will carry (illegal instruction, breakpoint, alignment, the first floating-point instruction, the sixteen identification registers), and both systems answer the same; the benchmarks gain a bare system call row, and the documents and rules now describe a kernel booted only by OpenBSD's own boot loaders",
