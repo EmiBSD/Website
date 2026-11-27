@@ -80,8 +80,10 @@ If you want a secure, supported operating system, use [OpenBSD](https://www.open
 - **Unsafe code confined by the compiler.** The kernel is being split into crates. `kernel`
   (every decision of the OS) and `abi` (the system-call interface) carry
   `#![forbid(unsafe_code)]`: the compiler refuses to build them with a single `unsafe` block.
-  Of the new crates, only `hal`, the hardware layer, may contain `unsafe`, and every site there
-  has a written soundness argument. The ported LandingZone tree, still most of the kernel today, keeps
+  Of the new crates, only `hal`, the hardware layer, may contain `unsafe` blocks and assembly,
+  and every site there has a written soundness argument; `entry`, the small crate that
+  classifies every trap from a user program, is safe Rust with one `unsafe` attribute, on the
+  symbol it exports to `hal`. The ported LandingZone tree, still most of the kernel today, keeps
   its `unsafe` until each subsystem is replaced; the [Status]({{ '/status/' | relative_url }})
   page has the numbers.
 - **Locks that own their data.** In the redesigned code, a structure guarded by a lock lives
