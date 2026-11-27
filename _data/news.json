@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-27T19:45:00-03:00",
+  "repo": "Kernel",
+  "title": "`entry` is closed: the benchmark pair before and after the new user door (three debug and three release runs each side, on the same machine and power) shows no row above +10 %; an empty system call costs 5 % more on the debug kernel (14060 to 14767 ns), and on the release kernel the two values a boot lands on did not rise, though more boots landed on the slow one (median +7.7 %), left open for N12 with the cause of the debug cost; page faults, fork, exec, pipes and file I/O are unchanged within their spread",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-27T13:20:00-03:00",
   "repo": "Kernel",
   "title": "`entry` is built: one crate of safe Rust now classifies every trap from a user program and calls down to `abi`, the kernel or `hal`; `hal` keeps all the trap's assembly and reaches it through a single link-time symbol, the ABI registers nothing, and a checker holds the closed list of trap classes; the whole arm64 smoke run and the comparison with OpenBSD on two CPU models green (159 steps, 0 unexpected), `hal` unchanged at 236 `unsafe`, `entry` at 1 (its exported symbol); the README's architecture diagram follows",
