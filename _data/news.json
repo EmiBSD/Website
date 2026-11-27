@@ -1,5 +1,17 @@
 [
  {
+  "date": "2026-11-26T23:05:00-03:00",
+  "repo": "Kernel",
+  "title": "Decision 56: a new crate, entry, will be the only door from userland into the kernel: it receives the CPU's trap, saves the program's registers and hands each event down (a system call to abi, a fault to the kernel, an interrupt to hal); userland never enters hal and nothing inside calls the door; designed and decided, built after Limine is gone (docs/ENTRY.md)",
+  "url": "https://github.com/EmiBSD/Kernel/blob/main/docs/ENTRY.md"
+ },
+ {
+  "date": "2026-11-26T22:55:00-03:00",
+  "repo": "Kernel",
+  "title": "Every arm64 smoke that boots one machine now boots through OpenBSD's own efiboot instead of Limine: 53 recipes converted, the test init is /sbin/init on a real root, the whole smoke run green (67 of 87, 20 amd64 recipes waiting for N10) and faster, 5 min against 7",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-26T21:26:00-03:00",
   "repo": "Kernel",
   "title": "First step of booting only through OpenBSD's own loaders (no Limine): one builder makes the efiboot disk images, the smokes can boot them with the root found by its disk's DUID, and the boot self-tests are set by the builder inside the kernel file; login in 8.5 s against Limine's 8.8 s; the recipes convert next",
