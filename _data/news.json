@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-27T21:45:00-03:00",
+  "repo": "Kernel",
+  "title": "The full close after the Limine removal and `entry` ran on arm64: host tests (5910 passed, 0 failed), every smoke on four CPUs (67 of 87, the rest are amd64's and wait for N10), the installer end to end (device tree, ACPI and the `install80.img` USB image) and the comparison with OpenBSD on two CPU models (159 steps, 0 unexpected); clippy had been red since `entry` merged, 14 lints fixed with no behaviour change; next in N7 are the device tree's root bus and `simplebus`, planned in two steps",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-27T19:45:00-03:00",
   "repo": "Kernel",
   "title": "`entry` is closed: the benchmark pair before and after the new user door (three debug and three release runs each side, on the same machine and power) shows no row above +10 %; an empty system call costs 5 % more on the debug kernel (14060 to 14767 ns), and on the release kernel the two values a boot lands on did not rise, though more boots landed on the slow one (median +7.7 %), left open for N12 with the cause of the debug cost; page faults, fork, exec, pipes and file I/O are unchanged within their spread",
