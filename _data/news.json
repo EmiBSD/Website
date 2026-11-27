@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-26T21:26:00-03:00",
+  "repo": "Kernel",
+  "title": "First step of booting only through OpenBSD's own loaders (no Limine): one builder makes the efiboot disk images, the smokes can boot them with the root found by its disk's DUID, and the boot self-tests are set by the builder inside the kernel file; login in 8.5 s against Limine's 8.8 s; the recipes convert next",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-26T20:22:00-03:00",
   "repo": "Kernel",
   "title": "The arm64 interrupt controller core is the kernel's (N7.2a1): the registry of controllers, the interrupt handles, the pre-registration of early devices and the MSI translation, with no unsafe; the legacy controllers plug in through one adapter until the GICs move next; boot, GICv3 and ACPI smokes green",
