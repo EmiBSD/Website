@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-27T08:30:00-03:00",
+  "repo": "Kernel",
+  "title": "Limine is gone from the kernel: its entry code, its boot modules and its image builder are deleted, every boot goes through OpenBSD's own boot(8)/efiboot, and init is now started from the root disk through the same exec checks as any program (decision 57); the whole arm64 smoke run green (67 of 87, 20 amd64 recipes waiting for N10)",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-27T02:55:00-03:00",
   "repo": "Kernel",
   "title": "Nothing on arm64 boots through Limine any more: the two-machine network smokes, the benchmarks, the comparison with a real OpenBSD (0 unexpected differences), the release tarball's boot check and the installer media now boot through OpenBSD's own efiboot; the whole smoke run green (67 of 87, 20 amd64 recipes waiting for N10); one benchmark, page faults, got 11 % dearer under efiboot with the same kernel code, accepted as the new baseline and left for the performance milestone",
