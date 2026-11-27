@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-27T08:40:00-03:00",
+  "repo": "Kernel",
+  "title": "The work on `entry`, the one door from user programs into the kernel (decision 56), has started: before anything moves, the comparison with a real OpenBSD now checks the traps it will carry (illegal instruction, breakpoint, alignment, the first floating-point instruction, the sixteen identification registers), and both systems answer the same; the benchmarks gain a bare system call row, and the documents and rules now describe a kernel booted only by OpenBSD's own boot loaders",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-27T08:30:00-03:00",
   "repo": "Kernel",
   "title": "Limine is gone from the kernel: its entry code, its boot modules and its image builder are deleted, every boot goes through OpenBSD's own boot(8)/efiboot, and init is now started from the root disk through the same exec checks as any program (decision 57); the whole arm64 smoke run green (67 of 87, 20 amd64 recipes waiting for N10)",
