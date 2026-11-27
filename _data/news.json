@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-27T13:20:00-03:00",
+  "repo": "Kernel",
+  "title": "`entry` is built: one crate of safe Rust now classifies every trap from a user program and calls down to `abi`, the kernel or `hal`; `hal` keeps all the trap's assembly and reaches it through a single link-time symbol, the ABI registers nothing, and a checker holds the closed list of trap classes; the whole arm64 smoke run and the comparison with OpenBSD on two CPU models green (159 steps, 0 unexpected), `hal` unchanged at 236 `unsafe`, `entry` at 1 (its exported symbol); the README's architecture diagram follows",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-27T11:50:00-03:00",
   "repo": "Kernel",
   "title": "The design of `entry` changed before it was built (decision 58): the trap's assembly stays whole in `hal`, and `entry` is safe Rust that classifies every trap from a program and calls down, reached by one link-time symbol and with nothing registered at runtime; first, a register round trip joined the comparison with a real OpenBSD: all general, vector and status registers filled with a pattern and compared after a system call, a page fault, interrupts and a signal handler, equal on both systems and on two CPU models",
