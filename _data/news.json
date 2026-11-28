@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-28T17:20:00-03:00",
+  "repo": "Kernel",
+  "title": "arm64's shutdown and reboot are in the safe kernel, with every step LandingZone had left out now done as in OpenBSD; all tests green",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-28T16:35:00-03:00",
   "repo": "Kernel",
   "title": "The debugger on two or more CPUs no longer hangs or crashes in three cases OpenBSD's own code gets wrong; all tests green",

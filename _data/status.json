@@ -1,7 +1,7 @@
 {
-  "commit": "9d436dfa",
+  "commit": "0de5ddff",
   "date": "2026-11-28",
-  "at": "N6 (the network stack) met on 2026-11-26; N7 (devices) under way, with arm64's interrupts, firmware, timer, device tree and the virtio core already in the safe kernel",
+  "at": "N6 (the network stack) met on 2026-11-26; N7 (devices) under way, with arm64's interrupts, firmware, timer, device tree, shutdown and the virtio core already in the safe kernel",
   "crates": [
     {
       "name": "kernel",
@@ -24,7 +24,7 @@
     {
       "name": "hal",
       "files": 132,
-      "unsafe": 246,
+      "unsafe": 247,
       "note": "the only crate allowed `unsafe`, each site with a written proof"
     },
     {
@@ -37,7 +37,7 @@
       "name": "bsd",
       "label": "the LandingZone tree",
       "files": 835,
-      "unsafe": 6646,
+      "unsafe": 6645,
       "note": "shrinks as subsystems move out; deleted at N9"
     }
   ],
