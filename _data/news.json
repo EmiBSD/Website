@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-28T13:50:00-03:00",
+  "repo": "Kernel",
+  "title": "A debugger hang on two CPUs, found by the smokes and present in OpenBSD's own C, is fixed: at the end of a hardware interrupt the pending soft interrupts now run with interrupts on (as amd64 already does), so a CPU waiting for the kernel lock still answers the debugger's call, and a stale second call after `continue` is dropped; checked with 1,000 parallel boots and two reviews. Also merged: arm64 stops building the legacy side of three clock bridges, psci's last firmware node wins as in the C, and a second timer node retunes the counter; a probe now drives real OpenBSD's debugger and showed a second hang on GICv2 that OpenBSD 8.0 has too. All smokes, the comparison with OpenBSD on two CPU models and the release build green; `unsafe` unchanged (hal 246, legacy 6,646)",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-28T08:40:00-03:00",
   "repo": "Kernel",
   "title": "N7.3a's first part merged: the virtio core is in the safe kernel crate, the virtqueue with its rings and the contract a transport fulfils, and viornd, the virtio random source, is its first native driver, running under the legacy virtio-mmio and virtio-pci transports through one adapter; the same words reach the random pool in the same order as OpenBSD's driver, checked by a review of that area; the boot lines of every virtio device are unchanged; the legacy tree 6,650 to 6,646 `unsafe`, `hal` unchanged; all smokes, the comparison with OpenBSD on two CPU models and the release build green",
