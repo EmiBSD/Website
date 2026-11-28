@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-28T05:00:00-03:00",
+  "repo": "Kernel",
+  "title": "N7.2a2 and N7.2a3 merged: both arm64 interrupt controllers are drivers of the safe kernel crate now, the GICv2 with its MSI frames and the GICv3 with its ITS, and the legacy tree's copies, its `simplebus` and the old controller slots are deleted; the interrupt dispatch hands each handler a token only the interrupt entry can make, so acknowledging or ending an interrupt outside a dispatch does not compile; a review caught the GICv3's tables skipping their cache write-back on a coherent bus, fixed before the merge; `hal` 237 to 240 `unsafe`, the legacy tree 6,856 to 6,698; all smokes, the comparison with OpenBSD on two CPU models and the release build green",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-28T00:00:00-03:00",
   "repo": "Kernel",
   "title": "N7.2b1b merged: the device tree's root bus and `simplebus` are drivers of the safe kernel crate now, and the old root bus is deleted from the legacy tree; the sixteen legacy drivers below them attach as before, every boot line byte-equal, and a review caught two differences from OpenBSD (a bus's DMA coherence and when the IOMMU maps a node) that were fixed before the merge; `hal` 236 to 237 `unsafe`, the legacy tree 6,863 to 6,856; all smokes, the comparison with OpenBSD on two CPU models and the release build green",

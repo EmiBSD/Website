@@ -1,11 +1,11 @@
 {
-  "commit": "f9b9c318",
-  "date": "2026-11-27",
-  "at": "N6, the network stack, is met (2026-11-26, tag n6-network); N7, devices, is under way: the typed device registers and DMA memory, autoconfiguration, the small device services, the boot-time device editor and the disk layer (labels, disk statistics, the root device choice) are the kernel's; `sys/` holds six directories, one purpose each (`abi`, `kernel`, `hal`, `lib`, the loaders' `boot`, itself one directory per purpose: `libsa`, `loader`, `efi`, `arm64`, `amd64`, and the legacy `bsd`, deleted at N9), and the code is ordered by purpose, `hal` in sync, memory, data structures, cpu, virtual memory and device groups and the kernel crate in proc, sched, sig, time, file, tty, base and dev; a system call now goes userland, then `abi`, then the kernel, then `hal`: `hal` only carries the trap and hands `abi` a safe view of the registers, `abi` owns OpenBSD's register convention with named registers, and calls the kernel directly (decisions 52 and 53); OpenBSD's basic types, constants and the structures userland shares live in one leaf crate, `sysdefs`, under every layer and grouped like the kernel (base, proc, sig, time, vm, file, fs, dev, net, netinet, netinet6), and the kernel's library crates hold no `unsafe` (decisions 54 and 55); the device tree reader is the kernel's, and boot(8)'s softraid key is wiped before the tree is shared (N7.2b0); the arm64 interrupt controller core is the kernel's: the controllers' registry, the interrupt handles, the pre-registration of devices that attach before their controller and the MSI and interrupt-map translation (N7.2a1), with the old drivers behind one adapter until the GICs move next; Limine is gone (decision 57): the kernel boots only through OpenBSD's own boot loaders, every arm64 boot through efiboot with the root found by its disk's DUID, init started from the root disk through the same exec checks as any program, and amd64 waits for N10 to boot again; built (decisions 56 and 58): a small crate of safe Rust, `entry`, classifies every trap from a user program (a closed list of trap classes fixed when the kernel is built) and calls down to `abi` for a system call, to the kernel for a fault or a signal, to `hal` for an interrupt, with nothing registered at runtime by the ABI; the trap's assembly stays whole in `hal`, which reaches `entry` through one symbol resolved at link time and stores no pointer; the way back to a program goes down too, the kernel's pending-work loop over one exit gate in `hal`; the comparison with a real OpenBSD covers the path on two CPU models: the trap classes, the sixteen identification registers and a round trip of every general, vector and status register through a system call, a page fault, interrupts and a signal handler, all equal closed on 2026-11-27 with its benchmark pair, three debug and three release runs before and after: no row above +10 %, a system call that does nothing costs 5 % more on the debug kernel (14060 to 14767 ns) and 7.7 % more on the median of the release kernel, where the two values a boot lands on did not rise but more boots landed on the slow one, a point left open for N12",
+  "commit": "0088d30f",
+  "date": "2026-11-28",
+  "at": "N6, the network stack, is met (2026-11-26, tag n6-network); N7, devices, is under way: the typed device registers and DMA memory, autoconfiguration, the small device services, the boot-time device editor and the disk layer (labels, disk statistics, the root device choice) are the kernel's; `sys/` holds six directories, one purpose each (`abi`, `kernel`, `hal`, `lib`, the loaders' `boot`, itself one directory per purpose: `libsa`, `loader`, `efi`, `arm64`, `amd64`, and the legacy `bsd`, deleted at N9), and the code is ordered by purpose, `hal` in sync, memory, data structures, cpu, virtual memory and device groups and the kernel crate in proc, sched, sig, time, file, tty, base and dev; a system call now goes userland, then `abi`, then the kernel, then `hal`: `hal` only carries the trap and hands `abi` a safe view of the registers, `abi` owns OpenBSD's register convention with named registers, and calls the kernel directly (decisions 52 and 53); OpenBSD's basic types, constants and the structures userland shares live in one leaf crate, `sysdefs`, under every layer and grouped like the kernel (base, proc, sig, time, vm, file, fs, dev, net, netinet, netinet6), and the kernel's library crates hold no `unsafe` (decisions 54 and 55); the device tree reader is the kernel's, and boot(8)'s softraid key is wiped before the tree is shared (N7.2b0); arm64's interrupts are the kernel's: the controllers' registry, the interrupt handles, the pre-registration of devices that attach before their controller, the MSI and interrupt-map translation (N7.2a1), and both interrupt controllers, the GICv2 with its MSI frames and the GICv3 with its ITS (N7.2a2, N7.2a3); the device tree's root bus and `simplebus` are the kernel's (N7.2b1); Limine is gone (decision 57): the kernel boots only through OpenBSD's own boot loaders, every arm64 boot through efiboot with the root found by its disk's DUID, init started from the root disk through the same exec checks as any program, and amd64 waits for N10 to boot again; built (decisions 56 and 58): a small crate of safe Rust, `entry`, classifies every trap from a user program (a closed list of trap classes fixed when the kernel is built) and calls down to `abi` for a system call, to the kernel for a fault or a signal, to `hal` for an interrupt, with nothing registered at runtime by the ABI; the trap's assembly stays whole in `hal`, which reaches `entry` through one symbol resolved at link time and stores no pointer; the way back to a program goes down too, the kernel's pending-work loop over one exit gate in `hal`; the comparison with a real OpenBSD covers the path on two CPU models: the trap classes, the sixteen identification registers and a round trip of every general, vector and status register through a system call, a page fault, interrupts and a signal handler, all equal closed on 2026-11-27 with its benchmark pair, three debug and three release runs before and after: no row above +10 %, a system call that does nothing costs 5 % more on the debug kernel (14060 to 14767 ns) and 7.7 % more on the median of the release kernel, where the two values a boot lands on did not rise but more boots landed on the slow one, a point left open for N12",
   "crates": [
     {
       "name": "kernel",
-      "files": 370,
+      "files": 375,
       "unsafe": 0,
       "note": "`#![forbid(unsafe_code)]`: the compiler refuses any"
     },
@@ -23,8 +23,8 @@
     },
     {
       "name": "hal",
-      "files": 129,
-      "unsafe": 237,
+      "files": 132,
+      "unsafe": 240,
       "note": "the only crate allowed `unsafe`, each site with a written proof"
     },
     {
@@ -36,8 +36,8 @@
     {
       "name": "bsd",
       "label": "the LandingZone tree",
-      "files": 840,
-      "unsafe": 6856,
+      "files": 835,
+      "unsafe": 6698,
       "note": "shrinks as subsystems move out; deleted at N9"
     }
   ],
@@ -157,12 +157,12 @@
       },
       {
         "slice": "N7.2a",
-        "what": "Interrupts on arm64: the interrupt core (done) and the two GIC drivers (after the root bus and `simplebus`)",
-        "state": "in progress"
+        "what": "Interrupts on arm64: the interrupt core, the GICv2 (`ampintc`) and the GICv3 (`agintc`) with their MSI controllers",
+        "state": "done"
       },
       {
         "slice": "N7.2b",
-        "what": "The device-tree reader, the mixed tree of new and legacy drivers, the root bus and `simplebus` (done); the generic timer, PSCI, EFI and the clock chip (next)",
+        "what": "The device-tree reader, the mixed tree of new and legacy drivers, the root bus and `simplebus` (done); PSCI, EFI and the clock chip (in review), the generic timer (after them)",
         "state": "in progress"
       },
       {
