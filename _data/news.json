@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-28T16:35:00-03:00",
+  "repo": "Kernel",
+  "title": "The debugger on two or more CPUs no longer hangs or crashes in three cases OpenBSD's own code gets wrong; all tests green",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-28T13:50:00-03:00",
   "repo": "Kernel",
   "title": "A two-CPU debugger hang, present in OpenBSD's own code, is fixed; three small clock and firmware fixes merged. All tests green, `unsafe` unchanged",

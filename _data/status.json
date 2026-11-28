@@ -1,5 +1,5 @@
 {
-  "commit": "948377ab",
+  "commit": "9d436dfa",
   "date": "2026-11-28",
   "at": "N6 (the network stack) met on 2026-11-26; N7 (devices) under way, with arm64's interrupts, firmware, timer, device tree and the virtio core already in the safe kernel",
   "crates": [
