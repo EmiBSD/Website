@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-28T08:40:00-03:00",
+  "repo": "Kernel",
+  "title": "N7.3a's first part merged: the virtio core is in the safe kernel crate, the virtqueue with its rings and the contract a transport fulfils, and viornd, the virtio random source, is its first native driver, running under the legacy virtio-mmio and virtio-pci transports through one adapter; the same words reach the random pool in the same order as OpenBSD's driver, checked by a review of that area; the boot lines of every virtio device are unchanged; the legacy tree 6,650 to 6,646 `unsafe`, `hal` unchanged; all smokes, the comparison with OpenBSD on two CPU models and the release build green",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-28T07:20:00-03:00",
   "repo": "Kernel",
   "title": "N7.2b2b merged: arm64's generic timer is a driver of the safe kernel crate, the clock that ticks every CPU, keeps the time and measures delays, and the legacy timer and its clock table are deleted; with it N7.2 is done: interrupts, the device tree's buses, the firmware and the clock are all the kernel's on arm64; `hal` unchanged at 246 `unsafe`, the legacy tree 6,656 to 6,650; all smokes, the comparison with OpenBSD on two CPU models and the release build green",
