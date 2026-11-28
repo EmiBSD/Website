@@ -2,7 +2,7 @@
  {
   "date": "2026-11-28T13:50:00-03:00",
   "repo": "Kernel",
-  "title": "A debugger hang on two CPUs, found by the smokes and present in OpenBSD's own C, is fixed: at the end of a hardware interrupt the pending soft interrupts now run with interrupts on (as amd64 already does), so a CPU waiting for the kernel lock still answers the debugger's call, and a stale second call after `continue` is dropped; checked with 1,000 parallel boots and two reviews. Also merged: arm64 stops building the legacy side of three clock bridges, psci's last firmware node wins as in the C, and a second timer node retunes the counter; a probe now drives real OpenBSD's debugger and showed a second hang on GICv2 that OpenBSD 8.0 has too. All smokes, the comparison with OpenBSD on two CPU models and the release build green; `unsafe` unchanged (hal 246, legacy 6,646)",
+  "title": "A two-CPU debugger hang, present in OpenBSD's own code, is fixed; three small clock and firmware fixes merged. All tests green, `unsafe` unchanged",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {

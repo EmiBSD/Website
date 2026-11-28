@@ -40,17 +40,9 @@ Each line is checked by a scripted QEMU boot, the smoke tests, at every mileston
 
 ## {{ s.next.name }}, the milestone in progress
 
-N7 moves the devices out of the LandingZone tree into `kernel::dev`: first the driver model
-(typed device registers and DMA memory in `hal`, autoconfiguration, the small device services),
-then interrupts, the device-tree root and the cpu on arm64, virtio and its drivers, the console,
-SCSI and the disks, PCI, and then every family of drivers QEMU's arm64 machine configures:
-storage, network, display and input, USB, ACPI, audio, and the random device last. A survey
-measured it on 2026-11-26: about 418,000 lines in the LandingZone tree.
+N7 moves every device driver QEMU's arm64 machine uses out of the LandingZone tree into the safe kernel, about 418,000 lines, the random device last.
 
-The slices below are N7's plan of 2026-11-26. The first wave is merged; the second starts
-with interrupts (N7.2a). The maintainer decided (decision 51) that the LandingZone tree is not
-synced again during N7 and that the drivers only amd64 configures move with N10. As in earlier
-milestones, a slice may be split or renumbered when it starts, and this table follows.
+The slices below are N7's plan of 2026-11-26; a slice may be split or renumbered when it starts.
 
 | Slice | What moves | State |
 |---|---|---|
@@ -58,12 +50,7 @@ milestones, a slice may be split or renumbered when it starts, and this table fo
 | {{ sl.slice }} | {{ sl.what }} | {% if sl.state == "done" %}<span class="state state-done">done</span>{% elsif sl.state == "in progress" %}<span class="state state-wip">in progress</span>{% else %}<span class="state state-todo">pending</span>{% endif %} |
 {%- endfor %}
 
-One slice of N12, the performance milestone, was brought forward and run beside N5 (the
-maintainer's exception of 2026-10-29). N12.1 made the 13 walks over a process's memory map step
-from one entry to the next as the C does, instead of looking each next entry up again: on the
-host, with 1,024 entries in the map, mprotect(2) takes 62 % less time, madvise(2) 80 %,
-minherit(2) 66 % and mlock(2) 36 %; the other operations measured did not change. The rest of
-N12 waits for its turn.
+N12.1, a performance slice brought forward, made the walks over a process's memory map 36-80 % faster.
 
 N6, the milestone before, closed on 2026-11-26; its results are in
 [its news entry]({{ '/news/2026/11/26/n6-met/' | relative_url }}). N5's are in
