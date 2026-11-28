@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-28T06:30:00-03:00",
+  "repo": "Kernel",
+  "title": "N7.2b2a merged: PSCI, the UEFI runtime services and the PL031 clock chip are drivers of the safe kernel crate, and their legacy copies and the clock-chip bridge are deleted; `hal` gains a firmware-call gate that refuses every call that could hand the firmware an address or a CPU entry point, and an EFI runtime whose mappings are fixed once from the firmware's own runtime regions; three reviews found and closed four ways around those gates before the merge; `hal` 240 to 246 `unsafe`, the legacy tree 6,698 to 6,656; all smokes, the comparison with OpenBSD on two CPU models and the release build green",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-28T05:00:00-03:00",
   "repo": "Kernel",
   "title": "N7.2a2 and N7.2a3 merged: both arm64 interrupt controllers are drivers of the safe kernel crate now, the GICv2 with its MSI frames and the GICv3 with its ITS, and the legacy tree's copies, its `simplebus` and the old controller slots are deleted; the interrupt dispatch hands each handler a token only the interrupt entry can make, so acknowledging or ending an interrupt outside a dispatch does not compile; a review caught the GICv3's tables skipping their cache write-back on a coherent bus, fixed before the merge; `hal` 237 to 240 `unsafe`, the legacy tree 6,856 to 6,698; all smokes, the comparison with OpenBSD on two CPU models and the release build green",
