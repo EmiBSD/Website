@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-28T07:20:00-03:00",
+  "repo": "Kernel",
+  "title": "N7.2b2b merged: arm64's generic timer is a driver of the safe kernel crate, the clock that ticks every CPU, keeps the time and measures delays, and the legacy timer and its clock table are deleted; with it N7.2 is done: interrupts, the device tree's buses, the firmware and the clock are all the kernel's on arm64; `hal` unchanged at 246 `unsafe`, the legacy tree 6,656 to 6,650; all smokes, the comparison with OpenBSD on two CPU models and the release build green",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-28T06:30:00-03:00",
   "repo": "Kernel",
   "title": "N7.2b2a merged: PSCI, the UEFI runtime services and the PL031 clock chip are drivers of the safe kernel crate, and their legacy copies and the clock-chip bridge are deleted; `hal` gains a firmware-call gate that refuses every call that could hand the firmware an address or a CPU entry point, and an EFI runtime whose mappings are fixed once from the firmware's own runtime regions; three reviews found and closed four ways around those gates before the merge; `hal` 240 to 246 `unsafe`, the legacy tree 6,698 to 6,656; all smokes, the comparison with OpenBSD on two CPU models and the release build green",
