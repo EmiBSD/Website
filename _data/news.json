@@ -8,379 +8,379 @@
  {
   "date": "2026-11-28T08:40:00-03:00",
   "repo": "Kernel",
-  "title": "N7.3a's first part merged: the virtio core is in the safe kernel crate, the virtqueue with its rings and the contract a transport fulfils, and viornd, the virtio random source, is its first native driver, running under the legacy virtio-mmio and virtio-pci transports through one adapter; the same words reach the random pool in the same order as OpenBSD's driver, checked by a review of that area; the boot lines of every virtio device are unchanged; the legacy tree 6,650 to 6,646 `unsafe`, `hal` unchanged; all smokes, the comparison with OpenBSD on two CPU models and the release build green",
+  "title": "N7.3a part one: the virtio core and viornd, the virtio random source, are in the safe kernel. All tests green",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-28T07:20:00-03:00",
   "repo": "Kernel",
-  "title": "N7.2b2b merged: arm64's generic timer is a driver of the safe kernel crate, the clock that ticks every CPU, keeps the time and measures delays, and the legacy timer and its clock table are deleted; with it N7.2 is done: interrupts, the device tree's buses, the firmware and the clock are all the kernel's on arm64; `hal` unchanged at 246 `unsafe`, the legacy tree 6,656 to 6,650; all smokes, the comparison with OpenBSD on two CPU models and the release build green",
+  "title": "N7.2 done: on arm64, interrupts, the device-tree buses, the firmware and the generic timer are all in the safe kernel",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-28T06:30:00-03:00",
   "repo": "Kernel",
-  "title": "N7.2b2a merged: PSCI, the UEFI runtime services and the PL031 clock chip are drivers of the safe kernel crate, and their legacy copies and the clock-chip bridge are deleted; `hal` gains a firmware-call gate that refuses every call that could hand the firmware an address or a CPU entry point, and an EFI runtime whose mappings are fixed once from the firmware's own runtime regions; three reviews found and closed four ways around those gates before the merge; `hal` 240 to 246 `unsafe`, the legacy tree 6,698 to 6,656; all smokes, the comparison with OpenBSD on two CPU models and the release build green",
+  "title": "N7.2b2a: PSCI, the UEFI runtime services and the PL031 clock are in the safe kernel, behind a hardened firmware-call gate",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-28T05:00:00-03:00",
   "repo": "Kernel",
-  "title": "N7.2a2 and N7.2a3 merged: both arm64 interrupt controllers are drivers of the safe kernel crate now, the GICv2 with its MSI frames and the GICv3 with its ITS, and the legacy tree's copies, its `simplebus` and the old controller slots are deleted; the interrupt dispatch hands each handler a token only the interrupt entry can make, so acknowledging or ending an interrupt outside a dispatch does not compile; a review caught the GICv3's tables skipping their cache write-back on a coherent bus, fixed before the merge; `hal` 237 to 240 `unsafe`, the legacy tree 6,856 to 6,698; all smokes, the comparison with OpenBSD on two CPU models and the release build green",
+  "title": "N7.2a: both arm64 interrupt controllers, GICv2 and GICv3, are drivers of the safe kernel",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-28T00:00:00-03:00",
   "repo": "Kernel",
-  "title": "N7.2b1b merged: the device tree's root bus and `simplebus` are drivers of the safe kernel crate now, and the old root bus is deleted from the legacy tree; the sixteen legacy drivers below them attach as before, every boot line byte-equal, and a review caught two differences from OpenBSD (a bus's DMA coherence and when the IOMMU maps a node) that were fixed before the merge; `hal` 236 to 237 `unsafe`, the legacy tree 6,863 to 6,856; all smokes, the comparison with OpenBSD on two CPU models and the release build green",
+  "title": "N7.2b1b: the device tree's root bus and simplebus are in the safe kernel; every boot line unchanged",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-27T22:00:00-03:00",
   "repo": "Kernel",
-  "title": "N7.2b1a merged: the device tree can now mix new and legacy drivers, so a bus can move into the safe kernel crate while the drivers below it wait their turn; a legacy driver under a new bus gets its arguments translated at the door and a small legacy header for its parent, and reading that header as a bigger structure is a panic instead of a silent overrun; no `unsafe` count moved, nothing boots differently yet, seven smokes green after the merge; the root bus and `simplebus` come next",
+  "title": "N7.2b1a: the device tree can mix new and legacy drivers, so buses can move before their drivers",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-27T21:45:00-03:00",
   "repo": "Kernel",
-  "title": "The full close after the Limine removal and `entry` ran on arm64: host tests (5910 passed, 0 failed), every smoke on four CPUs (67 of 87, the rest are amd64's and wait for N10), the installer end to end (device tree, ACPI and the `install80.img` USB image) and the comparison with OpenBSD on two CPU models (159 steps, 0 unexpected); clippy had been red since `entry` merged, 14 lints fixed with no behaviour change; next in N7 are the device tree's root bus and `simplebus`, planned in two steps",
+  "title": "Full close after removing Limine: host tests, every arm64 smoke, the installer and the OpenBSD comparison all green",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-27T19:45:00-03:00",
   "repo": "Kernel",
-  "title": "`entry` is closed: the benchmark pair before and after the new user door (three debug and three release runs each side, on the same machine and power) shows no row above +10 %; an empty system call costs 5 % more on the debug kernel (14060 to 14767 ns), and on the release kernel the two values a boot lands on did not rise, though more boots landed on the slow one (median +7.7 %), left open for N12 with the cause of the debug cost; page faults, fork, exec, pipes and file I/O are unchanged within their spread",
+  "title": "The new user-trap door costs no row more than 10 %; an empty system call is 5 % slower on the debug kernel, left for N12",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-27T13:20:00-03:00",
   "repo": "Kernel",
-  "title": "`entry` is built: one crate of safe Rust now classifies every trap from a user program and calls down to `abi`, the kernel or `hal`; `hal` keeps all the trap's assembly and reaches it through a single link-time symbol, the ABI registers nothing, and a checker holds the closed list of trap classes; the whole arm64 smoke run and the comparison with OpenBSD on two CPU models green (159 steps, 0 unexpected), `hal` unchanged at 236 `unsafe`, `entry` at 1 (its exported symbol); the README's architecture diagram follows",
+  "title": "entry is built: one safe crate classifies every trap from a user program; all tests green",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-27T11:50:00-03:00",
   "repo": "Kernel",
-  "title": "The design of `entry` changed before it was built (decision 58): the trap's assembly stays whole in `hal`, and `entry` is safe Rust that classifies every trap from a program and calls down, reached by one link-time symbol and with nothing registered at runtime; first, a register round trip joined the comparison with a real OpenBSD: all general, vector and status registers filled with a pattern and compared after a system call, a page fault, interrupts and a signal handler, equal on both systems and on two CPU models",
+  "title": "entry's design settled before building it, and the OpenBSD comparison now checks every register across traps",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-27T10:15:00-03:00",
   "repo": "Kernel",
-  "title": "entry's second step: the way back from the kernel to a program now goes down, the kernel's pending-work loop over one exit gate in `hal`, with no indirect call on a new thread's first return and a forked child's return value as a constant of `abi`; the whole arm64 smoke run and the comparison with OpenBSD on two CPU models green, `hal` 235 -> 236 `unsafe` (the one the plan names)",
+  "title": "entry, step two: the return path to user programs now goes down through one gate in hal; all tests green",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-27T08:40:00-03:00",
   "repo": "Kernel",
-  "title": "The work on `entry`, the one door from user programs into the kernel (decision 56), has started: before anything moves, the comparison with a real OpenBSD now checks the traps it will carry (illegal instruction, breakpoint, alignment, the first floating-point instruction, the sixteen identification registers), and both systems answer the same; the benchmarks gain a bare system call row, and the documents and rules now describe a kernel booted only by OpenBSD's own boot loaders",
+  "title": "Work on entry, the single door from user programs into the kernel, has started",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-27T08:30:00-03:00",
   "repo": "Kernel",
-  "title": "Limine is gone from the kernel: its entry code, its boot modules and its image builder are deleted, every boot goes through OpenBSD's own boot(8)/efiboot, and init is now started from the root disk through the same exec checks as any program (decision 57); the whole arm64 smoke run green (67 of 87, 20 amd64 recipes waiting for N10)",
+  "title": "Limine is gone: every boot goes through OpenBSD's own boot loaders",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-27T02:55:00-03:00",
   "repo": "Kernel",
-  "title": "Nothing on arm64 boots through Limine any more: the two-machine network smokes, the benchmarks, the comparison with a real OpenBSD (0 unexpected differences), the release tarball's boot check and the installer media now boot through OpenBSD's own efiboot; the whole smoke run green (67 of 87, 20 amd64 recipes waiting for N10); one benchmark, page faults, got 11 % dearer under efiboot with the same kernel code, accepted as the new baseline and left for the performance milestone",
+  "title": "Every arm64 test now boots through OpenBSD's efiboot instead of Limine",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-26T23:05:00-03:00",
   "repo": "Kernel",
-  "title": "Decision 56: a new crate, entry, will be the only door from userland into the kernel: it receives the CPU's trap, saves the program's registers and hands each event down (a system call to abi, a fault to the kernel, an interrupt to hal); userland never enters hal and nothing inside calls the door; designed and decided, built after Limine is gone (docs/ENTRY.md)",
+  "title": "Decision 56: a new crate, entry, will be the only door from user programs into the kernel",
   "url": "https://github.com/EmiBSD/Kernel/blob/main/docs/ENTRY.md"
  },
  {
   "date": "2026-11-26T22:55:00-03:00",
   "repo": "Kernel",
-  "title": "Every arm64 smoke that boots one machine now boots through OpenBSD's own efiboot instead of Limine: 53 recipes converted, the test init is /sbin/init on a real root, the whole smoke run green (67 of 87, 20 amd64 recipes waiting for N10) and faster, 5 min against 7",
+  "title": "53 arm64 smokes now boot through OpenBSD's efiboot; the full run is faster, 5 minutes against 7",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-26T21:26:00-03:00",
   "repo": "Kernel",
-  "title": "First step of booting only through OpenBSD's own loaders (no Limine): one builder makes the efiboot disk images, the smokes can boot them with the root found by its disk's DUID, and the boot self-tests are set by the builder inside the kernel file; login in 8.5 s against Limine's 8.8 s; the recipes convert next",
+  "title": "First step to boot only through OpenBSD's loaders: efiboot disk images built and booted by the smokes",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-26T20:22:00-03:00",
   "repo": "Kernel",
-  "title": "The arm64 interrupt controller core is the kernel's (N7.2a1): the registry of controllers, the interrupt handles, the pre-registration of early devices and the MSI translation, with no unsafe; the legacy controllers plug in through one adapter until the GICs move next; boot, GICv3 and ACPI smokes green",
+  "title": "N7.2a1: the arm64 interrupt controller core is in the safe kernel",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-26T20:08:00-03:00",
   "repo": "Kernel",
-  "title": "The boot loaders' directory has no repeated names: sys/boot holds libsa, loader (boot(8), formerly boot/boot), efi and one directory per architecture with its efiboot files; every count, test and smoke equal before and after the move",
+  "title": "The boot loaders' directory reorganised by purpose; nothing else changed",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-26T18:55:00-03:00",
   "repo": "Kernel",
-  "title": "The source tree has six directories, one purpose each: abi, kernel, hal and the leaf crates (lib) are the new kernel, boot holds the boot loaders, and bsd holds the whole LandingZone tree still being replaced, so deleting it at N9 is one directory; every count, test and smoke equal before and after the move",
+  "title": "The source tree has six directories, one purpose each; nothing else changed",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-26T18:10:00-03:00",
   "repo": "Kernel",
-  "title": "The device tree reader is the kernel's (N7.2b0): every read of the boot loader's tree is bounds-checked, the boot refuses a tree placed in usable memory, and boot(8)'s softraid key is copied and wiped before the tree is shared, where a review found the old order wrote behind a read-only view",
+  "title": "N7.2b0: the device tree reader is in the safe kernel, with every read bounds-checked",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-26T17:40:00-03:00",
   "repo": "Kernel",
-  "title": "The leaf crates are grouped by purpose like the rest of the kernel: sysdefs, the kernel's domain model of OpenBSD's types and structures, by the kernel's own groups (proc, file, net, netinet, ...), libkern in strings, memory, hashes and random, libz in deflate, inflate and checksums; a check keeps their roots to groups only",
+  "title": "The leaf crates are grouped by purpose like the rest of the kernel",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-26T15:30:00-03:00",
   "repo": "Kernel",
-  "title": "OpenBSD's basic types, constants and the structures userland shares now live in one leaf crate, sysdefs, that every layer uses instead of each inventing its own; the kernel's library crates (libkern, libz, sysdefs) hold no unsafe, and measurements since N6 show no slowdown: reading files, pipes, boot and page faults equal, fork and exec faster",
+  "title": "OpenBSD's basic types and shared structures now live in one leaf crate, sysdefs, with no unsafe",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-26T13:00:00-03:00",
   "repo": "Kernel",
-  "title": "The disk layer is the kernel's (labels, disk statistics, diskmap and the choice of the root device), with each I/O finding its disk without a lock as in OpenBSD; and the hardware layer no longer interprets a system call: it hands the system-call layer a safe view of the trap's registers, and abi owns OpenBSD's arm64 convention with named registers; the LandingZone tree falls to 6,907 unsafe",
+  "title": "The disk layer is in the safe kernel, and the system-call layer owns OpenBSD's register convention",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-26T12:25:00-03:00",
   "repo": "Kernel",
-  "title": "The system-call layer calls the kernel directly: the table of function pointers that sat in the hardware layer is gone, abi is split by the kernel's groups and checked to call nothing but the kernel's one door; and boot -c's device editor (userconf) is the kernel's, its dialogue unchanged",
+  "title": "The system-call layer now calls the kernel directly; boot -c's device editor is in the safe kernel",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-26T10:50:00-03:00",
   "repo": "Kernel",
-  "title": "The kernel's code is now ordered by purpose: the hardware layer's modules in six groups (locks, memory, data structures, the processor, virtual memory and devices, the only group drivers use), the safe kernel crate's in eight (processes, scheduler, signals, time, files, terminals, base services, devices), and a check that keeps drivers out of the hardware layer; a pure move, with the same unsafe count before and after; next, the system-call layer calls the kernel directly instead of through a table in the hardware layer",
+  "title": "The kernel's code is reorganised by purpose; nothing else changed",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-26T09:45:00-03:00",
   "repo": "Kernel",
-  "title": "N7, devices, starts: its first three slices are on main with every check green — typed device registers and DMA memory in the hardware layer, autoconfiguration in the safe kernel crate, and the small device services (event counters, sensors, the watchdog, the clock helpers); the LandingZone tree falls to 6,971 unsafe",
+  "title": "N7, devices, starts: its first three slices are merged with every check green",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-26T05:05:00-03:00",
   "repo": "Kernel",
-  "title": "N6's close checks are green and on main: just check (6153 host tests), just ci and just ci-full with the installers pass, and the comparison with a real OpenBSD gives 153 of 156 steps equal, 3 expected and 0 unexpected, with the nfs scenarios run for the first time; the runs found and fixed three real bugs (re(4) programming its multicast filter before its Ethernet attach, a smoke racing the virtio GPU's refresh, and a network probe with no loopback address) and two test bugs (a benchmark calling ARP without the net lock, a test releasing a buffer into another test's cache); netstat(1) now runs in the smokes and pf's tables are tested; the boot banner prints the code name \"Arica\"; N6 is declared met once the user rules on nine benchmarks that rose more than 10 % and on the exit criterion's wording; meanwhile N7, devices, is planned in 22 slices and its first three are written and reviewed",
+  "title": "N6's close checks are green; three real bugs found and fixed along the way",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-25T23:45:00-03:00",
   "repo": "Kernel",
-  "title": "N6.7 done: the nfs server is the kernel's (N6.7b4): nfssvc is now a native system call (190 of 331) and the old server's 11 files are deleted (57 fewer unsafe); pf's tables and IPsec's policies run on the kernel's own radix tree (N6.7b1), whose old copy is deleted too (86 fewer unsafe), at 34.5 ns per table lookup against the old tree's 24.4 after two rounds of layout work the user chose; along the way the review found that OpenBSD's pf reads its tables while other CPUs change them, uses an entry after it may be freed, and counts with plain increments from every CPU: the kernel now guards each table with a read-write lock, keeps it held while an entry is used, and counts atomically, at +6 % per lookup; the LandingZone tree is down to 7017 unsafe; next is N6's close",
+  "title": "N6.7 done: the nfs server and pf's and IPsec's radix tree are in the safe kernel",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-25T21:55:00-03:00",
   "repo": "Kernel",
-  "title": "N6.7b3 done: the nfs server's procedures are the kernel's (read, write, lookup, create, rename, readdir and the rest), built beside the old server and switched on at N6.7b4; every wire length is checked before use and every permission check of OpenBSD kept in its order; the review found no code defect, and the tests now cover NFSv2, reads and writes across many network buffers, and unmount after each test so a leaked file would show; two OpenBSD bugs on the list: an exclusive create that never stores its verifier on 64-bit machines, and a read reply leaked on an error path; 5896 host tests green",
+  "title": "N6.7b3: the nfs server's procedures are in the safe kernel, every wire length checked",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-24T15:30:00-03:00",
   "repo": "Kernel",
-  "title": "N6.7b2 done: the nfs server's core is the kernel's, built beside the old one (switched on at N6.7b4): request parsing with every wire length checked before use, the duplicate request cache, the socket receive path and the nfsd loop; the review found no blocker and four fixes, among them a window at server restart where OpenBSD's own code can use freed memory, closed here; 19 of 19 mutations caught; pf's and IPsec's radix tree got 59 % faster (80 -> 33 ns per table lookup) and is under review with the server's procedures (N6.7b1, b3)",
+  "title": "N6.7b2: the nfs server's core is in the safe kernel",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-24T09:30:00-03:00",
   "repo": "Kernel",
-  "title": "N6.7a done: the nfs client is the kernel's and the one that runs (N6.7a5): mounting, unmounting, statfs and the diskless root now go through safe kernel code, and the old client's 11 files are deleted from the LandingZone tree (56 fewer unsafe, 7216 -> 7160); the nfs smoke now also checks a symlink, a 256 KiB write, a rename, removing an open file and an NFSv2 mount, and a new comparison set against real OpenBSD runs at N6's close; the review asked to keep OpenBSD's order of the memory pools (vmstat -m) and to test mount(2)'s argument checks, both done; the nfs server (N6.7b) stays paused for now",
+  "title": "N6.7a: the nfs client is in the safe kernel and is the one that runs",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-24T08:40:00-03:00",
   "repo": "Kernel",
-  "title": "N6.7a3 done: the nfs client's file operations are the kernel's (open, read, write, lookup, create, rename, readdir and the rest of nfs_vnops, with the read and write paths through the buffer cache), built beside the old client and switched on next in N6.7a5; the review found two real bugs and both are fixed: an NFSv3 write no longer leaves the client's copy of the file's time stale (every reopen threw away the cache), and a server that answers a transfer size of 0 can no longer crash the kernel, where OpenBSD's own code traps or reads past its buffer; 36 new tests, 5883 host tests green; N6.7a is 5 of 6",
+  "title": "N6.7a3: the nfs client's file operations are in the safe kernel; two bugs found and fixed",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-24T05:40:00-03:00",
   "repo": "Kernel",
-  "title": "N6.6b done: raw IP, raw IPv6 and divert(4) are now the kernel's (N6.6b1): the safe code is in OpenBSD's protocol tables and the old files are deleted, with ICMP's raw tail calling the kernel directly as OpenBSD does and kern.file locking each socket through the kernel's own pair; reviewed against OpenBSD's code, nothing blocking; 25 fewer unsafe in the LandingZone tree (7241 -> 7216, netinet6 down to 1); the boot, IPv6, ESP and divert smokes passed after the switch and 6150 host tests are green",
+  "title": "N6.6b: raw IP, raw IPv6 and divert(4) are in the safe kernel",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-24T01:35:00-03:00",
   "repo": "Kernel",
-  "title": "Four more nfs parts and the radix tree are the kernel's: the nfs client's RPC engine (N6.7a1, tested against a real kernel socket on loopback), its node table, attribute cache and buffer queue (N6.7a2), the diskless boot (N6.7a4), and a radix tree that owns its nodes with the NFS export list (N6.7b0). The export check now copies the anonymous credential by value, closing a window where OpenBSD can read an export entry another thread frees; the radix tree repairs a state where OpenBSD's radix.c reads freed memory (no caller reaches it today). Every part reviewed against OpenBSD's code; 15 fewer unsafe in the LandingZone tree (7256 -> 7241); 6130 host tests green after a test-isolation fix; the client's file operations, pf and IPsec on the new tree and the nfs server are being written",
+  "title": "Four more nfs parts and the radix tree are in the safe kernel",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-23T22:10:00-03:00",
   "repo": "Kernel",
-  "title": "N6.7a0 done: the nfs client's wire format, its XDR encoding and decoding, the RPC transaction ids and the nfs constants userland shares are the kernel's, as safe code, beside the old client until the switch; reviewed against OpenBSD's code, its fixes checked; 16 fewer unsafe in the LandingZone tree (7272 -> 7256) and 6017 host tests green; raw sockets and divert, the nfs RPC engine, the diskless boot and the typed radix tree for the nfs exports are being built in parallel",
+  "title": "N6.7a0: the nfs wire format is in the safe kernel",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-23T21:00:00-03:00",
   "repo": "Kernel",
-  "title": "UDP is now the kernel's (N6.6b0): the safe UDP for IPv4 and IPv6 replaced the old one, with IPsec's UDP checks and wg(4)'s upcall as safe code (wg lost its unsafe there), 40 fewer unsafe in the LandingZone tree (7312 -> 7272); reviewed against OpenBSD's code, nothing blocking; the boot, nfs, wg and pfsync smokes passed after the switch and 5989 host tests are green; raw sockets and divert are switching next, and the nfs client and server are being built in parallel. Also: Kernel now pins LandingZone at e8249449, all 59 commits since the first pin triaged",
+  "title": "N6.6b0: UDP is in the safe kernel",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-23T17:25:00-03:00",
   "repo": "Kernel",
-  "title": "sysarch(2) answers EINVAL as on OpenBSD instead of killing the caller: LandingZone ported it and the kernel took it by sync as safe code, its amd64 half kept for N10 (one inherited unsafe, counted); reviewed, nothing blocking; host tests green; every LandingZone commit after the pin is now triaged (59 of 59)",
+  "title": "sysarch(2) now answers EINVAL as on OpenBSD; every LandingZone commit after the pin is triaged",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-23T15:10:00-03:00",
   "repo": "Kernel",
-  "title": "TCP is now the kernel's: the switch (N6.6a5) put the safe TCP in OpenBSD's protocol table and deleted the old one, 83 fewer unsafe in the LandingZone tree (7394 -> 7311); reviewed against OpenBSD's code path by path, nothing blocking; at the review a cost OpenBSD does not pay (a counter on every read and write of a TCP socket) was removed instead of postponed; the boot, TCP and multiprocessor network smokes passed after the switch, the host tests are green after the review's fixes, and every smoke runs again at the N6 close; next is N6.6b, UDP, raw sockets and divert",
+  "title": "N6.6a5: TCP is in the safe kernel and the old TCP is deleted",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-23T12:40:00-03:00",
   "repo": "Kernel",
-  "title": "__thrsleep and __thrwakeup, the calls OpenBSD's threads sleep and wake on, are in: LandingZone ported them and the kernel took them by sync as safe code (LandingZone's port had 5 unsafe, this one has none); reviewed against OpenBSD's code path by path, nothing blocking; 5679 host tests green; the smoke that exercises them runs at the N6 close; next is 6a5, the switch to the kernel's TCP",
+  "title": "__thrsleep and __thrwakeup, the calls OpenBSD's threads sleep on, are in, with no unsafe",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-16T18:50:00-03:00",
   "repo": "Kernel",
-  "title": "N6.6a4 done: TCP's input path, its option parsing and the SYN cache's accept path are the kernel's, still beside the old TCP until the switch at 6a5; two reviews: the first caught a handshake answered with a reset where OpenBSD completes it (a second listener bound mid-handshake), now completed as OpenBSD does, with the SYN's timestamp kept so fast-path prediction and PAWS work; signature checks compared in constant time; no unsafe added, 5665 host tests green",
+  "title": "N6.6a4: TCP's input path and SYN cache are in the safe kernel",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-16T18:45:00-03:00",
   "repo": "Kernel",
-  "title": "First large sync with LandingZone's debt milestone TD0: 48 commits triaged, 43 recorded so far (the rest are __thrsleep and sysarch, next); its arm64 security fix taken as a boot-time check that no kernel mapping is executable from user mode; a boot fault on processors with SVE fixed (OpenBSD's own slip, handed to LandingZone, which adopted it); and the kernel now boots the real userland to a root shell under Apple's hypervisor in 7 seconds",
+  "title": "First large sync with LandingZone: 48 commits triaged, one arm64 security fix taken",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-16T10:50:00-03:00",
   "repo": "Kernel",
-  "title": "N6.6a3 done: TCP's output path, its retransmit, persist, keep-alive and delayed-ACK timers, connection drop and ICMP handling (including path MTU discovery) are the kernel's, still beside the old TCP until the switch at 6a5; signed segments now tested byte for byte against an independent MD5, IPv6 segments too; a SACK-with-signature request answers EINVAL in every build, as OpenBSD's shipped kernel does; no unsafe added, 5623 host tests green; 6a4 under way",
+  "title": "N6.6a3: TCP's output path and timers are in the safe kernel",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-16T08:05:00-03:00",
   "repo": "Kernel",
-  "title": "N6.6a2 done: TCP's control block, its timers' entry, reassembly, SACK and the first half of the SYN cache are the kernel's, built beside the old TCP until the switch at 6a5; TCP MD5 signatures checked against an independent MD5, and the per-connection pcb trimmed back to 568 bytes by sharing one cell for IPv4 and IPv6 multicast options, as OpenBSD's union does; no unsafe added, 5580 host tests green; 6a3 under way",
+  "title": "N6.6a2: TCP's control block, reassembly and SACK are in the safe kernel",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-16T06:00:00-03:00",
   "repo": "Kernel",
-  "title": "N6.6a1 done: TCP's state machine, sequence arithmetic, per-CPU statistics, soft LRO, software TSO and the Toeplitz hash are the kernel's; the review caught a crafted short TCP header that would have panicked LRO once an LRO driver lands, fixed to read the header as OpenBSD does; bsd's unsafe 7419 -> 7394, 5552 host tests green; 6a2 under way",
+  "title": "N6.6a1: TCP's state machine is in the safe kernel",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-16T02:50:00-03:00",
   "repo": "Kernel",
-  "title": "N6.6a0 done: TCP's groundwork is in: the socket lock every kernel TCP socket will take, two hal cells for mbuf chains (+2 unsafe, each with its proof), TCP's ABI structures checked byte for byte against the C headers, and the pf and IPsec entry points TCP needs; also: the kernel now builds with DevTools' new Rust, whose native tools were checked on a BTI processor; 5538 host tests green",
+  "title": "N6.6a0: TCP's groundwork is in; the kernel builds with DevTools' new Rust",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-15T23:00:00-03:00",
   "repo": "Kernel",
-  "title": "N6.6a (TCP) planned: about 14,700 lines and 109 unsafe move in six serial parts, the kernel's TCP built beside the old one and switched on last, then checked once in QEMU and against real OpenBSD with a new TCP scenario; 6a0, the preconditions, under way",
+  "title": "N6.6a, TCP, planned in six parts",
   "url": "https://github.com/EmiBSD/Kernel"
  },
  {
   "date": "2026-11-15T22:30:00-03:00",
   "repo": "Kernel",
-  "title": "N6.5e done: multicast group records are counted too, so a group left for good is freed as in OpenBSD instead of kept linked for ever (records 112 -> 80 bytes); with 5e0 and 5e1, every interface and multicast address now lives exactly as long as its holders; no new unsafe, 5490 host tests green; N6.6a, TCP, starts with its survey",
+  "title": "N6.5e: multicast group records are freed when their last holder lets go, as in OpenBSD",
   "url": "https://github.com/EmiBSD/Kernel/commit/19dab2b7"
  },
  {
   "date": "2026-11-15T22:00:39-03:00",
   "repo": "OS",
-  "title": "Code names: a new EmiBSD every six months, following OpenBSD, each named after a region of Chile from north to south; the first cycle, on OpenBSD 8.0, from 2026.11 to 2026.11.4 so far, is Arica",
+  "title": "Code names: a new EmiBSD every six months, each named after a region of Chile; the first is Arica",
   "url": "https://github.com/EmiBSD/OS/blob/main/docs/RELEASE.md#code-names"
  },
  {
   "date": "2026-11-15T20:45:00-03:00",
   "repo": "Kernel",
-  "title": "N6.5e1 done: IPv4 and IPv6 interface addresses are counted handles, freed when the last holder lets go as in OpenBSD; the review caught pf reading a netmask cut short where OpenBSD reads it whole, fixed with a test; bsd's unsafe 7433 -> 7420, 5484 host tests green; N6.5e2 (multicast) under way",
+  "title": "N6.5e1: IPv4 and IPv6 interface addresses are freed when their last holder lets go",
   "url": "https://github.com/EmiBSD/Kernel/commit/796e3135"
  },
  {
   "date": "2026-11-15T19:00:00-03:00",
   "repo": "Kernel",
-  "title": "N6.5e0 done: hal's net lock now guards cells a list can lend safely, through shared and exclusive witnesses; two reviews found and closed a hole where a proof of the lock could outlive another process's read hold, now every proof keeps its hold; no new unsafe (hal 225), 5475 host tests green",
+  "title": "N6.5e0: the network lock lends its protected data safely; no new unsafe",
   "url": "https://github.com/EmiBSD/Kernel/commit/b441d75c"
  },
  {
   "date": "2026-11-15T15:00:00-03:00",
   "repo": "Kernel",
-  "title": "N6.5e planned and started: the interface-address and multicast records become counted handles, freed when the last holder lets go, in three parts (5e0 hal's net-lock cells, 5e1 addresses, 5e2 multicast); 5e0 written with no new unsafe and in review",
+  "title": "N6.5e planned: interface and multicast records become counted handles",
   "url": "https://github.com/EmiBSD/Kernel/commit/5dccbf88"
  },
  {
   "date": "2026-11-15T11:32:01-03:00",
   "repo": "Kernel",
-  "title": "After the N6.5 close: the last caller of bsd's if_output_mq moved, so it goes (bsd 7435 -> 7433 unsafe); clippy keeps the C's field names of seven structs; the IPv6 test fixtures reset their state; N6's record sizes listed for N12. Next: N6.5e, counted handles for the interface addresses",
+  "title": "Small clean-ups after the N6.5 close",
   "url": "https://github.com/EmiBSD/Kernel/commit/5dccbf88"
  },
  {
   "date": "2026-11-15T10:00:16-03:00",
   "repo": "Kernel",
-  "title": "N6.5 closed: all of IPv6 is the kernel's, benchmarked against its start (packet delivery 51.8 -> 23.8 ns, reassembly 420.6 -> 221.1 ns, a neighbour miss 102.6 -> 53.9 ns; the rises named for N12) and linted; bsd 7713 -> 7435 unsafe over N6.5, 5427 host tests green",
+  "title": "N6.5 closed: all of IPv6 is in the safe kernel, and faster than at its start",
   "url": "https://github.com/EmiBSD/Kernel/commit/0dfe3ace"
  },
  {
   "date": "2026-11-15T08:54:43-03:00",
   "repo": "Kernel",
-  "title": "N6.5d done: IPv6 input, forwarding, fragment reassembly, ICMPv6 and the inet6 protocol table are the kernel's, so all of IPv6 is; every packet parser keeps OpenBSD's checks, each mutation-tested; bsd 7505 -> 7435 unsafe, 5426 host tests green",
+  "title": "N6.5d: IPv6 input, forwarding, reassembly and ICMPv6 are in the safe kernel",
   "url": "https://github.com/EmiBSD/Kernel/commit/8c2bc190"
  },
  {
   "date": "2026-11-15T04:20:07-03:00",
   "repo": "Kernel",
-  "title": "N6.5c done: the IPv6 output path, its 33 socket options and the control block's IPv6 half are the kernel's; every option check of OpenBSD's C kept and mutation-tested, fragments never copy a shared buffer; bsd 7592 -> 7505 unsafe, 5403 host tests green",
+  "title": "N6.5c: the IPv6 output path and its socket options are in the safe kernel",
   "url": "https://github.com/EmiBSD/Kernel/commit/03e26e6b"
  },
  {
   "date": "2026-11-15T01:17:32-03:00",
   "repo": "Kernel",
-  "title": "N6.5b done: IPv6 neighbour discovery and duplicate address detection are the kernel's; ARP's and ND's records share one typed route slot without new unsafe, and every NS/NA rejection of OpenBSD's C is a tested table; bsd 7644 -> 7592 unsafe, 5384 host tests green",
+  "title": "N6.5b: IPv6 neighbour discovery is in the safe kernel",
   "url": "https://github.com/EmiBSD/Kernel/commit/5f31fa25"
  },
  {
   "date": "2026-11-14T21:52:29-03:00",
   "repo": "Kernel",
-  "title": "N6.5a done: IPv6 addresses, multicast records, MLD and source address selection are the kernel's; the address ioctls keep OpenBSD's checks and lock order, and MLD input is bounded by its own buffers; bsd 7713 -> 7644 unsafe, 5358 host tests green",
+  "title": "N6.5a: IPv6 addresses, multicast and MLD are in the safe kernel",
   "url": "https://github.com/EmiBSD/Kernel/commit/9028208d"
  },
  {
   "date": "2026-11-13T04:32:29-03:00",
   "repo": "Kernel",
-  "title": "N6.4 closed: IPv4 is the kernel's, benchmarked against its start (the loopback output path 55.5 -> 35.3 ns, packet delivery 37.4 -> 20.9 ns, an ARP miss 102.9 -> 49.0 ns; the rises named for N12) and linted; bsd 7928 -> 7713 unsafe over N6.4, 5325 host tests green",
+  "title": "N6.4 closed: IPv4 is in the safe kernel, and faster than at its start",
   "url": "https://github.com/EmiBSD/Kernel/commit/806cfcfe"
  },
  {
   "date": "2026-11-13T03:03:54-03:00",
   "repo": "Kernel",
-  "title": "N6.4c2 done: IPv4 input, fragment reassembly, ICMP and the inet protocol table are the kernel's; every packet parser checks what OpenBSD's C checks, and the last legacy ICMP hand-off checks its own bounds; bsd 7770 -> 7713 unsafe, 5325 host tests green",
+  "title": "N6.4c2: IPv4 input, reassembly and ICMP are in the safe kernel",
   "url": "https://github.com/EmiBSD/Kernel/commit/b79d637b"
  },
  {
   "date": "2026-11-12T23:36:32-03:00",
   "repo": "Kernel",
-  "title": "N6.4c1 done: the protocol control block every IPv4 and IPv6 socket hangs on, and the IP socket options, are the kernel's; a lookup's reference is taken under the table's mutex as a type, and pf's word in a pcb is written only with pf's key; bsd 7821 -> 7770 unsafe, 5299 host tests green",
+  "title": "N6.4c1: the socket protocol control block and IP options are in the safe kernel",
   "url": "https://github.com/EmiBSD/Kernel/commit/46fa0bfa"
  },
  {
   "date": "2026-11-12T20:38:41-03:00",
   "repo": "Kernel",
-  "title": "N6.4b done: ARP is the kernel's, the route's link-level record a typed word, and the last bsd unsafe of the ARP path gone; bsd 7847 -> 7821 unsafe, 5281 host tests green",
+  "title": "N6.4b: ARP is in the safe kernel",
   "url": "https://github.com/EmiBSD/Kernel/commit/2baa2aff"
  },
  {
   "date": "2026-11-12T19:01:57-03:00",
   "repo": "Kernel",
-  "title": "N6.4a done: the IPv4 addresses, multicast records, IGMP and the IPv4 output path are the kernel's, with the netinet headers and checksums; bsd 7928 -> 7847 unsafe",
+  "title": "N6.4a: IPv4 addresses, IGMP and the output path are in the safe kernel",
   "url": "https://github.com/EmiBSD/Kernel/commit/393cf01b"
  },
  {
@@ -416,7 +416,7 @@
  {
   "date": "2026-11-12T01:10:15-03:00",
   "repo": "DevTools",
-  "title": "LLVM 23.1.4+emibsd.6 and Rust 1.99.1+emibsd.5, each as four artifacts: the toolchain that runs on the Mac and the native one that runs on EmiBSD, for arm64 and amd64. New: the profile and ubsan_minimal runtimes, the manual pages, rust-analyzer, the native cargo against the system's shared LibreSSL; on arm64 the native cc, c++, ar, rustc, cargo, clippy, rustfmt and rustdoc ran under the EmiBSD kernel in QEMU",
+  "title": "DevTools: LLVM 23.1.4 and Rust 1.99.1, for the Mac and native on EmiBSD, arm64 and amd64",
   "url": "https://github.com/EmiBSD/DevTools/releases"
  },
  {
@@ -428,7 +428,7 @@
  {
   "date": "2026-11-11T20:51:08-03:00",
   "repo": "DevTools",
-  "title": "The native toolchain: LLVM 23.1.4 and Rust 1.99.1 built to run on EmiBSD itself, one artifact per architecture, for the userland's comp set; on arm64, under the EmiBSD kernel in QEMU, the native cc, c++, ar and rustc built and ran their programs; amd64 is built and waits for the kernel's amd64 boot",
+  "title": "DevTools: a native toolchain that runs on EmiBSD itself, checked on arm64",
   "url": "https://github.com/EmiBSD/DevTools/commit/425d1d20"
  },
  {
@@ -446,13 +446,13 @@
  {
   "date": "2026-11-09T00:02:49-03:00",
   "repo": "OS",
-  "title": "The release 2026.11.4, a signed pre-release for arm64 that replaces 2026.11.3, whose ISO could not be rebuilt from its tag: the same Kernel 20261108-b99aedaf and Userland 2026.11.4, DevTools llvm-23.1.4+emibsd.4 and rust-1.99.1+emibsd.2; both media install in QEMU and boot to login:, and the tree is on cdn.emibsd.org",
+  "title": "Release 2026.11.4, a signed arm64 pre-release replacing 2026.11.3",
   "url": "https://github.com/EmiBSD/OS/releases/tag/2026.11.4"
  },
  {
   "date": "2026-11-08T20:53:05-03:00",
   "repo": "OS",
-  "title": "The release 2026.11.3, a signed pre-release for arm64: Kernel 20261108-b99aedaf, with the socket layer and the socket system calls in the new kernel, and Userland 2026.11.4, built against that kernel's ABI headers; both media install in QEMU and boot to login:, the tree is on cdn.emibsd.org, now browsable",
+  "title": "Release 2026.11.3, a signed arm64 pre-release with the socket layer in the new kernel",
   "url": "https://github.com/EmiBSD/OS/releases/tag/2026.11.3"
  },
  {
@@ -476,13 +476,13 @@
  {
   "date": "2026-11-07T23:08:09-03:00",
   "repo": "OS",
-  "title": "The first signed release, 2026.11.2, a pre-release for arm64: the media are signed with EmiBSD's own signify key and the installer verifies the sets against it; Userland 2026.11.3, the base system renamed EmiBSD, on Kernel 20261107-b2a15ba6; the tree is also on the mirror, cdn.emibsd.org",
+  "title": "The first signed release, 2026.11.2, an arm64 pre-release",
   "url": "https://github.com/EmiBSD/OS/releases/tag/2026.11.2"
  },
  {
   "date": "2026-11-07T20:32:19-03:00",
   "repo": "OS",
-  "title": "The second release, 2026.11.1, a pre-release for arm64: Kernel 20261107-d2107de6, with the ABI linked into the kernel, and Userland 2026.11.2, whose base carries the same EFI loader the media boot from; both media install in QEMU and boot to login:",
+  "title": "Release 2026.11.1, an arm64 pre-release with the ABI linked into the kernel",
   "url": "https://github.com/EmiBSD/OS/releases/tag/2026.11.1"
  },
  {
@@ -494,7 +494,7 @@
  {
   "date": "2026-11-07T14:32:26-03:00",
   "repo": "Kernel",
-  "title": "N5 met: the buffer cache, the VFS layer and every file system (ufs/ffs, mfs, ext2fs, msdosfs, cd9660, udf, tmpfs, fuse) are the zero-unsafe kernel's; just ci, ci-full and the comparison with a real OpenBSD green; the tag n5-vfs",
+  "title": "N5 met: the buffer cache, the VFS layer and every file system are in the safe kernel",
   "url": "https://github.com/EmiBSD/Kernel/commit/eaade76b"
  },
  {
@@ -512,13 +512,13 @@
  {
   "date": "2026-11-06T08:33:49-03:00",
   "repo": "OS",
-  "title": "The first release, 2026.11, a pre-release for arm64: an install ISO and a USB stick image that install EmiBSD in QEMU with no network and boot it to login:; Kernel 20261106-ac41e133 and Userland 2026.11.1, not yet compared with a real OpenBSD",
+  "title": "The first release, 2026.11, an arm64 pre-release that installs and boots in QEMU",
   "url": "https://github.com/EmiBSD/OS/releases/tag/2026.11"
  },
  {
   "date": "2026-11-06T07:58:40-03:00",
   "repo": "OS",
-  "title": "The install media: an ISO and a USB stick image for arm64, made in OS from Kernel's and Userland's releases; each installs EmiBSD in QEMU from its own sets with no network, the installed disk boots to login:, and two builds give the same sums",
+  "title": "Install media for arm64: an ISO and a USB image that install EmiBSD with no network",
   "url": "https://github.com/EmiBSD/OS/commit/c6b3edc6"
  },
  {
@@ -530,7 +530,7 @@
  {
   "date": "2026-11-05T23:11:24-03:00",
   "repo": "OS",
-  "title": "OS takes the kernel and the base system from Kernel's and Userland's GitHub releases, by tag and sum, instead of building them; the released kernel boots through Kernel's smoke harness",
+  "title": "OS now takes the kernel and the base system from their published releases",
   "url": "https://github.com/EmiBSD/OS/commit/fb4ad7e2"
  },
  {
@@ -554,7 +554,7 @@
  {
   "date": "2026-11-05T07:39:06-03:00",
   "repo": "Userland",
-  "title": "The whole inherited base system builds for EmiBSD with its own make: 37 libraries and every program of bin, sbin, usr.bin, usr.sbin, libexec, share and games, and the base, comp, game and man sets",
+  "title": "The whole inherited base system builds for EmiBSD with its own make",
   "url": "https://github.com/EmiBSD/Userland/commit/7053e89f"
  },
  {
@@ -578,7 +578,7 @@
  {
   "date": "2026-11-05T02:17:48-03:00",
   "repo": "Kernel",
-  "title": "N5.5b2 done: the kernel's ffs mounts, reads, writes and syncs every FFS file system; seven files of the LandingZone tree deleted, bsd 9157 -> 9100 unsafe",
+  "title": "N5.5b2: the safe kernel's ffs mounts, reads, writes and syncs every FFS file system",
   "url": "https://github.com/EmiBSD/Kernel/commit/6a710879"
  },
  {
@@ -590,7 +590,7 @@
  {
   "date": "2026-11-04T22:00:08-03:00",
   "repo": "Userland",
-  "title": "Userland starts again from one root commit: OpenBSD's base system at the shared pin, placed by what each program does and changed only by patches; the programs written in Rust come one at a time",
+  "title": "Userland starts again from one root commit: OpenBSD's base system, changed only by patches",
   "url": "https://github.com/EmiBSD/Userland/commit/c9753216"
  },
  {
@@ -602,19 +602,19 @@
  {
   "date": "2026-11-02T22:14:11-03:00",
   "repo": "LandingZone",
-  "title": "The port builds with DevTools' per-architecture toolchains on the renamed kernel targets, x86_64-emibsd-none-softfloat and aarch64-emibsd-none-softfloat; both kernels boot in QEMU, 84 of 84 smokes",
+  "title": "The port builds with DevTools' toolchains; both kernels boot in QEMU, 84 of 84 smokes",
   "url": "https://github.com/EmiBSD/LandingZone/commit/937d22ef"
  },
  {
   "date": "2026-11-01T03:13:11-03:00",
   "repo": "LandingZone",
-  "title": "The port moves to DevTools' Rust 1.99.1 and LLVM 23.1.4, amd64 frozen while the release had no amd64 target; the parallel smokes run the xtask binary, not cargo, after a race that killed recipes (EXT-225)",
+  "title": "The port moves to DevTools' Rust 1.99.1 and LLVM 23.1.4",
   "url": "https://github.com/EmiBSD/LandingZone/commit/f7b1fad3"
  },
  {
   "date": "2026-11-02T21:22:05-03:00",
   "repo": "DevTools",
-  "title": "The releases made again for arm64 and amd64: LLVM 23.1.4 and Rust 1.99.1 also emit for x86_64-emibsd-emibsd8.0, one tarball per architecture; the kernel's Rust targets become aarch64-emibsd-none-softfloat and x86_64-emibsd-none-softfloat",
+  "title": "DevTools releases for arm64 and amd64, with the kernel's new Rust target names",
   "url": "https://github.com/EmiBSD/DevTools/releases"
  },
  {
@@ -632,7 +632,7 @@
  {
   "date": "2026-10-31T23:00:41-03:00",
   "repo": "DevTools",
-  "title": "First releases: LLVM 23.1.4 and Rust 1.99.1 for aarch64-emibsd-emibsd8.0, imported from the forks and built with the EmiBSD target series; the kernel and the userland fetch them by tag",
+  "title": "DevTools' first releases: LLVM 23.1.4 and Rust 1.99.1 for EmiBSD on arm64",
   "url": "https://github.com/EmiBSD/DevTools/releases"
  },
  {
@@ -662,7 +662,7 @@
  {
   "date": "2026-10-31T01:20:23-03:00",
   "repo": "OS",
-  "title": "The OS repository: a manifest pins one commit of Kernel, Userland and DevTools and records the OpenBSD pin they share; its recipes fetch them, delegate the builds, boot the result and will tag YEAR.MONTH; nothing released yet",
+  "title": "The OS repository: one manifest pins Kernel, Userland and DevTools",
   "url": "https://github.com/EmiBSD/OS/commit/102867a7"
  },
  {
