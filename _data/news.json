@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-27T22:00:00-03:00",
+  "repo": "Kernel",
+  "title": "N7.2b1a merged: the device tree can now mix new and legacy drivers, so a bus can move into the safe kernel crate while the drivers below it wait their turn; a legacy driver under a new bus gets its arguments translated at the door and a small legacy header for its parent, and reading that header as a bigger structure is a panic instead of a silent overrun; no `unsafe` count moved, nothing boots differently yet, seven smokes green after the merge; the root bus and `simplebus` come next",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-27T21:45:00-03:00",
   "repo": "Kernel",
   "title": "The full close after the Limine removal and `entry` ran on arm64: host tests (5910 passed, 0 failed), every smoke on four CPUs (67 of 87, the rest are amd64's and wait for N10), the installer end to end (device tree, ACPI and the `install80.img` USB image) and the comparison with OpenBSD on two CPU models (159 steps, 0 unexpected); clippy had been red since `entry` merged, 14 lints fixed with no behaviour change; next in N7 are the device tree's root bus and `simplebus`, planned in two steps",
