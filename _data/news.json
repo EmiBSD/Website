@@ -1,5 +1,11 @@
 [
  {
+  "date": "2026-11-28T00:00:00-03:00",
+  "repo": "Kernel",
+  "title": "N7.2b1b merged: the device tree's root bus and `simplebus` are drivers of the safe kernel crate now, and the old root bus is deleted from the legacy tree; the sixteen legacy drivers below them attach as before, every boot line byte-equal, and a review caught two differences from OpenBSD (a bus's DMA coherence and when the IOMMU maps a node) that were fixed before the merge; `hal` 236 to 237 `unsafe`, the legacy tree 6,863 to 6,856; all smokes, the comparison with OpenBSD on two CPU models and the release build green",
+  "url": "https://github.com/EmiBSD/Kernel"
+ },
+ {
   "date": "2026-11-27T22:00:00-03:00",
   "repo": "Kernel",
   "title": "N7.2b1a merged: the device tree can now mix new and legacy drivers, so a bus can move into the safe kernel crate while the drivers below it wait their turn; a legacy driver under a new bus gets its arguments translated at the door and a small legacy header for its parent, and reading that header as a bigger structure is a panic instead of a silent overrun; no `unsafe` count moved, nothing boots differently yet, seven smokes green after the merge; the root bus and `simplebus` come next",
